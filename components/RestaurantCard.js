@@ -60,7 +60,7 @@ const RestaurantCard = ({ restaurant }) => {
                                         <FaStar
                                             key={index}
                                             size={10}
-                                            color={(currentValueRatings) > index ? "#FF9F1C" : "#707070"}
+                                            color={(Math.floor(currentValueRatings)) > index ? "#FF9F1C" : "#707070"}
                                             style={{
                                                 marginRight: 5,
                                             }}
