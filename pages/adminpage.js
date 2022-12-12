@@ -139,15 +139,16 @@ const Adminpage = () => {
       await setDoc(
           restaurantRef,
           {
-              name: data.name,
-              emailAddress: data.emailAddress,
-              contactNumber: data.contactNumber,
-              restaurantID: data.restaurantID,
-              menu:"",
-              reviews:0,
-              ratings:5,
-              src:"NoSrc.jpg",
-              reservations:"",
+            name: data.name,
+            emailAddress: data.emailAddress,
+            contactNumber: data.contactNumber,
+            restaurantID: data.restaurantID,
+            menu:{},
+            reviews:0,
+            ratings:0,
+            src:"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/generalPictures%2Fc1.png?alt=media&token=0a516330-5d86-4f28-82b7-3499d3124fa3",
+            reservations:{},
+            reviewLists:{},
           },
           { merge: true }
       );

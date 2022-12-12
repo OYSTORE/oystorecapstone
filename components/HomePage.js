@@ -132,7 +132,7 @@ const HomePage = ({ dishesList, restaurantsList }) => {
     },[])
     return (
         <>
-        {console.log(restaurantsList)}
+        {/* {console.log(restaurantsList)} */}
             <Carousel />
             <div className="flex flex-col py-10">
                 <h1 className="text-2xl sm:text-3xl font-bold pl-8 pb-3">
