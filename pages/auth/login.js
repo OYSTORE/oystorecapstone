@@ -92,14 +92,16 @@ export default function Login() {
             <div className="flex-1 flex flex-row justify-between items-center text-xs sm:text-sm gap-2 sm:gap-4 h-screen">
                 <div className="hidden sm:block w-1/2 h-screen bg-center bg-cover bg-[url('/assets/oyster_banner2.jpg')]"></div>
                 <div className="w-full md:w-1/2 flex items-center justify-center">
-                    <div className="w-full lg:w-1/2 flex flex-col justify-center shadow-xl p-10 text-gray-700 rounded-lg">
-                        <Image
-                            src="/assets/logo-oystore.png"
-                            width="180"
-                            height="46"
-                            className="my-4 self-center"
-                            alt="logo"
-                        />
+                    <div className="w-full lg:w-1/2 flex flex-col items-center justify-center shadow-xl p-10 text-gray-700 rounded-lg">
+                        <div className="navbar-center">
+                            <Image
+                                src="/assets/logo-oystore.png"
+                                width="180"
+                                height="46"
+                                className="my-4 self-center"
+                                alt="logo"
+                            />
+                        </div>
                         {/* <h2 className="text-3xl font-medium"></h2> */}
                         <div className="py-4">
                             <div className="flex flex-col gap-2">
