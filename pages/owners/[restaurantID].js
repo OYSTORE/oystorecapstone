@@ -21,6 +21,7 @@ import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import moment from "moment/moment";
 import useFetchReservations from "../../hooks/fetchReservations";
 import Footer from "../../components/Footer";
+import Navbar2 from "../../components/Navbar2";
 
 export async function getStaticPaths() {
     const restaurantsList = [];

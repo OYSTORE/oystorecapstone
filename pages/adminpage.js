@@ -18,7 +18,7 @@ import Navbar2 from "../components/Navbar2";
 import { MdOutlineRestaurant } from "react-icons/md";
 
 
-const adminpage = () => {
+const Adminpage = () => {
     useEffect(() => {
         !currentUser ? Router.push("/") : ""
     },[])
@@ -643,4 +643,4 @@ const adminpage = () => {
     );
 };
 
-export default adminpage;
+export default Adminpage;

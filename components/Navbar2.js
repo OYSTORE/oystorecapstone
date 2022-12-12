@@ -183,7 +183,7 @@ const Navbar2 = () => {
                                         className="text-gray-700 group-hover:text-white"
                                     />
                                     <h3 className=" text-gray-700 text-base font-medium   group-hover:text-white">
-                                        Owner's Dashboard
+                                        Owner Dashboard
                                     </h3>
                                 </li>
                             </Link>
