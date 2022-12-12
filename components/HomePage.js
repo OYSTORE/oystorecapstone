@@ -113,7 +113,7 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                         img: currentUser.photoURL,
                         email: currentUser.email,
                         contactNumber:0,
-                      });
+                      },{ merge: true });
                     
                 }
                 /*const docSnap = await getDoc(docRef)

@@ -16,6 +16,7 @@ import { auth } from "../../firebase";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
 import Router  from "next/router";
+import Image from "next/image";
 
 export default function Login() {
     // const route = useRouter();
