@@ -1,6 +1,6 @@
 import Cards from "./Cards";
 
-const popularDish = () => {
+const PopularDish = () => {
     return (
         <div className="flex  items-center justify-center flex-wrap w-full">
               {currentDishes.map(dish => (<Cards key={dish.id} dish={dish} addToCart={addToCart} />) )}
@@ -8,4 +8,4 @@ const popularDish = () => {
     );
 }
  
-export default popularDish;
+export default PopularDish;
