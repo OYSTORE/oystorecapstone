@@ -261,6 +261,7 @@ const Navbar2 = () => {
                             width="180"
                             height="46"
                             layout="fixed"
+                            alt="logo"
                             priority
                         />
                     </div>

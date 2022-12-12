@@ -15,9 +15,10 @@ import { useEffect, useState } from "react";
 import { auth } from "../../firebase";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
+import Router  from "next/router";
 
 export default function Login() {
-    const route = useRouter();
+    // const route = useRouter();
     const [user, loading] = useAuthState(auth);
     //Sign in with google
     const googleProvider = new GoogleAuthProvider();
@@ -58,7 +59,7 @@ export default function Login() {
 
     useEffect(() => {
         if (user) {
-            route.push("/");
+            Router.push("/");
         } else {
             // console.log("login");
         }
@@ -91,11 +92,12 @@ export default function Login() {
                 <div className="hidden sm:block w-1/2 h-screen bg-center bg-cover bg-[url('/assets/oyster_banner2.jpg')]"></div>
                 <div className="w-full md:w-1/2 flex items-center justify-center">
                     <div className="w-full lg:w-1/2 flex flex-col justify-center shadow-xl p-10 text-gray-700 rounded-lg">
-                        <img
+                        <Image
                             src="/assets/logo-oystore.png"
                             width="200"
                             height="51"
                             className="my-4 self-center"
+                            alt="logo"
                         />
                         {/* <h2 className="text-3xl font-medium"></h2> */}
                         <div className="py-4">
