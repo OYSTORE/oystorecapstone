@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
@@ -21,9 +22,11 @@ const ReviewCard = ({review}) => {
             <div>
                 <div className="flex items-center w-full ">
                     <div className="w-10 rounded-full bg-orange-peel">
-                        <img
+                        <Image
                             src={review.imgSrc}
                             className="rounded-full"
+                            alt=""
+                            layout="fill"
                         />
                     </div>
                     <div className="flex flex-row px-4">{review.name}</div>

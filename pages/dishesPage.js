@@ -70,12 +70,12 @@ export async function getServerSideProps(context) {
         },
     };
 }
-const dishesPage = ({ dishesList }) => {
+const DishesPage = ({ dishesList }) => {
     useEffect(() => {
         !currentUser ? Router.push("/") : "";
         
         //const sortByTopRatings = [...dishList];
-    },[])
+    },[currentUser])
     // const dishTransform = [];
     const [dishList, setDishList] = useState(dishesList);
    
@@ -408,4 +408,4 @@ const dishesPage = ({ dishesList }) => {
     );
 };
 
-export default dishesPage;
+export default DishesPage;

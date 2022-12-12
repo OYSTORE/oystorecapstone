@@ -61,12 +61,12 @@ export async function getServerSideProps(context) {
         },
     };
 }
-const restaurantsPage = ({ restaurantList }) => {
+const RestaurantsPage = ({ restaurantList }) => {
     useEffect(() => {
         !currentUser ? Router.push("/") : "";
         
         //const sortByTopRatings = [...dishList];
-    },[])
+    },[currentUser])
     // const dishTransform = [];
     const [dishList, setDishList] = useState(restaurantList);
    
@@ -328,4 +328,4 @@ const restaurantsPage = ({ restaurantList }) => {
     );
 };
 
-export default restaurantsPage;
+export default RestaurantsPage;

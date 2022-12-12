@@ -95,6 +95,7 @@ const Navbar2 = () => {
                                 width="180"
                                 height="46"
                                 layout="fixed"
+                                alt="logo"
                                 priority
                             />
                         </>
@@ -144,7 +145,7 @@ const Navbar2 = () => {
                                 </h3>
                             </li>
                         </Link>
-                        <Link href="/cartPage">
+                        <Link href="/Bookmarks">
                             <li
                                 onClick={() => setOpen(false)}
                                 className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
@@ -183,13 +184,13 @@ const Navbar2 = () => {
                                         className="text-gray-700 group-hover:text-white"
                                     />
                                     <h3 className=" text-gray-700 text-base font-medium   group-hover:text-white">
-                                        Owner Dashboard
+                                        Owner&apos;s Dashboard
                                     </h3>
                                 </li>
                             </Link>
                         )}
                         {userData.isOwner && (
-                            <Link href="/adminpage">
+                            <Link href="/Adminpage">
                                 <li
                                     onClick={() => setOpen(false)}
                                     className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
@@ -339,12 +340,14 @@ const Navbar2 = () => {
                             >
                                 <div className="w-10 rounded-full">
                                     <img
+                                        
                                         src={
                                             currentUser.photoURL
                                                 ? currentUser.photoURL
                                                 : ""
                                         }
                                         alt="Profile"
+                                        // 
                                     />
                                     {/* <img src="/assets/dishpic/NoSrc.jpg" alt="Profile"/> */}
                                 </div>

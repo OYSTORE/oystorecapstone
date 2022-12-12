@@ -14,7 +14,7 @@ import Navbar2 from "../components/Navbar2";
 import useFetchUserData from "../hooks/fetchUserData";
 
 
-const ownerpage = () => {
+const Ownerpage = () => {
     const {ownerStatus} = useFetchUserData();
     const [status, setStatus] = useState(ownerStatus);
     const { currentUser } = useAuth();
@@ -54,7 +54,7 @@ const ownerpage = () => {
         // }
         // fetchData();
         
-    },[])
+    },[currentUser,status])
     // function Redirect(){
     //    try{
     //     if (currentUser && !status){
@@ -722,4 +722,4 @@ const ownerpage = () => {
     );
 };
 
-export default ownerpage;
+export default Ownerpage;

@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { auth, db } from '../firebase'
+import Image from "next/image";
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -42,11 +43,12 @@ export default function Login() {
         <div className="flex-1 flex flex-row justify-center items-center text-xs sm:text-sm gap-2 sm:gap-4 h-screen">
             <div className="hidden sm:block w-[55%] h-screen bg-center bg-cover bg-[url('/assets/oyster_banner2.jpg')]"></div>
             <div className="flex-1 flex flex-col justify-center items-center text-xs sm:text-sm gap-2 sm:gap-4 mr-0 sm:mr-4">
-                <img
+                <Image
                     src="/assets/logo-oystore.png"
                     width="200"
                     height="51"
                     className="my-4"
+                    alt="logo"
                 />
 
                 <h1 className="text-2xl sm:text-4xl font-bold text-slate-900 select-none uppercase">

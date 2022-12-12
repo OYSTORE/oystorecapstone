@@ -21,7 +21,7 @@ import { MdOutlineRestaurant } from "react-icons/md";
 const Adminpage = () => {
     useEffect(() => {
         !currentUser ? Router.push("/") : ""
-    },[])
+    },[currentUser])
     const { currentUser } = useAuth();
 
     // testing protected routes
