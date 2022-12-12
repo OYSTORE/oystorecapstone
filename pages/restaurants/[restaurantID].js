@@ -72,7 +72,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
     const id = context.params.restaurantID;
-    const restaurant = [];
+    let restaurant = [];
     const docRef = doc(db, "Restaurants", id);
     const docSnap = await getDoc(docRef);
 
@@ -83,16 +83,53 @@ export async function getStaticProps(context) {
         // doc.data() will be undefined in this case
         console.log("No such document!");
     }
+    // const unsub = onSnapshot(docRef, (doc) => {
+    //     restaurant2.push({ ...doc.data(), id: doc.id });
+    // });
 
+   
     return {
         props: {
-            restaurant: restaurant[0],
+            restaurant2: restaurant[0],
+            resID: id,
         },
     };
 }
 
-const RestaurantPage = ({ restaurant }) => {
-    
+const RestaurantPage = ({ restaurant2, resID}) => {
+    const [restaurant, setRestaurant] = useState(restaurant2);
+    // let restaurant2 = [];
+    const docRef = doc(db, "Restaurants", resID);
+    const unsub = onSnapshot(docRef, (doc) => {
+        setRestaurant(doc.data());
+    });
+   
+ 
+    // const [restaurant, setRestaurantData] = useState(restaurantData[0]);
+    // let restaurantData = [];
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         try {
+    //             const docRef = doc(db, 'Restaurants', resID)
+    //             const unsub = onSnapshot(docRef, (doc) => {
+    //                 restaurantData.push({ ...doc.data(), id: doc.id });
+    //             });
+    //             /*const docSnap = await getDoc(docRef)
+    //             if (docSnap.exists()) {
+    //                 setCarts(docSnap.data().carts)
+    //                 // setTodos('todos' in docSnap.data() ? docSnap.data().todos : {})
+    //             } else {
+    //                 setCarts({})
+    //             }*/
+    //         } catch (err) {
+    //             // setError('Failed to load data')
+    //             // console.log(err)
+    //         } finally {
+    //             // setLoading(false)
+    //         }
+    //     }
+    //     fetchData()
+    // }, [])
     const handleAdd = async (dish) => {
         {
             /*const collectionRef3 = collection(db, "Cart");
@@ -162,7 +199,7 @@ const RestaurantPage = ({ restaurant }) => {
     const handleAddReservation = async(e) =>{
         e.preventDefault();
         const userRef = doc(db, "users", currentUser.uid);
-        const restaurantRef = doc(db, "Restaurants", restaurant.id);
+        const restaurantRef = doc(db, "Restaurants", resID);
         const reserveKeyUser =
             Object.keys(reservations).length === 0
                 ? 1
@@ -249,7 +286,7 @@ const RestaurantPage = ({ restaurant }) => {
     const {userData} = useFetchUserData();
     const handleAddReview = async(e) =>{
         e.preventDefault();
-        const restaurantRef = doc(db, "Restaurants", restaurant.id);
+        const restaurantRef = doc(db, "Restaurants", resID);
         const reserveKeyUser =
             Object.keys(restaurant.reviewLists).length === 0
                 ? 1
@@ -263,8 +300,8 @@ const RestaurantPage = ({ restaurant }) => {
             {
                 reviewLists: {
                     [currentUser.uid]: {
-                     reviewText:reviewData, name:currentUser.displayName, reviewerUserID:currentUser.uid, 
-                     rating:currentValue, datePublished:"12/08/2021", imgSrc:currentUser.photoURL
+                     reviewText:reviewData,  reviewerUserID:currentUser.uid, 
+                     rating:currentValue, datePublished:"12/08/2021", 
                     }
                 },
             },
@@ -284,9 +321,9 @@ const RestaurantPage = ({ restaurant }) => {
             userRef,
             {
                 reviewLists: {
-                    [restaurant.id]: {
+                    [resID]: {
                      reviewText:reviewData, name:currentUser.displayName, reviewerUserID:currentUser.uid, 
-                     rating:currentValue, datePublished:"12/08/2021", imgSrc:currentUser.photoURL, restaurantID:restaurant.id,
+                     rating:currentValue, datePublished:"12/08/2021", imgSrc:currentUser.photoURL, restaurantID:resID,
                     }
                 },
             },
@@ -324,7 +361,7 @@ const RestaurantPage = ({ restaurant }) => {
 
     //submit rating to dish
     const handleSubmit = async(dish, dishIDArray, dishRating) =>{
-        const restaurantRef = doc(db, "Restaurants", restaurant.id);
+        const restaurantRef = doc(db, "Restaurants", resID);
         const reserveKeyUser =
             Object.keys(dish.reviewLists).length === 0
                 ? 1
@@ -338,7 +375,7 @@ const RestaurantPage = ({ restaurant }) => {
                         reviewLists: {
                             [currentUser.uid]: {
                             name:currentUser.displayName, reviewerUserID:currentUser.uid, 
-                             rating:dishRating, datePublished:"12/08/2021", imgSrc:currentUser.photoURL
+                             rating:dishRating, datePublished:"12/08/2021", 
                             }
                         },
                     }
@@ -357,11 +394,11 @@ const RestaurantPage = ({ restaurant }) => {
             userRef,
             {
                 dishReviewList: {
-                    [restaurant.id]: {
+                    [resID]: {
                         [dishIDArray]:{
                             reviewerUserID:currentUser.uid, 
                             rating:dishRating, datePublished:"12/08/2021", imgSrc:currentUser.photoURL,
-                            restaurantID:restaurant.id, dishReviewed:dish, dishName: dish.name
+                            restaurantID:resID, dishReviewed:dish, dishName: dish.name
                         }, 
                     }
                 },
@@ -440,7 +477,7 @@ const RestaurantPage = ({ restaurant }) => {
                                         <FaStar
                                             key={index + 1}
                                             size={15}
-                                            color={(currentValueRatings) > index + 1 ? "#FF9F1C" : "#707070"}
+                                            color={(rating) > index + 1 ? "#FF9F1C" : "#707070"}
                                             style={{
                                                 marginRight: 10,
                                             }}

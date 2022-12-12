@@ -102,11 +102,11 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
                                         key={index}
                                         size={15}
                                         color={
-                                            (currentValueFixed) > index
+                                            (Math.floor(rating)) > index 
                                                 ? "#FF9F1C"
                                                 : "#707070"
                                         }
-                                        
+                                       
                                     />
                                 );
                             })}
@@ -119,7 +119,7 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
                         {reviews} reviews
                         </span>
                     </div>
-                    
+                   
                 </div>
                 <div className="flex-row md:flex-col px-4 flex items-center justify-center gap-4">
                     <div className="flex flex-col justify-center">
@@ -136,7 +136,7 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
                                         onMouseOver={() => handleMouseOver(index + 1)}
                                         onMouseLeave={handleMouseLeave}
                                         color={
-                                            (currentValue) > index
+                                            (currentValue) > index 
                                                 ? "#FF9F1C"
                                                 : "#707070"
                                         }

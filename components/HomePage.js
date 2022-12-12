@@ -113,6 +113,8 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                         img: currentUser.photoURL,
                         email: currentUser.email,
                         contactNumber:0,
+                        dishReviewList:{},
+                        reviewLists:{},
                       },{ merge: true });
                     
                 }

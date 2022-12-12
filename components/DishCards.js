@@ -35,7 +35,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
     for (const num of ratingArray) {
       counts[num] = counts[num] ? counts[num] + 1 : 1;
     }
-    const [currentValueFixed, setCurrentValueFixed] = useState(rating);
+    // const [currentValueFixed, setCurrentValueFixed] = useState(Math.floor(rating));
     const stars = Array(5).fill(0)
     return (
         <div className="snap-start flex flex-col w-56 h-80 rounded-xl shadow-sm hover:shadow-lg transition duration-300 hover:-translate-y-4 border my-2 bg-white">
@@ -72,7 +72,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
                                        <FaStar
                                            key={index}
                                            size={10}
-                                           color={(currentValueRatings) > index ? "#FF9F1C" : "#707070"}
+                                           color={(Math.floor(rating)) > index ? "#FF9F1C" : "#707070"}
                                            style={{
                                                marginRight: 6,
                                            }}

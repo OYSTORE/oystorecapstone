@@ -68,7 +68,7 @@ const Navbar2 = () => {
     };
     const { userInfo, currentUser } = useAuth();
     const { userData } = useFetchUserData();
-    console.log(currentUser.uid);
+    // console.log(currentUser.uid);
     //fetch carts
     // const { carts, loading, error, setCarts } = useFetchCarts();
     //console.log(Object.values(carts[1].name))
@@ -97,6 +97,7 @@ const Navbar2 = () => {
                                 layout="fixed"
                                 alt="logo"
                                 priority
+                                referrerPolicy="no-referrer" 
                             />
                         </>
                     </Link>
