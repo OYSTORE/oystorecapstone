@@ -13,13 +13,13 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { auth } from "../../firebase";
-import { useRouter } from "next/router";
+
 import { useAuth } from "../../context/AuthContext";
 import Router  from "next/router";
 import Image from "next/image";
 
 export default function Login() {
-    // const route = useRouter();
+    
     const [user, loading] = useAuthState(auth);
     //Sign in with google
     const googleProvider = new GoogleAuthProvider();
