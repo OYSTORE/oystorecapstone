@@ -2,7 +2,6 @@
 
 import { useAuth } from "../context/AuthContext";
 import { Footer } from "./Footer";
-import Navbar from "./Navbar";
 import Navbar2 from "./Navbar2";
 
 
