@@ -381,7 +381,7 @@ const RestaurantPage = ({ restaurant }) => {
                 <label htmlFor="my-modal-0" className="cursor-pointer">
                     <div className="relative w-full  h-56 sm:h-[30rem]">
                         <Image
-                            src={"/assets/restaurants/" + restaurant.src}
+                            src={"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"}
                             layout="fill"
                             objectFit="cover"
                             priority
@@ -406,7 +406,7 @@ const RestaurantPage = ({ restaurant }) => {
                         </label>
                         <div className="relative w-full h-56 sm:h-96">
                             <Image
-                                src={"/assets/restaurants/" + restaurant.src}
+                                src={"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"}
                                 layout="fill"
                                 objectFit="contain"
                                 priority
@@ -522,9 +522,7 @@ const RestaurantPage = ({ restaurant }) => {
                                         <div  className="relative w-full h-full">
                                         <Image
                                             src={
-                                                "/assets/restaurants/restaurantsGallery/" +
-                                                restaurant.restaurantID +
-                                                "_01.jpg"
+                                                "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
                                             }
                                             layout="fill"
                                             objectFit="cover"
@@ -550,9 +548,7 @@ const RestaurantPage = ({ restaurant }) => {
                                             <div className="relative w-full h-56 sm:h-96">
                                                 <Image
                                                     src={
-                                                        "/assets/restaurants/restaurantsGallery/" +
-                                                        restaurant.restaurantID +
-                                                        "_01.jpg"
+                                                        "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
                                                     }
                                                     layout="fill"
                                                     objectFit="contain"
@@ -573,9 +569,7 @@ const RestaurantPage = ({ restaurant }) => {
                                         <div  className="relative w-full h-full">
                                         <Image
                                             src={
-                                                "/assets/restaurants/restaurantsGallery/" +
-                                                restaurant.restaurantID +
-                                                "_02.jpg"
+                                                "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
                                             }
                                             layout="fill"
                                             objectFit="cover"
@@ -601,9 +595,7 @@ const RestaurantPage = ({ restaurant }) => {
                                             <div className="relative w-full h-56 sm:h-96">
                                                 <Image
                                                     src={
-                                                        "/assets/restaurants/restaurantsGallery/" +
-                                                        restaurant.restaurantID +
-                                                        "_02.jpg"
+                                                        "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
                                                     }
                                                     layout="fill"
                                                     objectFit="contain"
@@ -623,9 +615,7 @@ const RestaurantPage = ({ restaurant }) => {
                                         <div  className="relative w-full h-full">
                                         <Image
                                             src={
-                                                "/assets/restaurants/restaurantsGallery/" +
-                                                restaurant.restaurantID +
-                                                "_03.jpg"
+                                                "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
                                             }
                                             layout="fill"
                                             objectFit="cover"
@@ -651,9 +641,7 @@ const RestaurantPage = ({ restaurant }) => {
                                             <div className="relative w-full h-56 sm:h-96">
                                                 <Image
                                                     src={
-                                                        "/assets/restaurants/restaurantsGallery/" +
-                                                        restaurant.restaurantID +
-                                                        "_03.jpg"
+                                                        "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
                                                     }
                                                     layout="fill"
                                                     objectFit="contain"
@@ -674,9 +662,7 @@ const RestaurantPage = ({ restaurant }) => {
                                         <div  className="relative w-full h-full">
                                         <Image
                                             src={
-                                                "/assets/restaurants/restaurantsGallery/" +
-                                                restaurant.restaurantID +
-                                                "_04.jpg"
+                                                "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
                                             }
                                             layout="fill"
                                             objectFit="cover"
@@ -702,9 +688,7 @@ const RestaurantPage = ({ restaurant }) => {
                                             <div className="relative w-full h-56 sm:h-96">
                                                 <Image
                                                     src={
-                                                        "/assets/restaurants/restaurantsGallery/" +
-                                                        restaurant.restaurantID +
-                                                        "_04.jpg"
+                                                        "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
                                                     }
                                                     layout="fill"
                                                     objectFit="contain"

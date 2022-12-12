@@ -36,7 +36,7 @@ const RestaurantCard = ({ restaurant }) => {
             <Link href={"restaurants/" + restaurant.restaurantID}>
             <div className="relative w-full h-40 rounded-t-xl cursor-pointer">
                 <Image
-                    src={"/assets/restaurants/" + restaurant.src}
+                    src={"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"}
                     layout="fill"
                     objectFit="cover"
                     priority

@@ -174,7 +174,7 @@ const Navbar2 = () => {
                             </li>
                         </Link>
                         {userData.isOwner && (
-                            <Link href="/ownerpage">
+                            <Link href="/Ownerpage">
                                 <li
                                     onClick={() => setOpen(false)}
                                     className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
