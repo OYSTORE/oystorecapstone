@@ -501,7 +501,7 @@ const Adminpage = () => {
                                               htmlFor="restaurantID"
                                               className="text-lg font-medium text-gray-700"
                                           >
-                                              User ID of Owner's Account
+                                              User ID of Owner&apos;s Account
                                         </label>
                                         <input placeholder="" type="text" name="res-ownerID" id="restaurantID" onChange={handleAddInputChange} value={data.restaurantID} required 
                                             className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
