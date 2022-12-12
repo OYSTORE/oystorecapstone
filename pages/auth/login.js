@@ -95,8 +95,8 @@ export default function Login() {
                     <div className="w-full lg:w-1/2 flex flex-col justify-center shadow-xl p-10 text-gray-700 rounded-lg">
                         <Image
                             src="/assets/logo-oystore.png"
-                            width="200"
-                            height="51"
+                            width="180"
+                            height="46"
                             className="my-4 self-center"
                             alt="logo"
                         />

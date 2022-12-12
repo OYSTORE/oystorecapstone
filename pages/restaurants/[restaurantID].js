@@ -521,9 +521,7 @@ const RestaurantPage = ({ restaurant }) => {
                                     >
                                         <div  className="relative w-full h-full">
                                         <Image
-                                            src={
-                                                "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
-                                            }
+                                            src={"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"}
                                             layout="fill"
                                             objectFit="cover"
                                             priority

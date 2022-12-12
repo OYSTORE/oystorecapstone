@@ -21,12 +21,14 @@ const ReviewCard = ({review}) => {
         <>
             <div>
                 <div className="flex items-center w-full ">
-                    <div className="w-10 rounded-full bg-orange-peel">
+                    <div className="w-10 h-10 rounded-full bg-orange-peel">
                         <Image
                             src={review.imgSrc}
                             className="rounded-full"
+                            width="40"
+                            height="40"
                             alt=""
-                            layout="fill"
+                            
                         />
                     </div>
                     <div className="flex flex-row px-4">{review.name}</div>
