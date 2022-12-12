@@ -1,0 +1,725 @@
+import { deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { useEffect, useRef, useState } from "react";
+import { RiAdminFill } from "react-icons/ri";
+import MenuTableList from "../components/MenuTableList";
+
+import { db } from "../firebase";
+import useFetchOwnerRestaurant from "../hooks/fetchOwnerRestaurant";
+import { GiChickenOven } from "react-icons/gi";
+import { useAuth } from "../context/AuthContext";
+import Router from "next/router";
+import { FaCalendarCheck } from "react-icons/fa";
+import ReservationsListOwner from "../components/ReservationsListOwner";
+import Navbar2 from "../components/Navbar2";
+import useFetchUserData from "../hooks/fetchUserData";
+
+
+const ownerpage = () => {
+    const {ownerStatus} = useFetchUserData();
+    const [status, setStatus] = useState(ownerStatus);
+    const { currentUser } = useAuth();
+    // const [ownerStatus, setOwnerStatus] = useState(false)
+    useEffect(() => {
+            !currentUser ? Router.push("/"):"";
+            setTimeout(() => {
+                try{
+                    status ? "":setStatus(false);
+                }catch(err){
+                    
+                }
+            }, 3000);
+            if (status == undefined){
+                
+            }else if (status != false){
+                Router.push("/")
+            }
+                
+            
+        // async function fetchData() {
+        //     try {
+        //         const userRef = doc(db, "users", currentUser.uid);
+        //         const docSnap = await getDoc(userRef);
+        //         if (docSnap.exists()) {
+        //             // console.log("Document data:", docSnap.data());
+        //                 setOwnerStatus(true)
+        //                 console.log("h1")
+        //         } else {
+        //             // doc.data() will be undefined in this case
+        //             console.log("No such document!");
+        //         }
+
+        //     } catch (err) {
+        //         console.log(err)
+        //     } 
+        // }
+        // fetchData();
+        
+    },[])
+    // function Redirect(){
+    //    try{
+    //     if (currentUser && !status){
+    //         Router.push("/")
+    //     }
+    //    }catch(err){
+    //     console.log(err)
+    //    }
+    // }
+    // setTimeout(Redirect(), 4000) 
+    console.log(ownerStatus)
+
+    // testing protected routes
+    // const [isOwnerValue, setIsOwnerValue] = useState();
+    // useEffect(() => {
+    //   var isOwnerValue = false;
+    //   async function fetchData() {
+    //       try {
+    //           const userRef = doc(db, "users", currentUser.uid);
+    //           const docSnap = await getDoc(userRef);
+              
+    //           if (docSnap.exists()) {
+    //               // console.log("Document data:", docSnap.data());
+    //               isOwnerValue = docSnap.data().isOwner;
+    //               console.log(isOwnerValue)
+    //           } else {
+    //               // doc.data() will be undefined in this case
+    //               console.log("No such document!");
+    //           }
+    //           // const userRef = doc(db, 'users', currentUser.uid)
+    //           // const unsub2 = onSnapshot(userRef, (doc) => {
+    //           //     setUserData(doc.data())
+    //           // });
+              
+    //       } catch (err) {
+              
+    //           console.log(err)
+    //       } 
+    //   }
+    //   fetchData()
+    //   if (currentUser) {
+    //     if(isOwnerValue == true){
+    //       console.log("Signed in")
+    //       console.log(isOwnerValue)
+    //     }else if (isOwnerValue == false){
+    //       Router.push("/");
+    //       console.log("not Signed in")
+    //     }
+    //   }
+    //   // } else if (currentUser == null) {
+    //   //   Router.push("/loginpage");
+    //   // }
+    //   // else {
+    //   //   Router.push("/loginpage");
+    //   // }
+    // }, [currentUser]);
+
+    
+    const {
+        restaurantData,
+        loading,
+        error,
+        setRestaurantData,
+        userData,
+        menuData,
+        reservationsData
+    } = useFetchOwnerRestaurant();
+    const [toggleState, setToggleState] = useState(1);
+    const toggleTab = (index) => {
+        setToggleState(index);
+    };
+    const deleteDish = async (id) => {
+        /* const collectionRef3 = collection(db, "Cart");
+        
+         const userDoc = doc(collectionRef3, id);
+         await deleteDoc(userDoc);*/
+        var dishItemField = "menu." + id;
+        const docRef = doc(db, "Restaurants", userData.restaurantOwnerID);
+        await updateDoc(docRef, {
+            [dishItemField]: deleteField(),
+        });
+    };
+    const ref = useRef(null);
+    const inputRef = useRef();
+    const [toggleModal, setToggleModal] = useState(false);
+
+    const [inputValue, setInputValue] = useState("");
+    const [data, setData] = useState({name:"", price:0, main_category:"", unit:"", isAvailable:""});
+
+    const handleAddInputChange = (e) => {
+      const id = e.target.id;
+      const value = e.target.value;
+      setData({...data, [id]:value})
+    }
+    const handleAddInputChangeBool = (e) => {
+      const id = e.target.id;
+      const stringValue = e.target.value;
+      if (stringValue === "true"){
+        setData({...data, [id]:true})
+      }else {
+        setData({...data, [id]:false})
+      }
+    }
+    // const handleAddInputChangeRadio = (e) =>{
+    //   const id = e.target.id;
+    //   const value = e.target.value;
+    //   if (value === "true"){
+    //     setData({...data, [id]:true})
+    //   }else {
+    //     setData({...data, [id]:false})
+    //   }
+    // }
+    const handleAddNewDish = async(e) =>{
+      e.preventDefault();
+      const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
+      const reserveKeyUser =
+          Object.keys(menuData).length === 0
+              ? 1
+              : Math.max(...Object.keys(menuData)) + 1;
+      await setDoc(
+          restaurantRef,
+          {
+              menu: {
+                  [reserveKeyUser]: {
+                      // dishID: dish.id, userName:,
+                      ...data, reviews: 0, ratings: 0, src: "NoSrc.jpg", served_by: restaurantData.name, restaurantID: userData.restaurantOwnerID, sub_category:"N/A"
+                      ,reviewLists:{}, dishImg:"",
+                  },
+              },
+          },
+          { merge: true }
+      );
+      setData({name:"", price:0, main_category:"", unit:"", isAvailable:""});
+      setToggleModal(false);
+      }
+
+      const [toggleModalUpdate, setToggleModalUpdate] = useState(false);
+      const [dataUpdate, setDataUpdate] = useState({name:"", price:0, main_category:"", unit:"", isAvailable:""});
+      const handleAddInputChangeUpdate = (e) => {
+        const id = e.target.id;
+        const value = e.target.value;
+        setDataUpdate({...dataUpdate, [id]:value})
+      }
+      const handleAddInputChangeBoolUpdate = (e) => {
+        const id = e.target.id;
+        const stringValue = e.target.value;
+        if (stringValue === "true"){
+          setDataUpdate({...dataUpdate, [id]:true})
+        }else {
+          setDataUpdate({...dataUpdate, [id]:false})
+        }
+      }
+      const updateDishForm = async (dish, dishID) => {
+
+            setDataUpdate({...dish, "dishID":dishID})
+            setToggleModalUpdate(true)
+           
+        };
+        const handleUpdateDish = async (e) => {
+          e.preventDefault();
+          var dishItemField = "menu." + dataUpdate.dishID;
+          const docRef = doc(db, "Restaurants", userData.restaurantOwnerID);
+          await updateDoc(docRef, {
+              [dishItemField]: dataUpdate,
+          });
+          setToggleModalUpdate(false)
+          setData({name:"", price:0, main_category:"", unit:"", isAvailable:""});
+      };
+    return (
+        <>
+            {currentUser && ownerStatus ? 
+             (<> <Navbar2 /> 
+                    <div
+                        className={`flex flex-row ${
+                            toggleModal ? "blur-sm" : "blur-none"
+                        } ease-in-out duration-300`}
+                        ref={ref}
+                    >
+                        
+                        <div className="flex flex-col flex-wrap side-navbar w-20 lg:w-72 h-[90vh] border">
+                            <div className="m-0 items-center flex flex-col ">
+                               
+                                <ul className="w-full mx-0">
+                                    <li
+                                        className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
+                                ${
+                                    toggleState === 1
+                                        ? " border-orange-peel"
+                                        : "border-white"
+                                }`}
+                                        onClick={() => toggleTab(1)}
+                                    >
+                                        <RiAdminFill
+                                            size="1.8em"
+                                            className={
+                                                toggleState === 1
+                                                    ? "text-orange-peel"
+                                                    : "text-gray-700"
+                                            }
+                                        />
+                                        <h3
+                                            className={`text-base invisible lg:visible font-medium ${
+                                                toggleState === 1
+                                                    ? "text-orange-peel"
+                                                    : "text-gray-700"
+                                            }`}
+                                        >
+                                            Dashboard
+                                        </h3>
+                                    </li>
+                                    <li
+                                        className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
+                                ${
+                                    toggleState === 2
+                                        ? " border-orange-peel"
+                                        : "border-white"
+                                }`}
+                                        onClick={() => toggleTab(2)}
+                                    >
+                                        <GiChickenOven
+                                            size="1.8em"
+                                            className={
+                                                toggleState === 2
+                                                    ? "text-orange-peel"
+                                                    : "text-gray-700"
+                                            }
+                                        />
+                                        <h3
+                                            className={`text-base invisible lg:visible font-medium ${
+                                                toggleState === 2
+                                                    ? "text-orange-peel"
+                                                    : "text-gray-700"
+                                            }`}
+                                        >
+                                            Menu
+                                        </h3>
+                                    </li>
+                                    <li
+                                        className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
+                                ${
+                                    toggleState === 3
+                                        ? " border-orange-peel"
+                                        : "border-white"
+                                }`}
+                                        onClick={() => toggleTab(3)}
+                                    >
+                                        <FaCalendarCheck
+                                            size="1.8em"
+                                            className={
+                                                toggleState === 3
+                                                    ? "text-orange-peel"
+                                                    : "text-gray-700"
+                                            }
+                                        />
+                                        <h3
+                                            className={`text-base invisible lg:visible font-medium ${
+                                                toggleState === 3
+                                                    ? "text-orange-peel"
+                                                    : "text-gray-700"
+                                            }`}
+                                        >
+                                            Reservations
+                                        </h3>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            className={`w-full ${
+                                toggleState === 1 ? "block" : "hidden"
+                            }`}
+                        >
+                            <h1 className="text-2xl">Dashboard</h1>
+                        </div>
+                        <div
+                            className={`w-full ${
+                                toggleState === 2 ? "block" : "hidden"
+                            }`}
+                        >
+                            <div className="px-8 ">
+                                <h1 className="text-2xl mt-6">Menu</h1>
+                                <button
+                                    onClick={() => setToggleModal(!toggleModal)}
+                                    className="mt-4 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
+                                >
+                                    Add New Dish
+                                </button>
+                                <div>
+                                    <div className="h-[28rem] overflow-auto rounded-lg shadow-md my-8">
+                                        <table className="w-full h-full overflow-scroll" border="1">
+                                            <thead className="bg-gray-50 border-b-3 border-gray-200">
+                                                <tr className="">
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        No.
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Name
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Price
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Main Category
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Sub Category
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Unit
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Availability
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Image
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Ratings
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Reviews
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Action
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {Object.entries(menuData).map(
+                                                    (dish, index) => (
+                                                        <MenuTableList
+                                                            key={dish[0]}
+                                                            dish={dish[1]}
+                                                            dishKey={index}
+                                                            dishID={dish[0]}
+                                                            handleDelete={
+                                                                deleteDish
+                                                            }
+                                                            handleUpdate={
+                                                              updateDishForm
+                                                            }
+                                                        />
+                                                    )
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            className={`w-full ${
+                                toggleState === 3 ? "block" : "hidden"
+                            }`}
+                        >
+                            <div className="px-8 ">
+                                <h1 className="text-2xl mt-6">Reservations</h1>
+                                {/* <button
+                                    onClick={() => setToggleModal(!toggleModal)}
+                                    className="mt-4 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
+                                >
+                                    Add New Dish
+                                </button> */}
+                                <div>
+                                    <div className="overflow-auto rounded-lg shadow-md my-8">
+                                        <table className="w-full" border="1">
+                                            <thead className="bg-gray-50 border-b-3 border-gray-200">
+                                                <tr className="">
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        No.
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Name
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Party Size
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Date
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Time Reservation
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Contact Number
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Status
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {Object.entries(reservationsData).map(
+                                                    (dish, index) => (
+                                                        <ReservationsListOwner
+                                                            key={dish[0]}
+                                                            dish={dish[1]}
+                                                            dishKey={index}
+                                                            dishID={dish[0]}
+                                                            handleDelete={
+                                                                deleteDish
+                                                            }
+                                                            handleUpdate={
+                                                              updateDishForm
+                                                            }
+                                                        />
+                                                    )
+                                                )}
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className={`modal-shadow ${
+                            toggleModal || toggleModalUpdate
+                                ? "flex opacity-50"
+                                : "invisible opacity-0"
+                        } justify-center items-center  top-0 fixed left-0 right-0 mx-auto bg-black opacity-25 w-full h-screen ease-in-out duration-300`}
+                    ></div>
+                    
+                    <div
+                        className={`modal-add ${
+                            toggleModal
+                                ? "visible opacity-100 translate-y-32"
+                                : "invisible opacity-0 -translate-y-28"
+                        } ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white rounded-lg  absolute top-0 left-0 right-0 mx-auto`}
+                    >
+                        <div className="p-2">
+                            <p
+                                onClick={() => setToggleModal(false) }
+                                className="text-right cursor-pointer font-semibold"
+                            >
+                                Close
+                            </p>
+                            <h1 className="px-3 py-2 text-lg font-semibold">Add New Dish</h1>
+                            <div>
+                              <form onSubmit={handleAddNewDish} >
+                                  <div className="px-3">
+                                      <div className="flex flex-col gap-3">
+                                        <label
+                                            htmlFor="name"
+                                            className="text-lg font-medium text-gray-700"
+                                        >
+                                             Dish Name
+                                        </label>
+                                        <input type="text" name="dish-name" id="name" onChange={handleAddInputChange} value={data.name} required 
+                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        />
+                                        <label
+                                            htmlFor="price"
+                                            className="text-lg font-medium text-gray-700"
+                                        >
+                                             Price (Number only)
+                                        </label>
+                                        <input placeholder="In Php (Just input the number only)" type="number" name="dish-price" id="price" onChange={handleAddInputChange} value={data.price} required 
+                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        />
+                                        
+
+                                          <label
+                                              htmlFor="main_category"
+                                              className="text-lg font-medium text-gray-700"
+                                          >
+                                              Category
+                                          </label>
+                                          <select name="dish-main-categ" id="main_category" onChange={handleAddInputChange} value={data.main_category} required 
+                                          className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel">
+                                              <option value=""></option>
+                                              <option value="Apetizers">Apetizers</option>
+                                              <option value="Beef">Beef</option>
+                                              <option value="Beverages">Beverages</option>
+                                              <option value="Chicken">Chicken</option>
+                                              <option value="Noodles">Noodles</option>
+                                              <option value="Oysters">Oysters</option>
+                                              <option value="Pork">Pork</option>
+                                              <option value="Rice">Rice</option>
+                                              <option value="Seafood">Seafoods</option>
+                                              <option value="Shellfish">Shellfish</option>
+                                              <option value="Vegetables">Vegetables</option>
+                                              
+                                          </select>
+                                          
+                                          <label
+                                              htmlFor="unit"
+                                              className="text-lg font-medium text-gray-700"
+                                          >
+                                              Unit
+                                          </label>
+                                          <input placeholder="Ex: per serving, per cup, per 6 pieces, etc." type="text" name="dish-unit" id="unit" onChange={handleAddInputChange} value={data.unit} required 
+                                              className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                          />
+                                          <label
+                                              htmlFor="isAvailable"
+                                              className="text-lg font-medium text-gray-700"
+                                          >
+                                              Availability
+                                          </label>
+                                          <select name="dish-main-categ" id="isAvailable" onChange={handleAddInputChangeBool} value={data.isAvailable} required 
+                                          className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel">
+                                              <option value=""></option>
+                                              <option value="true">Available</option>
+                                              <option value="false">Currently Not Available</option>
+                                             
+                                          </select>
+                                            {/* <h3 className="text-lg font-medium text-gray-700">Availability</h3>
+                                            <div className="flex flex-row items-center">
+                                            
+                                            <input type="radio" id="isAvailable" name="dish-availability" value="true" onChange={handleAddInputChangeRadio} required />
+                                            
+                                            <label
+                                                htmlFor="isAvailable"
+                                                className="px-4 text-lg font-medium text-gray-700 "
+                                            >
+                                                Available
+                                            </label>
+                                           
+                                            <input type="radio" id="isAvailable" name="dish-availability"  onChange={handleAddInputChangeRadio} value="false" required/>
+                                            <label
+                                                htmlFor="isAvailable"
+                                                className="px-4 text-lg font-medium text-gray-700"
+                                            >
+                                                Currently Not Available
+                                            </label>
+                                          </div> */}
+                                      </div>
+                                      
+                                      <button type="submit" value="submit" className="w-full select-none cursor-pointer
+                                      rounded-lg bg-orange-peel p-4 my-4 text-center text-sm font-medium 
+                                      text-white hover:bg-[#fa812f] focus:outline-none focus:ring-4 focus:ring-blue-300
+                                        dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ease-in-out duration-300">
+                                        Submit
+                                      </button>
+                                  </div>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div
+                        className={`modal-update ${
+                            toggleModalUpdate
+                                ? "visible opacity-100 translate-y-32"
+                                : "invisible opacity-0 -translate-y-28"
+                        } ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white rounded-lg  absolute top-0 left-0 right-0 mx-auto`}
+                    >
+                        <div className="p-2">
+                            <p
+                                onClick={() => setToggleModalUpdate(false) }
+                                className="text-right cursor-pointer font-semibold"
+                            >
+                                Close
+                            </p>
+                            <h1 className="px-3 py-2 text-lg font-semibold">Update Dish</h1>
+                            <div>
+                              <form onSubmit={handleUpdateDish} >
+                                  <div className="px-3">
+                                      <div className="flex flex-col gap-3">
+                                        <label
+                                            htmlFor="name"
+                                            className="text-lg font-medium text-gray-700"
+                                        >
+                                             Dish Name
+                                        </label>
+                                        <input type="text" name="dish-name" id="name" onChange={handleAddInputChangeUpdate} value={dataUpdate.name} required 
+                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        />
+                                        <label
+                                            htmlFor="price"
+                                            className="text-lg font-medium text-gray-700"
+                                        >
+                                             Price (Number only)
+                                        </label>
+                                        <input placeholder="In Php (Just input the number only)" type="number" name="dish-price" id="price" onChange={handleAddInputChangeUpdate} value={dataUpdate.price} required 
+                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        />
+                                        
+
+                                          <label
+                                              htmlFor="main_category"
+                                              className="text-lg font-medium text-gray-700"
+                                          >
+                                              Category
+                                          </label>
+                                          <select name="dish-main-categ" id="main_category" onChange={handleAddInputChangeUpdate} value={dataUpdate.main_category} required 
+                                          className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel">
+                                              <option value=""></option>
+                                              <option value="Apetizers">Apetizers</option>
+                                              <option value="Beef">Beef</option>
+                                              <option value="Beverages">Beverages</option>
+                                              <option value="Chicken">Chicken</option>
+                                              <option value="Noodles">Noodles</option>
+                                              <option value="Oysters">Oysters</option>
+                                              <option value="Pork">Pork</option>
+                                              <option value="Rice">Rice</option>
+                                              <option value="Seafood">Seafoods</option>
+                                              <option value="Shellfish">Shellfish</option>
+                                              <option value="Vegetables">Vegetables</option>
+                                              
+                                          </select>
+                                          
+                                          <label
+                                              htmlFor="unit"
+                                              className="text-lg font-medium text-gray-700"
+                                          >
+                                              Unit
+                                          </label>
+                                          <input placeholder="Ex: per serving, per cup, per 6 pieces, etc." type="text" name="dish-unit" id="unit" onChange={handleAddInputChangeUpdate} value={dataUpdate.unit} required 
+                                              className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                          />
+                                          <label
+                                              htmlFor="isAvailable"
+                                              className="text-lg font-medium text-gray-700"
+                                          >
+                                              Availability
+                                          </label>
+                                          <select name="dish-main-categ" id="isAvailable" onChange={handleAddInputChangeBoolUpdate} value={dataUpdate.isAvailable} required 
+                                          className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel">
+                                              <option value=""></option>
+                                              <option value="true">Available</option>
+                                              <option value="false">Currently Not Available</option>
+                                             
+                                          </select>
+                                            {/* <h3 className="text-lg font-medium text-gray-700">Availability</h3>
+                                            <div className="flex flex-row items-center">
+                                            
+                                            <input type="radio" id="isAvailable" name="dish-availability" value="true" onChange={handleAddInputChangeRadio} required />
+                                            
+                                            <label
+                                                htmlFor="isAvailable"
+                                                className="px-4 text-lg font-medium text-gray-700 "
+                                            >
+                                                Available
+                                            </label>
+                                           
+                                            <input type="radio" id="isAvailable" name="dish-availability"  onChange={handleAddInputChangeRadio} value="false" required/>
+                                            <label
+                                                htmlFor="isAvailable"
+                                                className="px-4 text-lg font-medium text-gray-700"
+                                            >
+                                                Currently Not Available
+                                            </label>
+                                          </div> */}
+                                      </div>
+                                      
+                                      <button type="submit" value="submit" className="w-full select-none cursor-pointer
+                                      rounded-lg bg-orange-peel p-4 my-4 text-center text-sm font-medium 
+                                      text-white hover:bg-[#fa812f] focus:outline-none focus:ring-4 focus:ring-blue-300
+                                        dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ease-in-out duration-300">
+                                        Submit
+                                      </button>
+                                  </div>
+                              </form>
+                            </div>
+                        </div>
+                    </div></>)
+                   : ""}
+        </>
+    );
+};
+
+export default ownerpage;
