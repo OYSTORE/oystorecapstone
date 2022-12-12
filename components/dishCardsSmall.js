@@ -60,7 +60,7 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
     }
     const reviews = ratingArray.length;
     const rating = Math.round(average(ratingArray, reviews) * 10) / 10;
-    // const [currentValueRatings, setCurrentValueRatings] = useState(rating);
+    const [currentValueRatings, setCurrentValueRatings] = useState(rating);
     const counts = {};
     
     for (const num of ratingArray) {
@@ -102,7 +102,7 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
                                         key={index}
                                         size={15}
                                         color={
-                                            (Math.floor(rating)) > index 
+                                            (Math.floor(rating)) > index + 1
                                                 ? "#FF9F1C"
                                                 : "#707070"
                                         }
