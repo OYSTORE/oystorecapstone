@@ -151,12 +151,12 @@ export default function Login() {
                             {/* <h3 className="py-4">
                                 Sign in with one of the providers
                             </h3> */}
-                            <div className="flex flex-col gap-4">
+                            <div className="flex flex-col gap-4 items-center justify-center ">
                                 <button
                                     onClick={GoogleLogin}
-                                    className="text-white bg-gray-700 p-4 w-full font-medium rounded-lg flex align-middle gap-2 "
+                                    className="text-white bg-orange-peel p-3 w-full font-medium rounded-lg flex items-center justify-center align-middle gap-2 "
                                 >
-                                    <FcGoogle className="text-2xl" />
+                                    <FcGoogle className="text-2xl bg-white" />
                                     Sign in with Google
                                 </button>
                                 {/* <button

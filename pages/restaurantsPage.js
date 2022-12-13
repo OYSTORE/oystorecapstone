@@ -262,7 +262,7 @@ const RestaurantsPage = ({ restaurantList }) => {
                             <div className="p-2">
                                 <div className="flex flex-row items-center">
                                     <BiGridAlt size="1.8em" className="mr-2" />
-                                    <p className="pr-2">Show:</p>
+                                    <p className="pr-2 hidden md:block">Show:</p>
                                     <select
                                         name="shownumber"
                                         id="shownumber"
@@ -279,12 +279,12 @@ const RestaurantsPage = ({ restaurantList }) => {
                             <div className="p-2 ">
                                 <div className="flex flex-row justify-center items-center">
                                     <BiSort size="1.8em" className="mr-2" />
-                                    <p className="pr-2">Sort:</p>
+                                    <p className="pr-2 hidden md:block">Sort:</p>
                                     <select
                                         name="sort"
                                         id="sort"
                                         onChange={handleAddInputChangeSort}
-                                        className="rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        className="px-1 rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
                                     >
                                         <option value="topRatings">
                                             Top Rated

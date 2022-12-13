@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { RiAdminFill } from "react-icons/ri";
 import MenuTableList from "../components/MenuTableList";
 
-import { db } from "../firebase";
+import { db, storage } from "../firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import useFetchOwnerRestaurant from "../hooks/fetchOwnerRestaurant";
 import { GiChickenOven } from "react-icons/gi";
 import { useAuth } from "../context/AuthContext";
@@ -12,7 +13,8 @@ import { FaCalendarCheck } from "react-icons/fa";
 import ReservationsListOwner from "../components/ReservationsListOwner";
 import Navbar2 from "../components/Navbar2";
 import useFetchUserData from "../hooks/fetchUserData";
-
+import OwnerPageDishCard from "../components/OwnerPageDishCard";
+import { v4 } from "uuid";
 
 const Ownerpage = () => {
     const {ownerStatus} = useFetchUserData();
@@ -122,7 +124,7 @@ const Ownerpage = () => {
         menuData,
         reservationsData
     } = useFetchOwnerRestaurant();
-    const [toggleState, setToggleState] = useState(1);
+    const [toggleState, setToggleState] = useState(2);
     const toggleTab = (index) => {
         setToggleState(index);
     };
@@ -137,12 +139,12 @@ const Ownerpage = () => {
             [dishItemField]: deleteField(),
         });
     };
-    const ref = useRef(null);
+    const ref2 = useRef(null);
     const inputRef = useRef();
     const [toggleModal, setToggleModal] = useState(false);
 
     const [inputValue, setInputValue] = useState("");
-    const [data, setData] = useState({name:"", price:0, main_category:"", unit:"", isAvailable:""});
+    const [data, setData] = useState({name:"", price:0, main_category:"", unit:"", isAvailable:"" , });
 
     const handleAddInputChange = (e) => {
       const id = e.target.id;
@@ -169,6 +171,7 @@ const Ownerpage = () => {
     // }
     const handleAddNewDish = async(e) =>{
       e.preventDefault();
+      upload();
       const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
       const reserveKeyUser =
           Object.keys(menuData).length === 0
@@ -181,13 +184,14 @@ const Ownerpage = () => {
                   [reserveKeyUser]: {
                       // dishID: dish.id, userName:,
                       ...data, reviews: 0, ratings: 0, src: "NoSrc.jpg", served_by: restaurantData.name, restaurantID: userData.restaurantOwnerID, sub_category:"N/A"
-                      ,reviewLists:{}, dishImg:"",
+                      ,reviewLists:{},
                   },
               },
           },
           { merge: true }
       );
-      setData({name:"", price:0, main_category:"", unit:"", isAvailable:""});
+      
+      setData({name:"", price:0, main_category:"", unit:"", isAvailable:"",});
       setToggleModal(false);
       }
 
@@ -223,6 +227,40 @@ const Ownerpage = () => {
           setToggleModalUpdate(false)
           setData({name:"", price:0, main_category:"", unit:"", isAvailable:""});
       };
+      //image upload
+      const [dishImage, setDishImage] = useState('');
+      const [dishImageRef, setDishImageRef] = useState();
+      const upload = () => {
+        if(dishImage == null)
+            return;
+        const imageref = ref(storage, `/restaurants/${userData.restaurantOwnerID}/${dishImage.name + v4()}`);
+        uploadBytes(imageref, dishImage).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                uploadDishImgUrl(url)
+            })
+            
+            
+            alert("Image Uploaded")
+        });
+      }
+      const uploadDishImgUrl = async(url) => {
+        const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
+        const reserveKeyUser =
+            Object.keys(menuData).length === 0
+                ? 1
+                : Math.max(...Object.keys(menuData)) + 1;
+        await setDoc(
+            restaurantRef,
+            {
+                menu: {
+                    [reserveKeyUser]: {
+                        dishImg:url,
+                    },
+                },
+            },
+            { merge: true }
+        );
+      }
     return (
         <>
             {currentUser && ownerStatus ? 
@@ -231,14 +269,14 @@ const Ownerpage = () => {
                         className={`flex flex-row ${
                             toggleModal ? "blur-sm" : "blur-none"
                         } ease-in-out duration-300`}
-                        ref={ref}
+                        ref={ref2}
                     >
                         
                         <div className="flex flex-col flex-wrap side-navbar w-20 lg:w-72 h-[90vh] border">
                             <div className="m-0 items-center flex flex-col ">
                                
                                 <ul className="w-full mx-0">
-                                    <li
+                                    {/* <li
                                         className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
                                 ${
                                     toggleState === 1
@@ -264,7 +302,7 @@ const Ownerpage = () => {
                                         >
                                             Dashboard
                                         </h3>
-                                    </li>
+                                    </li> */}
                                     <li
                                         className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
                                 ${
@@ -322,19 +360,19 @@ const Ownerpage = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div
+                        {/* <div
                             className={`w-full ${
                                 toggleState === 1 ? "block" : "hidden"
                             }`}
                         >
                             <h1 className="text-2xl">Dashboard</h1>
-                        </div>
+                        </div> */}
                         <div
                             className={`w-full ${
                                 toggleState === 2 ? "block" : "hidden"
                             }`}
                         >
-                            <div className="px-8 ">
+                            <div className="px-2 md:px-8 ">
                                 <h1 className="text-2xl mt-6">Menu</h1>
                                 <button
                                     onClick={() => setToggleModal(!toggleModal)}
@@ -342,7 +380,7 @@ const Ownerpage = () => {
                                 >
                                     Add New Dish
                                 </button>
-                                <div>
+                                {/* <div className="Table">
                                     <div className="h-[28rem] overflow-auto rounded-lg shadow-md my-8">
                                         <table className="w-full h-full overflow-scroll" border="1">
                                             <thead className="bg-gray-50 border-b-3 border-gray-200">
@@ -402,6 +440,21 @@ const Ownerpage = () => {
                                             </tbody>
                                         </table>
                                     </div>
+                                </div> */}
+                                <div className="flex items-center justify-around flex-wrap w-full mt-3 ">
+                                    {Object.entries(menuData).map((dish, index) =>
+                                            typeof menuData == null ? (
+                                                ""
+                                            ) : (
+                                                <OwnerPageDishCard
+                                                    key={dish[0]}
+                                                    dish={dish[1]}
+                                                    handleDelete={deleteDish}
+                                                    handleUpdate={updateDishForm}
+                                                    dishID={dish[0]}
+                                                />
+                                            )
+                                        )}
                                 </div>
                             </div>
                         </div>
@@ -501,6 +554,15 @@ const Ownerpage = () => {
                               <form onSubmit={handleAddNewDish} >
                                   <div className="px-3">
                                       <div className="flex flex-col gap-3">
+                                         <label
+                                            htmlFor="name"
+                                            className="text-lg font-medium text-gray-700"
+                                        >
+                                             Upload Image
+                                        </label>
+                                        <input type="file" name="dish-img" id="dishimg" onChange={(e) => (setDishImage(e.target.files[0]))}  
+                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        />
                                         <label
                                             htmlFor="name"
                                             className="text-lg font-medium text-gray-700"

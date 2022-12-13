@@ -20,6 +20,7 @@ import useFetchCarts from "../hooks/fetchCart";
 import { useAuth } from "../context/AuthContext";
 import Router from "next/router";
 import Footer from "../components/Footer";
+import DishCardsNew from "../components/DishCardsNew";
 
 
 export async function getServerSideProps(context) {
@@ -110,31 +111,34 @@ const DishesPage = ({ dishesList }) => {
                 ? 1
                 : Math.max(...Object.keys(carts)) + 1;
         const uniquekey = dish.name + "-" + dish.served_by;
-        setCarts({ ...carts, [uniquekey]: dish });
+        // setCarts({ ...carts, [uniquekey]: dish });
         await setDoc(
             userRef,
             {
                 carts: {
                     [uniquekey]: {
                         // dishID: dish.id,
-                        name: dish.name,
-                        price: dish.price,
-                        main_category: dish.main_category,
-                        sub_category: dish.sub_category,
-                        src: dish.src,
-                        ratings: dish.ratings,
-                        reviews: dish.reviews,
-                        served_by: dish.served_by,
-                        unit: dish.unit,
-                        isAvailable: dish.isAvailable,
+                        // name: dish.name,
+                        // price: dish.price,
+                        // main_category: dish.main_category,
+                        // sub_category: dish.sub_category,
+                        // src: dish.src,
+                        // ratings: dish.ratings,
+                        // reviews: dish.reviews,
+                        // served_by: dish.served_by,
+                        // unit: dish.unit,
+                        // isAvailable: dish.isAvailable,
+                        ...dish
                     },
                 },
             },
             { merge: true }
         );
     };
+   
     const { carts, loading, error, setCarts } = useFetchCarts();
     const { currentUser } = useAuth();
+    console.log(currentUser.uid)
     //show number of dishes
     const [showNumber, setShowNumber] = useState(20);
     const handleAddInputChangeShow = (e) => {
@@ -326,7 +330,7 @@ const DishesPage = ({ dishesList }) => {
                                 typeof dishListings == null ? (
                                     ""
                                 ) : (
-                                    <DishCards
+                                    <DishCardsNew
                                         key={index}
                                         dish={dishListings}
                                         handleAdd={handleAdd}

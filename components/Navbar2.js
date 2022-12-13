@@ -160,7 +160,7 @@ const Navbar2 = () => {
                                 </h3>
                             </li>
                         </Link>
-                        <Link href="/">
+                        <Link href="/reservations">
                             <li
                                 onClick={() => setOpen(false)}
                                 className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"

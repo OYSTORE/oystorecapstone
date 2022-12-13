@@ -18,15 +18,21 @@ export default function useFetchCarts() {
                 //     setCarts(doc.data().carts)
                 // });
                 const userRef = doc(db, "users", currentUser.uid);
-                const docSnap = await getDoc(userRef);
-                if (docSnap.exists()) {
-                    // console.log("Document data:", docSnap.data());
-                    setCarts(docSnap.data().carts);
-                } else {
-                    // doc.data() will be undefined in this case
-                    console.log("No such document!");
+                // const docSnap = await getDoc(userRef);
+                // if (docSnap.exists()) {
+                //     // console.log("Document data:", docSnap.data());
+                //     setCarts(docSnap.data().carts);
+                // } else {
+                //     // doc.data() will be undefined in this case
+                //     console.log("No such document!");
+                // }
+                const unsub2 = onSnapshot(userRef, (doc) => {
+                    setCarts(doc.data().carts)
                     
-                }
+                });
+                // const unsub = onSnapshot(userRef, (doc) => {
+                //     setCarts(doc.data())})
+                
                 /*const docSnap = await getDoc(docRef)
                 if (docSnap.exists()) {
                     setCarts(docSnap.data().carts)

@@ -9,6 +9,7 @@ import React from "react";
 import useFetchCarts from "../hooks/fetchCart";
 import DishCards from "./DishCards";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import useFetchOwnerRestaurant from "../hooks/fetchOwnerRestaurant";
 
 const HomePage = ({ dishesList, restaurantsList }) => {
     const [restaurants, setRestaurants] = useState(restaurantsList);
@@ -42,23 +43,24 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                 ? 1
                 : Math.max(...Object.keys(carts)) + 1;
         const uniquekey = dish.name + "-" + dish.served_by;
-        setCarts({ ...carts, [uniquekey]: dish });
+        // setCarts({ ...carts, [uniquekey]: dish });
         await setDoc(
             userRef,
             {
                 carts: {
                     [uniquekey]: {
                         // dishID: dish.id,
-                        name: dish.name,
-                        price: dish.price,
-                        main_category: dish.main_category,
-                        sub_category: dish.sub_category,
-                        src: dish.src,
-                        ratings: dish.ratings,
-                        reviews: dish.reviews,
-                        served_by: dish.served_by,
-                        unit: dish.unit,
-                        isAvailable: dish.isAvailable,
+                        // name: dish.name,
+                        // price: dish.price,
+                        // main_category: dish.main_category,
+                        // sub_category: dish.sub_category,
+                        // src: dish.src,
+                        // ratings: dish.ratings,
+                        // reviews: dish.reviews,
+                        // served_by: dish.served_by,
+                        // unit: dish.unit,
+                        // isAvailable: dish.isAvailable,
+                        ...dish
                     },
                 },
             },
@@ -81,7 +83,7 @@ const HomePage = ({ dishesList, restaurantsList }) => {
             [cartItemsField]: deleteField(),
         });
     };
-    const { carts, loading, error, setCarts } = useFetchCarts();
+    const { carts, loading, error, setCarts } = useFetchOwnerRestaurant();
     const { userInfo, currentUser } = useAuth();
     const ref = useRef(null);
     const scroll = (scrollOffset) => {

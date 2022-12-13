@@ -9,7 +9,10 @@ export default function useFetchOwnerRestaurant() {
     const [restaurantData, setRestaurantData] = useState({})
     const [menuData, setMenuData] = useState([])
     const [reservationsData, setReservationsData] = useState([])
+    const [userReservationsData, setUserReservationsData] = useState([])
+    const [userReviewLists, setUserReviewLists] = useState([])
     const [userData, setUserData] = useState({})
+    const [carts, setCarts] = useState([])
     const { currentUser } = useAuth()
 
     useEffect(() => {
@@ -25,9 +28,11 @@ export default function useFetchOwnerRestaurant() {
                     console.log("No such document!");
                 }
                 // const userRef = doc(db, 'users', currentUser.uid)
-                // const unsub2 = onSnapshot(userRef, (doc) => {
-                //     setUserData(doc.data())
-                // });
+                const unsub2 = onSnapshot(userRef, (doc) => {
+                    setCarts(doc.data().carts)
+                    setUserReservationsData(doc.data().reservations)
+                    setUserReviewLists(doc.data().reviewLists)
+                });
                 const docRef = doc(db, 'Restaurants', docSnap.data().restaurantOwnerID)
                 const unsub = onSnapshot(docRef, (doc) => {
                     setRestaurantData(doc.data());
@@ -51,5 +56,5 @@ export default function useFetchOwnerRestaurant() {
         fetchData()
     }, [])
 
-    return { isLoading, isError, restaurantData, setRestaurantData, userData, menuData, reservationsData}
+    return { isLoading, isError, restaurantData, userReservationsData, userData, menuData, reservationsData, carts, userReviewLists}
 }

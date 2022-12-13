@@ -9,8 +9,7 @@ const CartCards = ({cartID, dish, handleAdd, text}) => {
                     imgSrc={"/assets/dishpic/"+dish.src} className=" cursor-pointer "
                 >
                 {/*<div className="w-[200px] h-[200px] bg-fixed" style={dishbg} >daoishdoashodhao</div>*/}
-               
-                   
+
                     <a href="#">
                     <h5 className="text-md font-semibold tracking-tight text-gray-900 dark:text-white">
                         {dish.name}

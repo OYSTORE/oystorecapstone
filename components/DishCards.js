@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import RestaurantCard from "./RestaurantCard";
 import { FaStar } from "react-icons/fa";
 
 function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
-    const [isBookmarked, setIsBookmarked] = useState(
-        ()=>Object.keys(carts).includes(dishID)
-    );
+    const [isBookmarked, setIsBookmarked] = useState();
+    useEffect(()=> setIsBookmarked(Object.keys(carts).includes(dish.name + "-" + dish.served_by))
+    ,[carts])
     
     // if (carts == dish.name+dish.served_by){
     //     setIsBookmarked(true)
@@ -95,7 +95,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
                    
                 </div>
             </div>
-            <div className="mt-auto px-4 py-2 flex items-center justify-between">
+            <div className="mt-auto px-4 py-2 flex items-center justify-center">
                 <a
                     onClick={
                         !isBookmarked
@@ -117,7 +117,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
                                     : "bg-tiffany-blue"
                             } ease-in-out duration-300`}
                 >
-                    {!isBookmarked ? "Add to bookmarks" : "Added to bookmarks"}
+                    {!isBookmarked ? "Add to bookmarks" : "Bookmarked"}
                 </a>
                 
             </div>
