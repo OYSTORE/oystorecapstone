@@ -67,6 +67,7 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
       counts[num] = counts[num] ? counts[num] + 1 : 1;
     }
     const [currentValueFixed, setCurrentValueFixed] = useState(rating);
+    console.log(1)
     return (
         <div className="snap-start flex flex-row  w-full lg:w-3/4 h-40 rounded-xl shadow-sm hover:shadow-lg transition duration-300 hover:-translate-y-2 border my-2 bg-white">
             {/* <Card
@@ -77,7 +78,8 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
             {/*<div className="w-[200px] h-[200px] bg-fixed" style={dishbg} >daoishdoashodhao</div>*/}
             <div className="relative w-2/5 lg:w-80 rounded-xl bg-red-500">
                 <Image
-                    src={dish.dishimg}
+                    // src={dish.dishimg}
+                    src="/assets/dishpic/NoSrc.jpg"
                     layout="fill"
                     objectFit="cover"
                     alt="..."
@@ -102,14 +104,16 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
                                         key={index}
                                         size={15}
                                         color={
-                                            (Math.floor(rating)) > index + 1
+                                            (parseInt(currentValueFixed)) > index + 1
                                                 ? "#FF9F1C"
                                                 : "#707070"
                                         }
                                        
                                     />
+                                   
                                 );
                             })}
+                            
                     </div>
                     <div className="px-2 flex items-center">    
                         <span className="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">

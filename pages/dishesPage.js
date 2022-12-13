@@ -79,7 +79,7 @@ const DishesPage = ({ dishesList }) => {
     // const dishTransform = [];
     const [dishList, setDishList] = useState(dishesList);
    
-    console.log(dishesList)
+    // console.log(dishesList)
     const handleRemove = async (id) => {
         var cartItemsField = "carts." + id;
         const docRef = doc(db, "users", currentUser.uid);

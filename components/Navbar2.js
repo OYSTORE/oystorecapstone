@@ -190,7 +190,7 @@ const Navbar2 = () => {
                                 </li>
                             </Link>
                         )}
-                        {userData.isOwner && (
+                        {userData.isAdmin && (
                             <Link href="/adminpage">
                                 <li
                                     onClick={() => setOpen(false)}

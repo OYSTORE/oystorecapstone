@@ -99,11 +99,13 @@ export async function getStaticProps(context) {
 const RestaurantPage = ({ restaurant2, resID}) => {
     const [restaurant, setRestaurant] = useState(restaurant2);
     // let restaurant2 = [];
-    const docRef = doc(db, "Restaurants", resID);
-    const unsub = onSnapshot(docRef, (doc) => {
+    useEffect(() => {
+        const docRef = doc(db, "Restaurants", resID);
+        const unsub = onSnapshot(docRef, (doc) => {
         setRestaurant(doc.data());
     });
    
+    },[])
  
     // const [restaurant, setRestaurantData] = useState(restaurantData[0]);
     // let restaurantData = [];
@@ -418,7 +420,8 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                 <label htmlFor="my-modal-0" className="cursor-pointer">
                     <div className="relative w-full  h-56 sm:h-[30rem]">
                         <Image
-                            src={"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"}
+                            // src={"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"}
+                            src="/assets/dishpic/NoSrc.jpg"
                             layout="fill"
                             objectFit="cover"
                             priority
@@ -443,7 +446,8 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                         </label>
                         <div className="relative w-full h-56 sm:h-96">
                             <Image
-                                src={"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"}
+                                // src={"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"}
+                                src="/assets/dishpic/NoSrc.jpg"
                                 layout="fill"
                                 objectFit="contain"
                                 priority
@@ -558,7 +562,8 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                     >
                                         <div  className="relative w-full h-full">
                                         <Image
-                                            src={"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"}
+                                            // src={"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"}
+                                            src="/assets/dishpic/NoSrc.jpg"
                                             layout="fill"
                                             objectFit="cover"
                                             priority
@@ -582,9 +587,10 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                             </label>
                                             <div className="relative w-full h-56 sm:h-96">
                                                 <Image
-                                                    src={
-                                                        "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
-                                                    }
+                                                    // src={
+                                                    //     "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
+                                                    // }
+                                                    src="/assets/dishpic/NoSrc.jpg"
                                                     layout="fill"
                                                     objectFit="contain"
                                                     priority
@@ -603,9 +609,10 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                     >
                                         <div  className="relative w-full h-full">
                                         <Image
-                                            src={
-                                                "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
-                                            }
+                                            // src={
+                                            //     "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
+                                            // }
+                                            src="/assets/dishpic/NoSrc.jpg"
                                             layout="fill"
                                             objectFit="cover"
                                             priority
@@ -629,9 +636,10 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                             </label>
                                             <div className="relative w-full h-56 sm:h-96">
                                                 <Image
-                                                    src={
-                                                        "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
-                                                    }
+                                                    // src={
+                                                    //     "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
+                                                    // }
+                                                    src="/assets/dishpic/NoSrc.jpg"
                                                     layout="fill"
                                                     objectFit="contain"
                                                     priority
@@ -649,9 +657,10 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                     >
                                         <div  className="relative w-full h-full">
                                         <Image
-                                            src={
-                                                "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
-                                            }
+                                            // src={
+                                            //     "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
+                                            // }
+                                            src="/assets/dishpic/NoSrc.jpg"
                                             layout="fill"
                                             objectFit="cover"
                                             priority
@@ -675,9 +684,10 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                             </label>
                                             <div className="relative w-full h-56 sm:h-96">
                                                 <Image
-                                                    src={
-                                                        "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
-                                                    }
+                                                    // src={
+                                                    //     "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
+                                                    // }
+                                                    src="/assets/dishpic/NoSrc.jpg"
                                                     layout="fill"
                                                     objectFit="contain"
                                                     priority
@@ -696,9 +706,10 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                     >
                                         <div  className="relative w-full h-full">
                                         <Image
-                                            src={
-                                                "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
-                                            }
+                                            // src={
+                                            //     "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
+                                            // }
+                                            src="/assets/dishpic/NoSrc.jpg"
                                             layout="fill"
                                             objectFit="cover"
                                             priority
@@ -722,9 +733,10 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                             </label>
                                             <div className="relative w-full h-56 sm:h-96">
                                                 <Image
-                                                    src={
-                                                        "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
-                                                    }
+                                                    // src={
+                                                    //     "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"
+                                                    // }
+                                                    src="/assets/dishpic/NoSrc.jpg"
                                                     layout="fill"
                                                     objectFit="contain"
                                                     priority

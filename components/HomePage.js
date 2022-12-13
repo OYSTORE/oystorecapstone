@@ -106,6 +106,7 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                         carts: {},
                         isOwner: false,
                         name: currentUser.displayName,
+                        userID: currentUser.uid,
                         reservations: {},
                         restaurantName:"",
                         restaurantOwnerID: "",

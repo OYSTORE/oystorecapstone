@@ -47,7 +47,8 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
             {/*<div className="w-[200px] h-[200px] bg-fixed" style={dishbg} >daoishdoashodhao</div>*/}
             <div className="relative w-full h-40 rounded-t-xl">
                 <Image
-                    src={dish.dishimg}
+                    // src={dish.dishimg}
+                    src="/assets/dishpic/NoSrc.jpg"
                     layout="fill"
                     objectFit="cover"
                     alt="..."
