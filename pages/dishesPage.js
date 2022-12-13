@@ -236,7 +236,7 @@ const DishesPage = ({ dishesList }) => {
             {currentUser ? 
            (<> <Navbar2 />
             <div className="flex flex-row-reverse">
-                <div className="w-4/5">
+                <div className="w-full md:w-4/5">
                     <div className="flex flex-wrap justify-between items-center px-2 sticky top-16 z-10 bg-white">
                         <div className="pl-4">
                             We found <b>{dishList.filter(dish => dish.name.toLowerCase().includes(query)).length}</b> dishes for you
@@ -244,7 +244,7 @@ const DishesPage = ({ dishesList }) => {
                         <div className="flex flex-row gap-2">
                             <div className="p-2">
                                 <div className="flex flex-row items-center">
-                                    <BiGridAlt size="1.8em" className="mr-2" />
+                                    <BiGridAlt size="1.3em" className="mr-2" />
                                     <p className="pr-2">Show:</p>
                                     <select
                                         name="shownumber"
@@ -263,7 +263,7 @@ const DishesPage = ({ dishesList }) => {
                             </div>
                             <div className="p-2 ">
                                 <div className="flex flex-row justify-center items-center">
-                                    <BiSort size="1.8em" className="mr-2" />
+                                    <BiSort size="1.3em" className="mr-2" />
                                     <p className="pr-2">Sort:</p>
                                     <select
                                         name="sort"
@@ -284,6 +284,36 @@ const DishesPage = ({ dishesList }) => {
                                             Least Reviews
                                         </option>
                                     </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="block md:hidden w-full">
+                            <div className="p-2 flex-row items-center flex ">
+                                <input
+                                    type="text"
+                                    name="searchBar"
+                                    placeholder="Search..."
+                                    id="dishesSearchBar"
+                                    onChange={(e) => setQuery(e.target.value)}
+                                    className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                />
+                            </div>
+                            <div className="flex flex-row mr-2 w-full shadow-md overflow-x-scroll">
+                                {/* <h1 className="text-md font-medium">Categories</h1>  */}
+                                <div className="p-2 flex flex-row  gap-2">
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("All")}>All</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Apetizers")}>Appetizers</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beef")}>Beef</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beverage")}>Beverages</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Chicken")}>Chicken</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Noodles")}>Noodles</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Oysters")}>Oysters</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Pork")}>Pork</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Rice")}>Rice</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Seafood")}>Seafood</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Shellfish")}>Shellfish</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Side Dish")}>Side Dish</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Vegetables")}>Vegetables</button>
                                 </div>
                             </div>
                         </div>
@@ -312,9 +342,9 @@ const DishesPage = ({ dishesList }) => {
                             )}
                     </div>
                 </div>
-                <div className="w-1/5">
+                <div className="hidden md:block w-1/5">
                     <div className="m-3 mr-2 shadow-md">
-                        <div className="p-2 flex flex-row items-center">
+                        <div className="p-2 flex-row items-center hidden md:flex">
                               <input
                                 type="text"
                                 name="searchBar"

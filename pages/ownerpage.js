@@ -65,7 +65,7 @@ const Ownerpage = () => {
     //    }
     // }
     // setTimeout(Redirect(), 4000) 
-    console.log(ownerStatus)
+    // console.log(ownerStatus)
 
     // testing protected routes
     // const [isOwnerValue, setIsOwnerValue] = useState();
