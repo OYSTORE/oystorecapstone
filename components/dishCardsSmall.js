@@ -67,7 +67,6 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
       counts[num] = counts[num] ? counts[num] + 1 : 1;
     }
     const [currentValueFixed, setCurrentValueFixed] = useState(rating);
-    console.log(1)
     return (
         <div className="snap-start flex flex-row  w-full lg:w-3/4 h-40 rounded-xl shadow-sm hover:shadow-lg transition duration-300 hover:-translate-y-2 border my-2 bg-white">
             {/* <Card
@@ -104,7 +103,7 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
                                         key={index}
                                         size={15}
                                         color={
-                                            (parseInt(currentValueFixed)) > index + 1
+                                            (Math.floor(rating)) > index 
                                                 ? "#FF9F1C"
                                                 : "#707070"
                                         }
