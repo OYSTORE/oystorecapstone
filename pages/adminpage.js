@@ -200,7 +200,7 @@ const Adminpage = () => {
     return (
         <>
              
-            {!loading && userData.isOwner && (
+            {!loading && userData.isAdmin && (
                 <>
                 <Navbar2 />
                     <div
