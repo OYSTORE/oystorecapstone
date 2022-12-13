@@ -241,11 +241,11 @@ const DishesPage = ({ dishesList }) => {
                         <div className="pl-4">
                             We found <b>{dishList.filter(dish => dish.name.toLowerCase().includes(query)).length}</b> dishes for you
                         </div>
-                        <div className="flex flex-row gap-2">
-                            <div className="p-2">
+                        <div className="flex flex-row gap-0 md:gap-2">
+                            <div className="p-1 md:p-2">
                                 <div className="flex flex-row items-center">
                                     <BiGridAlt size="1.3em" className="mr-2" />
-                                    <p className="pr-2">Show:</p>
+                                    <p className="pr-2 hidden sm:block">Show:</p>
                                     <select
                                         name="shownumber"
                                         id="shownumber"
@@ -261,15 +261,15 @@ const DishesPage = ({ dishesList }) => {
                                     </select>
                                 </div>
                             </div>
-                            <div className="p-2 ">
+                            <div className="p-1 md:p-2">
                                 <div className="flex flex-row justify-center items-center">
                                     <BiSort size="1.3em" className="mr-2" />
-                                    <p className="pr-2">Sort:</p>
+                                    <p className="pr-2 hidden sm:block">Sort:</p>
                                     <select
                                         name="sort"
                                         id="sort"
                                         onChange={handleAddInputChangeSort}
-                                        className="rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        className="px-1 rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
                                     >
                                         <option value="topRatings">
                                             Top Rated
