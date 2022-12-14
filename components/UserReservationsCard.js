@@ -18,10 +18,10 @@ function UserReservationsCard({
     return (
         <div className="flex flex-row sm:flex-col w-11/12 sm:w-60 border rounded-none sm:rounded-xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 my-2 bg-white justify-center items-center">
             <div className="w-full flex justify-between items-center ">
-                <div className="relative w-full h-60 sm:h-40 sm:w-full overflow-hidden rounded-none sm:rounded-xl bg-red-500">
+                <div className="relative w-full h-60 sm:h-40 sm:w-full overflow-hidden rounded-none sm:rounded-xl ">
                     <Image
                         // src={dish.dishimg}
-                        src={dish.restaurantImg ? dish.restaurantImg: "/assets/dishpic/NoSrc.jpg"}
+                        src={dish.userProfilePic ? dish.userProfilePic: "/assets/dishpic/NoSrc.jpg"}
                         layout="fill"
                         objectFit="cover"
                         alt="..."
@@ -30,7 +30,7 @@ function UserReservationsCard({
                     />
                 </div>
             </div>
-            <div className="flex flex-col  px-4 py-2 drop-shadow bg-green-500">
+            <div className="flex flex-col  px-4 py-2 drop-shadow ">
                 <a className="cursor-pointer">
                     <h5 className="leading-tight text-md text-center font-semibold tracking-tight text-gray-900 dark:text-white">
                         {dish.nameReservation}
