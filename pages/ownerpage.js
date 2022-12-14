@@ -16,6 +16,9 @@ import useFetchUserData from "../hooks/fetchUserData";
 import OwnerPageDishCard from "../components/OwnerPageDishCard";
 import { v4 } from "uuid";
 import ReservationsCard from "../components/ReservationsCard";
+import { AiFillPicture } from "react-icons/ai";
+import Image from "next/image";
+import OwnerPageMasonry from "../components/OwnerPageMasonry";
 
 const Ownerpage = () => {
     const {ownerStatus} = useFetchUserData();
@@ -325,7 +328,7 @@ const Ownerpage = () => {
                         ref={ref2}
                     >
                         
-                        <div className="flex flex-col flex-wrap side-navbar w-20 lg:w-72 h-[90vh] border">
+                        <div className="side-tabs flex flex-col flex-wrap side-navbar w-20 lg:w-72 h-[90vh] border">
                             <div className="m-0 items-center flex flex-col ">
                                
                                 <ul className="w-full mx-0">
@@ -358,11 +361,11 @@ const Ownerpage = () => {
                                     </li> */}
                                     <li
                                         className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
-                                ${
-                                    toggleState === 2
-                                        ? " border-orange-peel"
-                                        : "border-white"
-                                }`}
+                                        ${
+                                            toggleState === 2
+                                                ? " border-orange-peel"
+                                                : "border-white"
+                                        }`}
                                         onClick={() => toggleTab(2)}
                                     >
                                         <GiChickenOven
@@ -385,11 +388,11 @@ const Ownerpage = () => {
                                     </li>
                                     <li
                                         className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
-                                ${
-                                    toggleState === 3
-                                        ? " border-orange-peel"
-                                        : "border-white"
-                                }`}
+                                        ${
+                                            toggleState === 3
+                                                ? " border-orange-peel"
+                                                : "border-white"
+                                        }`}
                                         onClick={() => toggleTab(3)}
                                     >
                                         <FaCalendarCheck
@@ -408,6 +411,33 @@ const Ownerpage = () => {
                                             }`}
                                         >
                                             Reservations
+                                        </h3>
+                                    </li>
+                                    <li
+                                        className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
+                                        ${
+                                            toggleState === 4
+                                                ? " border-orange-peel"
+                                                : "border-white"
+                                        }`}
+                                        onClick={() => toggleTab(4)}
+                                    >
+                                        <AiFillPicture
+                                            size="1.8em"
+                                            className={
+                                                toggleState === 4
+                                                    ? "text-orange-peel"
+                                                    : "text-gray-700"
+                                            }
+                                        />
+                                        <h3
+                                            className={`text-base invisible lg:visible font-medium ${
+                                                toggleState === 4
+                                                    ? "text-orange-peel"
+                                                    : "text-gray-700"
+                                            }`}
+                                        >
+                                            Gallery
                                         </h3>
                                     </li>
                                 </ul>
@@ -513,7 +543,7 @@ const Ownerpage = () => {
                         </div>
                         <div
                             className={`w-full ${
-                                toggleState === 3 ? "block" : "hidden"
+                                toggleState ===  3 ? "block" : "hidden"
                             }`}
                         >
                             <div className="px-1 sm:px-8 ">
@@ -595,6 +625,38 @@ const Ownerpage = () => {
                                 </div>
                             </div>
                         </div>
+                        <div
+                            className={`w-full ${
+                                toggleState ===  4 ? "block" : "hidden"
+                            }`}
+                        >
+                            <div className="px-1 sm:px-8 flex flex-col">
+                                <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Gallery</h1>
+                                <div className="flex items-center justify-around flex-col w-full mt-3 ">
+                                    <div className="main-image w-full px-2 flex flex-col justify-center">
+                                        <h1 className="text-md sm:text-2xl text-center p-2 font-semibold">Main Picture</h1>
+                                        <button
+                                            onClick={() => setToggleModal(!toggleModal)}
+                                            className="m-2 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
+                                        >
+                                            Upload Image
+                                        </button>
+                                        <input type="file" className="file-input file-input-bordered w-full max-w-xs" onChange={(e) => (setDishImage(e.target.files[0]))} />
+                                            
+                                        <div className="relative w-full h-40 sm:h-96">
+                                            <Image src="/assets/dishpic/NoSrc.jpg" layout="fill" objectFit="cover" alt=""/>
+                                        </div>
+                                        
+                                    </div>
+                                    <div className="gallery-image w-full flex flex-col justify-center">
+                                        <h1 className="text-md sm:text-2xl text-center p-2 font-semibold">Gallery Pictures</h1>
+                                            <div className="w-full px-2">
+                                                <OwnerPageMasonry />
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div
                         className={`modal-shadow ${
@@ -623,7 +685,7 @@ const Ownerpage = () => {
                               <form onSubmit={handleAddNewDish} >
                                   <div className="px-3">
                                       <div className="flex flex-col gap-3">
-                                         <label
+                                        <label
                                             htmlFor="name"
                                             className="text-lg font-medium text-gray-700"
                                         >
