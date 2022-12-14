@@ -105,7 +105,7 @@ const Bookmarks = () => {
             <Navbar2 />
                 <div className="flex flex-col w-11/12 my-10 mx-auto min-h-screen">
                     <h1 className="text-2xl sm:text-3xl font-bold pl-5 pb-5">My Bookmarks</h1>
-                    <div className="flex items-center justify-center mb-3 flex-wrap w-full gap-4">
+                    <div className="flex items-center justify-around mb-3 flex-wrap w-full gap-4">
                     
                     {/*cart.map(cartItem => (<CartCards key={cartItem.id} dish={cartItem} handleAdd={removeFromCart} text='Remove' />) )}
                     {/*Object.keys(carts).map((cart, i) => {

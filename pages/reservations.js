@@ -12,6 +12,7 @@ import Router from "next/router";
 
 import BookmarkCard from "../components/BookmarkCard";
 import useFetchReservations from "../hooks/fetchReservations";
+import UserReservationsCard from "../components/UserReservationsCard";
 
 
 
@@ -19,9 +20,38 @@ const Reservations = () => {
     useEffect(() => {
         !currentUser ? Router.push("/") : ""
     },[currentUser])
-    const {Reservations} = useFetchReservations();
+    const {reservations} = useFetchReservations();
     
-    const { currentUser } = useAuth()
+    const { currentUser } = useAuth();
+    
+    //reservations
+    const handleAcceptReservation = async(res, reservationKey) => {
+        const userRef = doc(db, "users", res.userID);
+        const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
+        await setDoc(
+            userRef,
+            {
+                reservations: {
+                    [reservationKey]: {
+                        reservationStatus:"Confirmed",
+                    },
+                },
+            },
+            { merge: true }
+        );
+        await setDoc(
+            restaurantRef,
+            {
+                reservations: {
+                    [reservationKey]: {
+                        reservationStatus:"Confirmed",
+                    },
+                },
+            },
+            { merge: true }
+        );
+      }
+    
     return (
         <>
         {currentUser ? 
@@ -29,9 +59,20 @@ const Reservations = () => {
             <Navbar2 />
                 <div className="flex flex-col w-11/12 my-10 mx-auto min-h-screen">
                     <h1 className="text-2xl sm:text-3xl font-bold pl-5 pb-5">My Reservations</h1>
-                    <div className="flex items-center justify-center mb-3 flex-wrap w-full gap-4">
-
-                    </div>
+                        <div className="flex items-center justify-around gap-2 flex-wrap w-full mt-3 ">
+                            {Object.entries(reservations).map((reservation, index) =>
+                                    typeof menuData == null ? (
+                                        ""
+                                    ) : (
+                                        <UserReservationsCard
+                                            key={reservation[0]}
+                                            dish={reservation[1]}
+                                            
+                                            dishID={reservation[0]}
+                                        />
+                                    )
+                                )}
+                        </div>
                 </div>
             <Footer className="sticky bottom-0" /></>): "" }
         </>

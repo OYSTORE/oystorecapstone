@@ -38,7 +38,7 @@ function BookmarkCard({ dish, handleAdd, handleRemove, dishID, carts }) {
     // const [currentValueFixed, setCurrentValueFixed] = useState(Math.floor(rating));
     const stars = Array(5).fill(0);
     return (
-        <div className="flex flex-row sm:flex-col w-11/12 sm:w-56 h-48 sm:h-[22rem] rounded-none sm:rounded-xl shadow-md hover:shadow-lg transition duration-300 hover:scale-105 my-2 bg-white">
+        <div className="flex flex-row sm:flex-col w-11/12 sm:w-56 h-48 sm:h-[22rem] rounded-none sm:rounded-xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 my-2 bg-white border">
             <div className="relative w-full sm:w-full h-48">
                 <Image
                     // src={dish.dishimg}

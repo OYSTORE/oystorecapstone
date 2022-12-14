@@ -426,7 +426,7 @@ const Ownerpage = () => {
                             }`}
                         >
                             <div className="px-2 md:px-8 ">
-                                <h1 className="text-2xl mt-6">Menu</h1>
+                                <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Menu</h1>
                                 <button
                                     onClick={() => setToggleModal(!toggleModal)}
                                     className="mt-4 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
@@ -516,8 +516,8 @@ const Ownerpage = () => {
                                 toggleState === 3 ? "block" : "hidden"
                             }`}
                         >
-                            <div className="px-4 sm:px-8 ">
-                                <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">My Bookmarks</h1>
+                            <div className="px-1 sm:px-8 ">
+                                <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Reservations</h1>
                                 {/* <button
                                     onClick={() => setToggleModal(!toggleModal)}
                                     className="mt-4 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
