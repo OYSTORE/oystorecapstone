@@ -63,7 +63,7 @@ const OwnerPageMasonry = () => {
             >
                 <Masonry gutter="1.5rem">
                    {images.map((image, i) => (
-                        <div className="relative w-full h-72">
+                        <div key={i} className="relative w-full h-72">
                             <Image key={i} src={image} layout="fill" objectFit="cover" alt="" onClick={() => {handleViewImg(image, i); setModalOpen(true)}}/>
                         </div>
                    ))}

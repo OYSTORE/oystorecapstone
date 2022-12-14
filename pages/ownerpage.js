@@ -317,6 +317,87 @@ const Ownerpage = () => {
             { merge: true }
         );
       }
+
+      //upload gallery
+      const [galleryImageMain, setGalleryImageMain] = useState('');
+     
+    //   const [dishImageRefMain, setDishImageRefMain] = useState();
+      const uploadMain = () => {
+        if(galleryImageMain == null)
+            return;
+        const imageref = ref(storage, `/restaurants/${userData.restaurantOwnerID}/${galleryImageMain.name + v4()}`);
+        uploadBytes(imageref, galleryImageMain).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                uploadGalleryImgUrlMain(url)
+            })
+            
+            
+            alert("Image Uploaded")
+        });
+      }
+      const uploadGalleryImgUrlMain = async(url) => {
+        const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
+        
+        await setDoc(
+            restaurantRef,
+            {
+                src: url
+            },
+            { merge: true }
+        );
+      }
+      //gallery image upload
+      const [galleryImages, setGalleryImages] = useState([]);
+      const [galleryUrls, setGalleryUrls] = useState([]);
+      const handleChangeMultiUpload = (e) => {
+        for (let i = 0; i < e.target.files.length; i++) {
+            const newImage = e.target.files[i];
+            newImage["id"] = Math.random();
+            setGalleryImages((prevState => [...prevState, newImage]));
+        }
+      }
+    //   console.log(galleryImages)
+    //   console.log(galleryUrls)
+
+      const uploadGallery = () => {
+        try {
+            // if(galleryImages == null)
+        //     return;
+        // let urls = [1];
+        galleryImages.map((image) => {
+            const imageref = ref(storage, `/restaurants/${userData.restaurantOwnerID}/Gallery/${image.name + v4()}`);
+            // promises.push(imageref);
+           
+                 uploadBytes(imageref, image).then((snapshot) => {
+                    getDownloadURL(snapshot.ref).then((url) => {
+                        setGalleryUrls((prevState) => [...prevState, url]);
+                        
+                    })
+            });
+            console.log(galleryUrls)
+        })
+        // setGalleryUrls(urls)
+        // Promise.all(promises)
+        // .then(() => alert("All images uploaded"))
+        // .catch((err) => console.log(err));
+        }catch(err){
+            console.log(err);
+        }finally{
+            uploadGalleryImgUrl(galleryUrls)
+        }
+       
+      }
+      const uploadGalleryImgUrl = async(urls) => {
+        const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
+        
+        await setDoc(
+            restaurantRef,
+            {
+                galleryImages: [...urls], test:"s"
+            },
+            { merge: true }
+        );
+      }
     return (
         <>
             {currentUser && ownerStatus ? 
@@ -634,25 +715,27 @@ const Ownerpage = () => {
                                 <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Gallery</h1>
                                 <div className="flex items-center justify-around flex-col w-full mt-3 ">
                                     <div className="main-image w-full px-2 flex flex-col justify-center">
-                                        <h1 className="text-md sm:text-2xl text-center p-2 font-semibold">Main Picture</h1>
-                                        <button
-                                            onClick={() => setToggleModal(!toggleModal)}
-                                            className="m-2 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
-                                        >
-                                            Upload Image
-                                        </button>
-                                        <input type="file" className="file-input file-input-bordered w-full max-w-xs" onChange={(e) => (setDishImage(e.target.files[0]))} />
-                                            
-                                        <div className="relative w-full h-40 sm:h-96">
-                                            <Image src="/assets/dishpic/NoSrc.jpg" layout="fill" objectFit="cover" alt=""/>
-                                        </div>
+                                        <h1 className="text-lg sm:text-2xl text-center p-2 font-semibold">Main Picture</h1>
                                         
+                                        <div className="flex justify-center py-3 items-center gap-2">
+                                            <input type="file" className="file-input file-input-bordered file-input-sm sm:file-input-md w-full max-w-xs" onChange={(e) => (setGalleryImageMain(e.target.files[0]))} />
+                                            <button onClick={uploadMain} className="p-1 sm:p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]">Upload</button>
+                                        </div>
+                                        <div className="relative w-full h-40 sm:h-96">
+                                            <Image src={restaurantData.src ? restaurantData.src: "/assets/dishpic/NoSrc.jpg" } layout="fill" objectFit="cover" alt=""/>
+                                        </div>
                                     </div>
                                     <div className="gallery-image w-full flex flex-col justify-center">
-                                        <h1 className="text-md sm:text-2xl text-center p-2 font-semibold">Gallery Pictures</h1>
-                                            <div className="w-full px-2">
-                                                <OwnerPageMasonry />
-                                            </div>
+                                        <h1 className="text-lg sm:text-2xl text-center p-2 font-semibold">Gallery Pictures</h1>
+
+                                        <div className="flex justify-center py-3 items-center gap-2">
+                                            <input type="file" className="file-input file-input-bordered file-input-sm sm:file-input-md w-full max-w-xs" onChange={handleChangeMultiUpload} multiple/>
+                                            <button onClick={uploadGallery} className="p-1 sm:p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]">Upload</button>
+                                        </div>
+
+                                        <div className="w-full px-2">
+                                            <OwnerPageMasonry />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -691,9 +774,10 @@ const Ownerpage = () => {
                                         >
                                              Upload Image
                                         </label>
-                                        <input type="file" name="dish-img" id="dishimg" onChange={(e) => (setDishImage(e.target.files[0]))}  
-                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        <input type="file" name="dish-img" id="dishimg" className="file-input file-input-bordered file-input-sm sm:file-input-md w-full max-w-xs" onChange={(e) => (setDishImage(e.target.files[0]))}
                                         />
+                                        
+                                           
                                         <label
                                             htmlFor="name"
                                             className="text-lg font-medium text-gray-700"
