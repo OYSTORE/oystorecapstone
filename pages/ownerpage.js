@@ -502,8 +502,8 @@ const Ownerpage = () => {
                                                 <OwnerPageDishCard
                                                     key={dish[0]}
                                                     dish={dish[1]}
-                                                    handleAcceptReservation={handleAcceptReservation}
-                                                    handleDenyReservation={handleDenyReservation}
+                                                    handleUpdate={updateDishForm}
+                                                    handleDelete={deleteDish}
                                                     dishID={dish[0]}
                                                 />
                                             )
