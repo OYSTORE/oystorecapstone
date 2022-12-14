@@ -15,6 +15,7 @@ import Navbar2 from "../components/Navbar2";
 import useFetchUserData from "../hooks/fetchUserData";
 import OwnerPageDishCard from "../components/OwnerPageDishCard";
 import { v4 } from "uuid";
+import ReservationsCard from "../components/ReservationsCard";
 
 const Ownerpage = () => {
     const {ownerStatus} = useFetchUserData();
@@ -261,6 +262,58 @@ const Ownerpage = () => {
             { merge: true }
         );
       }
+      const handleAcceptReservation = async(res, reservationKey) => {
+        const userRef = doc(db, "users", res.userID);
+        const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
+        await setDoc(
+            userRef,
+            {
+                reservations: {
+                    [reservationKey]: {
+                        reservationStatus:"Confirmed",
+                    },
+                },
+            },
+            { merge: true }
+        );
+        await setDoc(
+            restaurantRef,
+            {
+                reservations: {
+                    [reservationKey]: {
+                        reservationStatus:"Confirmed",
+                    },
+                },
+            },
+            { merge: true }
+        );
+      }
+      const handleDenyReservation = async (res, reservationKey) => {
+        const userRef = doc(db, "users", res.userID);
+        const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
+        await setDoc(
+            userRef,
+            {
+                reservations: {
+                    [reservationKey]: {
+                        reservationStatus:"Denied",
+                    },
+                },
+            },
+            { merge: true }
+        );
+        await setDoc(
+            restaurantRef,
+            {
+                reservations: {
+                    [reservationKey]: {
+                        reservationStatus:"Denied",
+                    },
+                },
+            },
+            { merge: true }
+        );
+      }
     return (
         <>
             {currentUser && ownerStatus ? 
@@ -449,8 +502,8 @@ const Ownerpage = () => {
                                                 <OwnerPageDishCard
                                                     key={dish[0]}
                                                     dish={dish[1]}
-                                                    handleDelete={deleteDish}
-                                                    handleUpdate={updateDishForm}
+                                                    handleAcceptReservation={handleAcceptReservation}
+                                                    handleDenyReservation={handleDenyReservation}
                                                     dishID={dish[0]}
                                                 />
                                             )
@@ -463,15 +516,16 @@ const Ownerpage = () => {
                                 toggleState === 3 ? "block" : "hidden"
                             }`}
                         >
-                            <div className="px-8 ">
-                                <h1 className="text-2xl mt-6">Reservations</h1>
+                            <div className="px-4 sm:px-8 ">
+                                <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">My Bookmarks</h1>
                                 {/* <button
                                     onClick={() => setToggleModal(!toggleModal)}
                                     className="mt-4 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
                                 >
                                     Add New Dish
                                 </button> */}
-                                <div>
+                                
+                                {/* <div className="reservation-table">
                                     <div className="overflow-auto rounded-lg shadow-md my-8">
                                         <table className="w-full" border="1">
                                             <thead className="bg-gray-50 border-b-3 border-gray-200">
@@ -523,6 +577,21 @@ const Ownerpage = () => {
                                             </tbody>
                                         </table>
                                     </div>
+                                </div> */}
+                                <div className="flex items-center justify-around flex-wrap w-full mt-3 ">
+                                    {Object.entries(reservationsData).map((reservation, index) =>
+                                            typeof menuData == null ? (
+                                                ""
+                                            ) : (
+                                                <ReservationsCard
+                                                    key={reservation[0]}
+                                                    dish={reservation[1]}
+                                                    handleAcceptReservation={handleAcceptReservation}
+                                                    handleDenyReservation={handleDenyReservation}
+                                                    dishID={reservation[0]}
+                                                />
+                                            )
+                                        )}
                                 </div>
                             </div>
                         </div>

@@ -28,6 +28,8 @@ import ReviewCard from "../../components/ReviewCard";
 import useFetchOwnerRestaurant from "../../hooks/fetchOwnerRestaurant";
 import useFetchUserData from "../../hooks/fetchUserData";
 import DishCardsSmall from "../../components/dishCardsSmall";
+import { v4 } from "uuid";
+
 
 export async function getStaticPaths() {
     const restaurantsList = [];
@@ -196,27 +198,26 @@ const RestaurantPage = ({ restaurant2, resID}) => {
     const date = new Date();
     const currentDate = moment(date).format('YYYY-MM-DD');
 
-    const [data, setData] = useState({});
+    const [data, setData] = useState({partySize:"", dateReservation:"", timeReservation:"", nameReservation:"", contactReservation:0,});
     const {reservations, isLoading, isError, setReservations, reviewLists} = useFetchReservations();
     const handleAddReservation = async(e) =>{
         e.preventDefault();
         const userRef = doc(db, "users", currentUser.uid);
         const restaurantRef = doc(db, "Restaurants", resID);
-        const reserveKeyUser =
-            Object.keys(reservations).length === 0
-                ? 1
-                : Math.max(...Object.keys(reservations)) + 1;
-        // const reserveKeyRestaurant =
+        // const reserveKeyUser =
         //     Object.keys(reservations).length === 0
         //         ? 1
-        //         : Math.max(...Object.keys(reservations)) + 1;       
+        //         : Math.max(...Object.keys(reservations)) + 1;
+        const reserveKeyUser = v4();       
         await setDoc(
             userRef,
             {
                 reservations: {
                     [reserveKeyUser]: {
                         // dishID: dish.id,
-                        ...data, reservationTo: restaurant.name,  userID: currentUser.uid 
+                        ...data, reservationTo: restaurant.name,  userID: currentUser.uid, userName:currentUser.displayName,
+                        userProfilePic: currentUser.photoURL, restaurantID:resID, restaurantImg:restaurant.src, userEmail: currentUser.email,
+                        reservationStatus:"Pending", reservationKey:reserveKeyUser,
                     },
                 },
             },
@@ -228,13 +229,15 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                 reservations: {
                     [reserveKeyUser]: {
                         // dishID: dish.id, userName:,
-                        ...data, reservationTo: restaurant.name, userID: currentUser.uid 
+                        ...data, reservationTo: restaurant.name,  userID: currentUser.uid, userName:currentUser.displayName,
+                        userProfilePic: currentUser.photoURL, restaurantID:resID, restaurantImg:restaurant.src, userEmail: currentUser.email,
+                        reservationStatus:"Pending", reservationKey:reserveKeyUser,
                     },
                 },
             },
             { merge: true }
         );
-        
+        setData({partySize:"", dateReservation:"", timeReservation:"", nameReservation:"", contactReservation:0,})
     }
     
     const handleAddInputChange = (e) =>{
@@ -838,7 +841,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                         >
                                             Party Size
                                         </label>
-                                        <select name="party-size" id="partySize" onChange={handleAddInputChange} required 
+                                        <select name="party-size" id="partySize" onChange={handleAddInputChange} value={data.partySize} required 
                                         className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel">
                                             <option value="1">1 person</option>
                                             <option value="2">2 people</option>
@@ -868,7 +871,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                     >
                                         Date
                                     </label>
-                                    <input type="date" name="date-reservation" id="dateReservation" onChange={handleAddInputChange} min={currentDate} required 
+                                    <input type="date" name="date-reservation" id="dateReservation" onChange={handleAddInputChange} min={currentDate} value={data.dateReservation} required 
                                         className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
                                     />
                                     <label
@@ -877,7 +880,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                     >
                                         Time
                                     </label>
-                                    <select name="time-reservation" id="timeReservation" onChange={handleAddInputChange} required 
+                                    <select name="time-reservation" id="timeReservation" onChange={handleAddInputChange} value={data.timeReservation} required 
                                     className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel">
                                         <option value=""></option>
                                         <option value="10:00 AM">10:00 AM</option>
@@ -910,7 +913,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                     >
                                         Name
                                     </label>
-                                    <input type="text" name="name-reservation" id="nameReservation" onChange={handleAddInputChange} required 
+                                    <input type="text" name="name-reservation" id="nameReservation" onChange={handleAddInputChange} value={data.nameReservation} required 
                                         className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
                                     />
                                     </div>
@@ -921,7 +924,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                     >
                                         Contact Number
                                     </label>
-                                    <input type="number" name="contact-reservation" id="contactReservation" onChange={handleAddInputChange} min="999999999" required 
+                                    <input type="number" name="contact-reservation" id="contactReservation" onChange={handleAddInputChange} min="999999999" value={data.contactReservation} required 
                                         className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
                                     />
                                     </div>
