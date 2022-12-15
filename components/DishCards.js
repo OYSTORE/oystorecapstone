@@ -38,7 +38,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
     // const [currentValueFixed, setCurrentValueFixed] = useState(Math.floor(rating));
     const stars = Array(5).fill(0)
     return (
-        <div className="snap-start flex flex-col w-56 h-80 rounded-xl shadow-sm hover:shadow-lg transition duration-300 hover:-translate-y-4 border my-2 bg-white">
+        <div className="snap-start flex flex-col w-56 h-[24rem] rounded-xl shadow-sm hover:shadow-lg transition duration-300 hover:-translate-y-4 border my-2 bg-white">
             {/* <Card
                 imgAlt="{restaurant.name}"
                 imgSrc={"/assets/restaurants/"+restaurant.src} className=" cursor-pointer "
@@ -47,8 +47,8 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
             {/*<div className="w-[200px] h-[200px] bg-fixed" style={dishbg} >daoishdoashodhao</div>*/}
             <div className="relative w-full h-40 rounded-t-xl">
                 <Image
-                    // src={dish.dishimg || "/assets/dishpic/NoSrc.jpg"}
-                    src="/assets/dishpic/NoSrc.jpg"
+                    src={dish.dishimg || "/assets/dishpic/NoSrc.jpg"}
+                    // src="/assets/dishpic/NoSrc.jpg"
                     layout="fill"
                     objectFit="cover"
                     alt="..."

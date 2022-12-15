@@ -77,8 +77,8 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
             {/*<div className="w-[200px] h-[200px] bg-fixed" style={dishbg} >daoishdoashodhao</div>*/}
             <div className="relative w-2/5 lg:w-80 rounded-xl bg-red-500">
                 <Image
-                    // src={dish.dishimg}
-                    src="/assets/dishpic/NoSrc.jpg"
+                    src={dish.dishimg || "/assets/dishpic/NoSrc.jpg"}
+                    // src="/assets/dishpic/NoSrc.jpg"
                     layout="fill"
                     objectFit="cover"
                     alt="..."

@@ -33,8 +33,8 @@ function OwnerPageDishCard({ dish, handleDelete, handleUpdate, dishID, carts }) 
             
             <div className="relative w-full sm:w-full h-48">
                 <Image
-                    // src={dish.dishimg}
-                    src="/assets/dishpic/NoSrc.jpg"
+                    src={dish.dishimg || "/assets/dishpic/NoSrc.jpg"}
+                    // src="/assets/dishpic/NoSrc.jpg"
                     layout="fill"
                     objectFit="cover"
                     alt="..."
