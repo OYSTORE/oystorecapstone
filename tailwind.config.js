@@ -18,7 +18,7 @@ module.exports = {
         },
     },
     darkMode: "class",
-
+    
     plugins: [
         require("daisyui", "flowbite/plugin"),
         require('@tailwindcss/forms'),

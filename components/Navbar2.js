@@ -20,6 +20,7 @@ import { RiAdminFill } from "react-icons/ri";
 import { FaCalendarCheck } from "react-icons/fa";
 import useFetchOwnerRestaurant from "../hooks/fetchOwnerRestaurant";
 import useFetchUserData from "../hooks/fetchUserData";
+import useFetchUserType from "../hooks/fetchUserType";
 
 const Navbar2 = () => {
     {
@@ -66,8 +67,8 @@ const Navbar2 = () => {
         logout();
         Router.push("/auth/login");
     };
-    const { userInfo, currentUser } = useAuth();
-    const { userData } = useFetchUserData();
+    const { currentUser } = useAuth();
+    const { ownerStatus, adminStatus } = useFetchUserType();
     // console.log(currentUser.uid);
     //fetch carts
     // const { carts, loading, error, setCarts } = useFetchCarts();
@@ -174,7 +175,7 @@ const Navbar2 = () => {
                                 </h3>
                             </li>
                         </Link>
-                        {userData.isOwner && (
+                        {ownerStatus && (
                             <Link href="/ownerpage">
                                 <li
                                     onClick={() => setOpen(false)}
@@ -190,7 +191,7 @@ const Navbar2 = () => {
                                 </li>
                             </Link>
                         )}
-                        {userData.isAdmin && (
+                        {adminStatus && (
                             <Link href="/adminpage">
                                 <li
                                     onClick={() => setOpen(false)}

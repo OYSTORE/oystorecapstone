@@ -8,15 +8,18 @@ import useFetchOwnerRestaurant from "../hooks/fetchOwnerRestaurant";
 import { GiChickenOven } from "react-icons/gi";
 import { useAuth } from "../context/AuthContext";
 import Router from "next/router";
-import {FaUsers} from "react-icons/fa";
+import {FaUser, FaUsers} from "react-icons/fa";
 import ReservationsListOwner from "../components/ReservationsListOwner";
 import useFetchRestaurantList from "../hooks/fetchRestaurantList";
 import AdminRestaurantList from "../components/AdminRestaurantList";
 import useFetchUserList from "../hooks/fetchUserList";
 import AdminUserList from "../components/AdminUserList";
 import Navbar2 from "../components/Navbar2";
-import { MdOutlineRestaurant } from "react-icons/md";
-
+import { MdGroupAdd, MdOutlineRestaurant } from "react-icons/md";
+import { IoMdPersonAdd } from "react-icons/io5";
+import useFetchUserData from "../hooks/fetchUserData";
+import useFetchRequests from "../hooks/fetchRequests";
+import AdminRequestList from "../components/AdminRequestList";
 
 const Adminpage = () => {
     useEffect(() => {
@@ -70,38 +73,41 @@ const Adminpage = () => {
     // }, [currentUser]);
 
     
+    // const {
+    //     restaurantData,
+    //     loading,
+    //     error,
+    //     setRestaurantData,
+    //     userData,
+    //     menuData,
+    //     reservationsData
+    // } = useFetchOwnerRestaurant();
     const {
-        restaurantData,
         loading,
         error,
-        setRestaurantData,
         userData,
-        menuData,
-        reservationsData
-    } = useFetchOwnerRestaurant();
+    } = useFetchUserData();
     const {restaurantList} = useFetchRestaurantList();
+    const {requests} = useFetchRequests();
     const {userList} = useFetchUserList();
     console.log(restaurantList);
-    const [toggleState, setToggleState] = useState(1);
+    console.log(requests);
+    const [toggleState, setToggleState] = useState(2);
     const toggleTab = (index) => {
         setToggleState(index);
     };
-    const deleteRestaurant = async (id) => {
-        /* const collectionRef3 = collection(db, "Cart");
+    const deleteRequest = async (id) => {
+        // const collectionRef3 = collection(db, "Cart");
         
-         const userDoc = doc(collectionRef3, id);
-         await deleteDoc(userDoc);*/
-       
-        const docRef = doc(db, "Restaurants", id);
-        await deleteDoc(docRef);
-        const userRef = doc(db, "users", id);
-        await setDoc(userRef,{
-          isOwner:false,
-          restaurantOwnerID:"",
-          restaurantName:"",
-        }, {merge:true})
-        Router.reload(window.location.pathname)
-    };
+        const docRef = doc(db, "users", "0hjdPZNzgGSW73dJo17SrHkX2W93");
+        var dishItemField = "requests." + id;
+        await updateDoc(docRef, {
+            
+            [dishItemField]: deleteField(),
+        });
+        // Router.reload(window.location.pathname)
+    }
+
     const ref = useRef(null);
     const inputRef = useRef();
     const [toggleModal, setToggleModal] = useState(false);
@@ -146,7 +152,7 @@ const Adminpage = () => {
             menu:{},
             reviews:0,
             ratings:0,
-            src:"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/generalPictures%2Fc1.png?alt=media&token=0a516330-5d86-4f28-82b7-3499d3124fa3",
+            src:"/assets/dishpic/NoSrc.jpg",
             reservations:{},
             reviewLists:{},
           },
@@ -197,94 +203,77 @@ const Adminpage = () => {
           setToggleModalUpdate(false)
           setData({name:"", price:0, main_category:"", unit:"", isAvailable:""});
       };
+
+      //request
+      const deleteRestaurant = async (id) => {
+        /* const collectionRef3 = collection(db, "Cart");
+        
+         const userDoc = doc(collectionRef3, id);
+         await deleteDoc(userDoc);*/
+       
+        const docRef = doc(db, "Restaurants", id);
+        await deleteDoc(docRef);
+        const userRef = doc(db, "users", id);
+        await setDoc(userRef,{
+          isOwner:false,
+          restaurantOwnerID:"",
+          restaurantName:"",
+        }, {merge:true})
+        Router.reload(window.location.pathname)
+    };
     return (
         <>
              
             {!loading && userData.isAdmin && (
                 <>
                 <Navbar2 />
-                    <div
-                        className={`flex flex-row ${
-                            toggleModal ? "blur-sm" : "blur-none"
+                    <div className={`flex sm:flex-row flex-col-reverse 
+                    ${toggleModal ? "blur-sm" : "blur-none"
                         } ease-in-out duration-300`}
                         ref={ref}
                     >
-                        <div className="flex flex-col flex-wrap side-navbar w-20 lg:w-72 h-[90vh] border">
+                         <div className="z-10 bg-white sticky bottom-0 sm:block side-tabs flex flex-col flex-wrap side-navbar w-full sm:w-72 sm:h-[90vh] border">
                             <div className="m-0 items-center flex flex-col ">
                                
-                                {/* <div className="relative text-center flex flex-col w-[250px] flex-wrap">
-                                    <h1 className="text-xl my-8">
-                                        Your Restaurant
-                                    </h1>
-                                    <h1 className="text-md my-8">
-                                        {restaurantData.name}
-                                    </h1>
-                                </div> */}
-                                <ul className="w-full mx-0">
+                                <ul className="w-full mx-0 flex flex-row sm:flex-col justify-around">
+                                    
                                     <li
-                                        className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
-                                ${
-                                    toggleState === 1
-                                        ? " border-orange-peel"
-                                        : "border-white"
-                                }`}
-                                        onClick={() => toggleTab(1)}
-                                    >
-                                        <RiAdminFill
-                                            size="1.8em"
-                                            className={
-                                                toggleState === 1
-                                                    ? "text-orange-peel"
-                                                    : "text-gray-700"
-                                            }
-                                        />
-                                        <h3
-                                            className={`text-base invisible lg:visible font-medium ${
-                                                toggleState === 1
-                                                    ? "text-orange-peel"
-                                                    : "text-gray-700"
-                                            }`}
-                                        >
-                                            Dashboard
-                                        </h3>
-                                    </li>
-                                    <li
-                                        className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
-                                ${
-                                    toggleState === 2
-                                        ? " border-orange-peel"
-                                        : "border-white"
-                                }`}
+                                        className={`group border-box px-6 py-3 flex flex-row justify-center sm:justify-start items-center gap-5 cursor-pointer border-b-4 sm:border-l-4 sm:border-0
+                                        ${
+                                            toggleState === 2
+                                                ? " border-orange-peel"
+                                                : "border-white"
+                                        }`}
                                         onClick={() => toggleTab(2)}
                                     >
-                                        <MdOutlineRestaurant    
+                                        <MdOutlineRestaurant
                                             size="1.8em"
                                             className={
-                                                toggleState === 2
+                                                toggleState === 2   
                                                     ? "text-orange-peel"
                                                     : "text-gray-700"
                                             }
                                         />
                                         <h3
-                                            className={`text-base invisible lg:visible font-medium ${
+                                            className={`text-base  hidden sm:block font-medium ${
                                                 toggleState === 2
                                                     ? "text-orange-peel"
                                                     : "text-gray-700"
                                             }`}
                                         >
-                                            Restaurants
+                                            Reservations
                                         </h3>
                                     </li>
                                     <li
-                                        className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
-                                ${
-                                    toggleState === 3
-                                        ? " border-orange-peel"
-                                        : "border-white"
-                                }`}
+                                        className={`group border-box px-6 py-3 flex flex-row  justify-center sm:justify-start items-center gap-5 cursor-pointer border-b-4 sm:border-l-4 sm:border-0
+                                        ${
+                                            toggleState === 3
+                                                ? " border-orange-peel"
+                                                : "border-white"
+                                        }`}
                                         onClick={() => toggleTab(3)}
                                     >
-                                        <FaUsers
+                                        <FaUser
                                             size="1.8em"
                                             className={
                                                 toggleState === 3
@@ -293,7 +282,7 @@ const Adminpage = () => {
                                             }
                                         />
                                         <h3
-                                            className={`text-base invisible lg:visible font-medium ${
+                                            className={`text-base hidden sm:block font-medium ${
                                                 toggleState === 3
                                                     ? "text-orange-peel"
                                                     : "text-gray-700"
@@ -302,23 +291,44 @@ const Adminpage = () => {
                                             Users
                                         </h3>
                                     </li>
+                                    <li
+                                        className={`group border-box px-6 py-3 flex flex-row  justify-center sm:justify-start items-center gap-5 cursor-pointer border-b-4 sm:border-l-4 sm:border-0
+                                        ${
+                                            toggleState === 4
+                                                ? " border-orange-peel"
+                                                : "border-white"
+                                        }`}
+                                        onClick={() => toggleTab(4)}
+                                    >
+                                        <MdGroupAdd
+                                            size="1.8em"
+                                            className={
+                                                toggleState === 4
+                                                    ? "text-orange-peel"
+                                                    : "text-gray-700"
+                                            }
+                                        />
+                                        <h3
+                                            className={`text-base hidden sm:block font-medium ${
+                                                toggleState === 4
+                                                    ? "text-orange-peel"
+                                                    : "text-gray-700"
+                                            }`}
+                                        >
+                                            Requests
+                                        </h3>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-                        <div
-                            className={`w-full ${
-                                toggleState === 1 ? "block" : "hidden"
-                            }`}
-                        >
-                            <h1 className="text-2xl">Dashboard</h1>
-                        </div>
+                       
                         <div
                             className={`w-full ${
                                 toggleState === 2 ? "block" : "hidden"
                             }`}
                         >
                             <div className="px-8 ">
-                                <h1 className="text-2xl mt-6">Restaurants</h1>
+                                <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Restaurants</h1>
                                 <button
                                     onClick={() => setToggleModal(!toggleModal)}
                                     className="mt-4 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
@@ -387,7 +397,7 @@ const Adminpage = () => {
                             }`}
                         >
                             <div className="px-8 ">
-                                <h1 className="text-2xl mt-6">Users</h1>
+                            <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Users</h1>
                                 {/* <button
                                     onClick={() => setToggleModal(!toggleModal)}
                                     className="mt-4 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
@@ -436,6 +446,72 @@ const Adminpage = () => {
                                                     )
                                                 )}
                                                 
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            className={`w-full ${
+                                toggleState === 4 ? "block" : "hidden"
+                            }`}
+                        >
+                            <div className="px-8 ">
+                                <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Requests</h1>
+                               
+                                <div>
+                                    <div className="h-[70vh] overflow-auto rounded-lg shadow-md my-8">
+                                        <table className="w-full overflow-scroll" border="1">
+                                            <thead className="bg-gray-50 border-b-3 border-gray-200">
+                                                <tr className="">
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        No.
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Owner&apos;s Name
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Owner&apos;s Email Address
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Owner&apos;s Contact Number
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Restaurant&apos;s Name
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Restaurant&apos;s Email Address
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Restaurant&apos;s Contact Number
+                                                    </th>
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Owner&apos;s User ID
+                                                    </th>
+                                                    
+                                                    {/* <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        Dashboard
+                                                    </th> */}
+                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                        
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {Object.values(requests).map(
+                                                    (request, index) => (
+                                                        <AdminRequestList
+                                                            key={request.requestKey}
+                                                            request={request}
+                                                            requestKey={index+1}
+                                                            handleDelete={
+                                                                deleteRequest
+                                                            }
+                                                            
+                                                        />
+                                                    )
+                                                )}
                                             </tbody>
                                         </table>
                                     </div>

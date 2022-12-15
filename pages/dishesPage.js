@@ -46,7 +46,7 @@ export async function getServerSideProps(context) {
     const q1 = query(
         collectionRef1,
         orderBy("ratings", "desc")
-        // where("ratings", ">=", 4.2)
+        ,where("ratings", ">=", 4.5)
     );
     const querySnapshot = await getDocs(q1);
     querySnapshot.forEach((doc) => {

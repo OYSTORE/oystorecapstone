@@ -3,10 +3,10 @@ import { doc, getDoc, onSnapshot, setDoc } from 'firebase/firestore';
 import { useAuth } from '../context/AuthContext';
 import { db } from '../firebase';
 
-export default function useFetchCarts() {
+export default function useFetchRequests() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-    const [carts, setCarts] = useState([])
+    const [requests, setRequests] = useState([])
 
     const { currentUser } = useAuth()
 
@@ -27,7 +27,7 @@ export default function useFetchCarts() {
                 //     console.log("No such document!");
                 // }
                 const unsub2 = onSnapshot(userRef, (doc) => {
-                    setCarts(doc.data().carts)
+                    setRequests(doc.data().requests)
                     
                 });
                 // const unsub = onSnapshot(userRef, (doc) => {
@@ -50,5 +50,5 @@ export default function useFetchCarts() {
         fetchData()
     }, [])
 
-    return { loading, error, carts, setCarts }
+    return { loading, error, requests }
 }
