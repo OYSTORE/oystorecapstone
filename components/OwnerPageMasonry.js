@@ -61,7 +61,7 @@ const OwnerPageMasonry = () => {
             <ResponsiveMasonry
                 columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
             >
-                <Masonry gutter="1.5rem">
+                <Masonry gutter="1rem">
                    {images.map((image, i) => (
                         <div key={i} className="relative w-full h-72">
                             <Image key={i} src={image} layout="fill" objectFit="cover" alt="" onClick={() => {handleViewImg(image, i); setModalOpen(true)}}/>

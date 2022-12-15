@@ -138,7 +138,7 @@ const DishesPage = ({ dishesList }) => {
    
     const { carts, loading, error, setCarts } = useFetchCarts();
     const { currentUser } = useAuth();
-    console.log(currentUser.uid)
+   
     //show number of dishes
     const [showNumber, setShowNumber] = useState(20);
     const handleAddInputChangeShow = (e) => {

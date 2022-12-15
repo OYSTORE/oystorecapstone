@@ -157,7 +157,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                 ? 1
                 : Math.max(...Object.keys(carts)) + 1;
         const uniquekey = dish.name + "-" + dish.served_by;
-        setCarts({ ...carts, [uniquekey]: dish });
+        // setCarts({ ...carts, [uniquekey]: dish });
         await setDoc(
             userRef,
             {
@@ -288,54 +288,86 @@ const RestaurantPage = ({ restaurant2, resID}) => {
     }
    
     //write review function
-   
+    
+    const currentDateReview = moment(date).format('MM-DD-YYYY');
     const {userData} = useFetchUserData();
+
+    //new rating
+    const updateRatingsDatabase = async(r) => {
+        let ratingArrayNew = [ratingArray]
+        ratingArrayNew.push(r)
+        // Object.values(restaurant.reviewLists).map(review => ratingArray.push(review.rating))
+        function average(a, n)
+        {
+        
+            // Find sum of array element
+            var sum = 0;
+            for (var i = 0; i < n; i++) sum += a[i];
+            return parseFloat(sum / n);
+
+        }
+        const reviews2 = ratingArrayNew.length;
+        const rating2 = Math.round(average(ratingArrayNew, reviews2) * 10) / 10;
+        // const newRating = (rating + currentValue) / 2
+        const restaurantRef = doc(db, "Restaurants", resID);   
+        await setDoc(
+            restaurantRef,
+            {
+                ratings:rating2,
+                reviews:reviews2
+            },
+            { merge: true }
+        );
+        console.log(rating2)
+        
+    }
+
     const handleAddReview = async(e) =>{
         e.preventDefault();
-        const restaurantRef = doc(db, "Restaurants", resID);
-        const reserveKeyUser =
-            Object.keys(restaurant.reviewLists).length === 0
-                ? 1
-                : Math.max(...Object.keys(restaurant.reviewLists)) + 1;
-        // const reserveKeyRestaurant =
-        //     Object.keys(reservations).length === 0
-        //         ? 1
-        //         : Math.max(...Object.keys(reservations)) + 1;    
+        const restaurantRef = doc(db, "Restaurants", resID);  
+        //ratings to database
+        const floatRating = (parseFloat(ratingNotRound + currentValue) / 2 )
+        const newRating = Math.round(floatRating * 10) / 10;
+        let ratingArray2 = []
+        Object.values(restaurant.reviewLists).map(review => ratingArray2.push(review.rating))
+        let reviews2 = ratingArray2.length;
+        if (Object.keys(restaurant.reviewLists).includes(currentUser.uid)){
+            reviews2 = ratingArray2.length;
+        }else{
+            reviews2 = ratingArray2.length + 1;
+        }
+        // console.log(parseFloat(newRating))
         await setDoc(
             restaurantRef,
             {
                 reviewLists: {
                     [currentUser.uid]: {
-                     reviewText:reviewData,  reviewerUserID:currentUser.uid, 
-                     rating:currentValue, datePublished:"12/08/2021", 
+                     reviewText:reviewData,  reviewerUserID:currentUser.uid, name:currentUser.displayName,
+                     rating:currentValue, datePublished:currentDateReview, imgSrc:currentUser.photoURL, restaurantID:resID,
                     }
                 },
+                ratings:floatRating,
+                reviews:reviews2,
             },
             { merge: true }
         );
         
         const userRef = doc(db, "users", currentUser.uid);
-        const reserveKeyUser2 =
-            Object.keys(userData.reviewLists).length === 0
-                ? 1
-                : Math.max(...Object.keys(userData.reviewLists)) + 1;
-        // const reserveKeyRestaurant =
-        //     Object.keys(reservations).length === 0
-        //         ? 1
-        //         : Math.max(...Object.keys(reservations)) + 1;    
+        
         await setDoc(
             userRef,
             {
                 reviewLists: {
                     [resID]: {
                      reviewText:reviewData, name:currentUser.displayName, reviewerUserID:currentUser.uid, 
-                     rating:currentValue, datePublished:"12/08/2021", imgSrc:currentUser.photoURL, restaurantID:resID,
+                     rating:currentValue, datePublished:currentDateReview, imgSrc:currentUser.photoURL, restaurantID:resID,
                     }
                 },
             },
             { merge: true }
         );
         setReviewData("");
+        // updateRatingsDatabase(currentValue)
         setCurrentValue(0);
         setToggleModal(false);
     }
@@ -353,11 +385,12 @@ const RestaurantPage = ({ restaurant2, resID}) => {
         // Find sum of array element
         var sum = 0;
         for (var i = 0; i < n; i++) sum += a[i];
-
         return parseFloat(sum / n);
+
     }
     const reviews = ratingArray.length;
     const rating = Math.round(average(ratingArray, reviews) * 10) / 10;
+    const ratingNotRound = average(ratingArray, reviews);
     const [currentValueRatings, setCurrentValueRatings] = useState(rating);
     const counts = {};
     
@@ -381,7 +414,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                         reviewLists: {
                             [currentUser.uid]: {
                             name:currentUser.displayName, reviewerUserID:currentUser.uid, 
-                             rating:dishRating, datePublished:"12/08/2021", 
+                             rating:dishRating, datePublished:currentDateReview, 
                             }
                         },
                     }
@@ -403,7 +436,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                     [resID]: {
                         [dishIDArray]:{
                             reviewerUserID:currentUser.uid, 
-                            rating:dishRating, datePublished:"12/08/2021", imgSrc:currentUser.photoURL,
+                            rating:dishRating, datePublished:currentDateReview, imgSrc:currentUser.photoURL,
                             restaurantID:resID, dishReviewed:dish, dishName: dish.name
                         }, 
                     }
@@ -938,31 +971,31 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                 </div>
                             </form>
                         </div>
-                        <div className="additional-info">
-                            <h1 className="text-lg text-center py-4 sm:text-2xl font-bold pb-5">
+                        <div className="additional-info w-full border rounded-lg shadow-lg mt-1 p-2">
+                            <h1 className="text-lg text-center py-2 sm:text-2xl font-bold pb-5">
                                 Additional Information
                             </h1>
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-4">
                                 <div className="flex flex-row px-2 text-center gap-4 justify-between items-center">
                                     <MdEmail
                                         size="1.8em"
                                         className="text-gray-700 group-hover:text-white"
                                     />
-                                    <p className="text-2xl">{restaurant.emailAddress}</p>
+                                    <p className="text-xl text-right">{restaurant.emailAddress}</p>
                                 </div>
                                 <div className="flex flex-row px-2 text-center gap-4 justify-between items-center">
                                     <MdCall
                                         size="1.8em"
                                         className="text-gray-700 group-hover:text-white"
                                     />
-                                    <p className="text-2xl">0{restaurant.contactNumber}</p>
+                                    <p className="text-xl text-right">0{restaurant.contactNumber}</p>
                                 </div>
                                 <div className="flex flex-row px-2 text-center gap-4 justify-between items-center">
                                     <MdLocationOn
                                         size="1.8em"
                                         className="text-gray-700 group-hover:text-white"
                                     />
-                                    <p className="text-1xl">Tambak, New Washington, Aklan</p>
+                                    <p className="text-lg text-right">Tambak, New Washington, Aklan</p>
                                 </div>
                             </div>
                         </div>

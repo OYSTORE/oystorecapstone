@@ -358,7 +358,7 @@ const Navbar2 = () => {
                                 tabIndex={0}
                                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-40"
                             >
-                                <li>
+                                {/* <li>
                                     <a className="justify-between">
                                         Profile
                                         <span className="badge">New</span>
@@ -366,7 +366,7 @@ const Navbar2 = () => {
                                 </li>
                                 <li>
                                     <a>Settings</a>
-                                </li>
+                                </li> */}
                                 <li onClick={handleRedirect}>
                                     <a>Logout</a>
                                 </li>

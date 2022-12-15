@@ -89,6 +89,7 @@ const HomePage = ({ dishesList, restaurantsList }) => {
     const scroll = (scrollOffset) => {
         ref.current.scrollLeft += scrollOffset;
     };
+    
     useEffect(()=>{
         async function fetchData() {
             try {
@@ -129,7 +130,7 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                     setCarts({})
                 }*/
             } catch (err) {
-                setError('Failed to load data')
+                // setError('Failed to load data')
                 console.log(err)
             }
         }
@@ -139,7 +140,7 @@ const HomePage = ({ dishesList, restaurantsList }) => {
         <>
         {/* {console.log(restaurantsList)} */}
             <Carousel />
-            <div className="flex flex-col py-10">
+            <div className="flex flex-col py-10 px-2">
                 <h1 className="text-2xl sm:text-3xl font-bold pl-8 pb-3">
                     Featured Dishes
                 </h1>
@@ -210,6 +211,18 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                             restaurant={restaurant}
                         />
                     ))}
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-bold pl-8 py-3">
+                    About Oystore
+                </h1>
+                <div className="flex flex-row">
+                    <div className="w-1/2 bg-green-500" >
+                        <div className="relative">
+                            
+                        </div>
+                    </div>
+                    <div className="w-1/2 bg-blue-800" >
+                    </div>
                 </div>
             </div>
         </>

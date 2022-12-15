@@ -41,8 +41,8 @@ export async function getServerSideProps(context) {
     const collectionRef1 = collection(db, "Restaurants");
     const q1 = query(
         collectionRef1,
-        orderBy("ratings", "desc"),
-        where("ratings", ">=", 4.2)
+        orderBy("ratings", "desc")
+        // ,where("ratings", ">=", 4.2)
     );
     const querySnapshot = await getDocs(q1);
     querySnapshot.forEach((doc) => {
@@ -53,7 +53,7 @@ export async function getServerSideProps(context) {
     return {
         props: {
             dishesList: dishesList,
-            restaurantsList: restaurantsList,
+            restaurantsList: restaurantsList.slice(0,5),
         },
     };
 }

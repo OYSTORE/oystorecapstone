@@ -8,7 +8,7 @@ function DishCardsNew({ dish, handleAdd, handleRemove, dishID, carts }) {
     const [isBookmarked, setIsBookmarked] = useState();
     useEffect(()=> setIsBookmarked(Object.keys(carts).includes(dish.name + "-" + dish.served_by))
     ,[carts])
-    console.log(isBookmarked)
+    // console.log(isBookmarked)
     // if (carts == dish.name+dish.served_by){
     //     setIsBookmarked(true)
     // }else{
