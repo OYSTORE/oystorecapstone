@@ -38,7 +38,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
     // const [currentValueFixed, setCurrentValueFixed] = useState(Math.floor(rating));
     const stars = Array(5).fill(0)
     return (
-        <div className="snap-start flex flex-col w-56 h-[24rem] rounded-xl shadow-sm hover:shadow-lg transition duration-300 hover:-translate-y-4 border my-2 bg-white">
+        <div className="snap-start flex flex-col w-56 h-[20rem] rounded-xl shadow-sm hover:shadow-lg transition duration-300 hover:-translate-y-4 border my-2 bg-white">
             {/* <Card
                 imgAlt="{restaurant.name}"
                 imgSrc={"/assets/restaurants/"+restaurant.src} className=" cursor-pointer "
@@ -64,7 +64,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
                     {/* <h6 className="text-xs">{isBookmarked.toString()}</h6> */}
                     <Link href={"restaurants/" + dish.restaurantID}><h6 className="text-xs">{dish.served_by}</h6></Link>
                 </a>
-                <div className="mt-0 mb-1 flex items-center">
+                <div className="mt-0 flex items-center">
                 
                            
                            <div className="flex flex-row items-center justify-center">
@@ -82,7 +82,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
                                        })}
                                        
                            </div>
-                           <div className="mt-0 mb-1 flex items-center">
+                           <div className="mt-0 flex items-center">
                                
                                <span className="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
                                    {!rating ? 0 : rating}
@@ -94,7 +94,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
                            
                 </div>
                 <div className=" flex flex-row justify-center items-center">
-                     <p className="text-xs sm:text-sm sm:p-2 font-semibold">Php {dish.price}&nbsp;&nbsp;{dish.unit}</p>
+                     <p className="text-xs sm:text-sm font-semibold">Php {dish.price}&nbsp;&nbsp;{dish.unit}</p>
                                 
                 </div>     
                    
@@ -112,7 +112,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
                                   setIsBookmarked(!isBookmarked);
                               }
                     }
-                    className={`select-none cursor-pointer rounded-lg px-5 py-2.5 text-center 
+                    className={`select-none cursor-pointer rounded-lg px-5 py-2.5  my-2 text-center 
                             text-sm font-medium text-white 
                             focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 
                             dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${

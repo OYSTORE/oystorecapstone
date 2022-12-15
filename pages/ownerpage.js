@@ -331,8 +331,6 @@ const Ownerpage = () => {
                 uploadGalleryImgUrlMain(url)
             })
             
-            
-            alert("Image Uploaded")
         });
       }
       const uploadGalleryImgUrlMain = async(url) => {
