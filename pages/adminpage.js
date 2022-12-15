@@ -224,7 +224,7 @@ const Adminpage = () => {
     return (
         <>
              
-            {!loading && userData.isAdmin && (
+            {userData.isAdmin && (
                 <>
                 <Navbar2 />
                     <div className={`flex sm:flex-row flex-col-reverse 

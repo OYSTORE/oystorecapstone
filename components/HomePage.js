@@ -96,7 +96,7 @@ const HomePage = ({ dishesList, restaurantsList }) => {
             { merge: true }
         );
         setData({ownerName:"", ownerEmail:"", ownerContact:0, name:"", contactNumber:0, emailAddress:""})
-        alert("Successful")
+        
     }
     
     const handleAddInputChange = (e) =>{

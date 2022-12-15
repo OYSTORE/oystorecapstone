@@ -92,7 +92,7 @@ export default function Login() {
             <div className="flex-1 flex flex-row justify-between items-center text-xs sm:text-sm gap-2 sm:gap-4 h-screen">
                 <div className="hidden sm:block w-1/2 h-screen bg-center bg-cover bg-[url('/assets/oyster_banner2.jpg')]"></div>
                 <div className="w-full md:w-1/2 flex items-center justify-center">
-                    <div className="w-full lg:w-1/2 flex flex-col items-center justify-center shadow-xl p-10 text-gray-700 rounded-lg">
+                    <div className="w-full lg:w-1/2 flex flex-col items-center justify-center border-2 shadow-xl p-10 text-gray-700 rounded-lg">
                         <div className="navbar-center">
                             <Image
                                 src="/assets/logo-oystore.png"
@@ -174,6 +174,7 @@ export default function Login() {
                         Sign in with Twitter
                       </button> */}
                             </div>
+                            <p className="leading-tight py-1">By signing up, you agree to the Terms of Service and Privacy Policy of the website.</p>
                         </div>
                     </div>
                 </div>

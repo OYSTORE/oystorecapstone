@@ -347,7 +347,7 @@ const Navbar2 = () => {
                                         src={
                                             currentUser.photoURL
                                                 ? currentUser.photoURL
-                                                : ""
+                                                : "/assets/dishpic/NoSrc.jpg"
                                         }
                                         alt="Profile"
                                         // 

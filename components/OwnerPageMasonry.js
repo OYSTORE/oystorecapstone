@@ -5,15 +5,13 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 const images = [
-    "/assets/dishpic/NoSrc.jpg",
-    "/assets/dishpic/NoSrc.jpg",
-    "/assets/dishpic/NoSrc.jpg",
-    "/assets/dishpic/NoSrc.jpg",
-    "/assets/dishpic/NoSrc.jpg",
-    "/assets/dishpic/NoSrc.jpg",
-    "/assets/dishpic/NoSrc.jpg",
-    "/assets/dishpic/NoSrc.jpg",
-    "/assets/dishpic/NoSrc.jpg",
+    "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2F1xtQmszKXJcaFbdBlMia%2FGallery%2F1662814463516.jpg?alt=media&token=650bc81f-8ace-46f5-b85f-8d28c4fbf622",
+    "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2F1xtQmszKXJcaFbdBlMia%2FGallery%2F1662814463529.jpg?alt=media&token=10646fb3-75a3-4f19-b211-379ade575d2f",
+    "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2F1xtQmszKXJcaFbdBlMia%2FGallery%2F1662814463535.jpg?alt=media&token=d0e12b1c-a1e6-413e-a096-eb223af6608b",
+    "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2F1xtQmszKXJcaFbdBlMia%2FGallery%2F1662814463549.jpg?alt=media&token=5847aa14-33b9-4977-ad57-a1fec8eb7329",
+    "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2F1xtQmszKXJcaFbdBlMia%2FGallery%2F1662814463562.jpg?alt=media&token=b60511a4-66d4-4e45-849e-8f397e1d8736",
+    "https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2F1xtQmszKXJcaFbdBlMia%2FAlcedo.jpgdfab2f2c-a45b-48c5-9d43-109b7fd9e8fd?alt=media&token=c8922094-8e51-4b39-bad6-bfc228ea7176",
+   
 ]
 const OwnerPageMasonry = () => {
     const [imgData, setImgData] = useState({img: "", i:0})
@@ -33,13 +31,13 @@ const OwnerPageMasonry = () => {
         }
     }
     const [modalOpen, setModalOpen] = useState(false)
-    useEffect(() => {
-        if (modalOpen) {
-            document.body.style.overflow = 'hidden'
-        }else{
-            document.body.style.overflow = 'unset'
-        }
-      }, [modalOpen])
+    // useEffect(() => {
+    //     if (modalOpen) {
+    //         document.body.style.overflow = 'hidden'
+    //     }else{
+    //         document.body.style.overflow = 'unset'
+    //     }
+    //   }, [modalOpen])
     return (
         <>
             {imgData.img && 

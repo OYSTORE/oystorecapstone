@@ -47,7 +47,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
             {/*<div className="w-[200px] h-[200px] bg-fixed" style={dishbg} >daoishdoashodhao</div>*/}
             <div className="relative w-full h-40 rounded-t-xl">
                 <Image
-                    // src={dish.dishimg}
+                    // src={dish.dishimg || "/assets/dishpic/NoSrc.jpg"}
                     src="/assets/dishpic/NoSrc.jpg"
                     layout="fill"
                     objectFit="cover"
@@ -92,10 +92,14 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
                                 </span>
                            </div>
                            
-                   
                 </div>
+                <div className=" flex flex-row justify-center items-center">
+                     <p className="text-xs sm:text-sm sm:p-2 font-semibold">Php {dish.price}&nbsp;&nbsp;{dish.unit}</p>
+                                
+                </div>     
+                   
             </div>
-            <div className="mt-auto px-4 py-2 flex items-center justify-center">
+            <div className="mt-auto px-4 flex items-center justify-center">
                 <a
                     onClick={
                         !isBookmarked
