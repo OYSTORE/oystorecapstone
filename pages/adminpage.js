@@ -261,7 +261,7 @@ const Adminpage = () => {
                                                     : "text-gray-700"
                                             }`}
                                         >
-                                            Reservations
+                                            Restaurants
                                         </h3>
                                     </li>
                                     <li
