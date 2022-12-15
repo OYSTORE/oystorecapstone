@@ -41,8 +41,8 @@ function BookmarkCard({ dish, handleAdd, handleRemove, dishID, carts }) {
         <div className="flex flex-row sm:flex-col w-11/12 sm:w-56 h-48 sm:h-[22rem] rounded-none sm:rounded-xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 my-2 bg-white border">
             <div className="relative w-full sm:w-full h-48">
                 <Image
-                    // src={dish.dishimg}
-                    src="/assets/dishpic/NoSrc.jpg"
+                   src={dish.dishimg || "/assets/dishpic/NoSrc.jpg"}
+                    // src="/assets/dishpic/NoSrc.jpg"
                     layout="fill"
                     objectFit="cover"
                     alt="..."
