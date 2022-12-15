@@ -78,10 +78,12 @@ export default function Home({ dishesList, restaurantsList }) {
                 <HomePage
                     dishesList={dishesList}
                     restaurantsList={restaurantsList}
-                /></>
+                />
+                <Footer />
+                </>
             )}
             {/* {console.log(restaurantsList.map(res =>({id: res.id})))} */}
-            <Footer />
+            
         </>
     );
 }
