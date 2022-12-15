@@ -403,16 +403,16 @@ const Ownerpage = () => {
             {currentUser && ownerStatus ? 
              (<> <Navbar2 /> 
                     <div
-                        className={`flex flex-row ${
+                        className={`flex flex-col-reverse sm:flex-row ${
                             toggleModal ? "blur-sm" : "blur-none"
                         } ease-in-out duration-300`}
                         ref={ref2}
                     >
                         
-                        <div className="side-tabs flex flex-col flex-wrap side-navbar w-20 lg:w-72 h-[90vh] border">
+                        <div className="z-10 bg-white sticky bottom-0 sm:block side-tabs flex flex-col flex-wrap side-navbar w-full sm:w-72 sm:h-[90vh] border">
                             <div className="m-0 items-center flex flex-col ">
                                
-                                <ul className="w-full mx-0">
+                                <ul className="w-full mx-0 flex flex-row sm:flex-col justify-around">
                                     {/* <li
                                         className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
                                 ${
@@ -441,7 +441,7 @@ const Ownerpage = () => {
                                         </h3>
                                     </li> */}
                                     <li
-                                        className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
+                                        className={`group border-box px-6 py-3 flex flex-row justify-center sm:justify-start items-center gap-5 cursor-pointer border-b-4 sm:border-l-4 sm:border-0
                                         ${
                                             toggleState === 2
                                                 ? " border-orange-peel"
@@ -458,7 +458,7 @@ const Ownerpage = () => {
                                             }
                                         />
                                         <h3
-                                            className={`text-base invisible lg:visible font-medium ${
+                                            className={`text-base hidden sm:block font-medium ${
                                                 toggleState === 2
                                                     ? "text-orange-peel"
                                                     : "text-gray-700"
@@ -468,7 +468,7 @@ const Ownerpage = () => {
                                         </h3>
                                     </li>
                                     <li
-                                        className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
+                                        className={`group border-box px-6 py-3 flex flex-row justify-center sm:justify-start items-center gap-5 cursor-pointer border-b-4 sm:border-l-4 sm:border-0
                                         ${
                                             toggleState === 3
                                                 ? " border-orange-peel"
@@ -479,13 +479,13 @@ const Ownerpage = () => {
                                         <FaCalendarCheck
                                             size="1.8em"
                                             className={
-                                                toggleState === 3
+                                                toggleState === 3   
                                                     ? "text-orange-peel"
                                                     : "text-gray-700"
                                             }
                                         />
                                         <h3
-                                            className={`text-base invisible lg:visible font-medium ${
+                                            className={`text-base  hidden sm:block font-medium ${
                                                 toggleState === 3
                                                     ? "text-orange-peel"
                                                     : "text-gray-700"
@@ -495,7 +495,7 @@ const Ownerpage = () => {
                                         </h3>
                                     </li>
                                     <li
-                                        className={`group border-box px-6 py-3 flex flex-row items-center gap-5 cursor-pointer border-l-4
+                                        className={`group border-box px-6 py-3 flex flex-row  justify-center sm:justify-start items-center gap-5 cursor-pointer border-b-4 sm:border-l-4 sm:border-0
                                         ${
                                             toggleState === 4
                                                 ? " border-orange-peel"
@@ -512,7 +512,7 @@ const Ownerpage = () => {
                                             }
                                         />
                                         <h3
-                                            className={`text-base invisible lg:visible font-medium ${
+                                            className={`text-base hidden sm:block font-medium ${
                                                 toggleState === 4
                                                     ? "text-orange-peel"
                                                     : "text-gray-700"
@@ -524,217 +524,213 @@ const Ownerpage = () => {
                                 </ul>
                             </div>
                         </div>
-                        {/* <div
-                            className={`w-full ${
-                                toggleState === 1 ? "block" : "hidden"
-                            }`}
-                        >
-                            <h1 className="text-2xl">Dashboard</h1>
-                        </div> */}
-                        <div
-                            className={`w-full ${
-                                toggleState === 2 ? "block" : "hidden"
-                            }`}
-                        >
-                            <div className="px-2 md:px-8 ">
-                                <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Menu</h1>
-                                <button
-                                    onClick={() => setToggleModal(!toggleModal)}
-                                    className="mt-4 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
-                                >
-                                    Add New Dish
-                                </button>
-                                {/* <div className="Table">
-                                    <div className="h-[28rem] overflow-auto rounded-lg shadow-md my-8">
-                                        <table className="w-full h-full overflow-scroll" border="1">
-                                            <thead className="bg-gray-50 border-b-3 border-gray-200">
-                                                <tr className="">
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        No.
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Name
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Price
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Main Category
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Sub Category
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Unit
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Availability
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Image
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Ratings
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Reviews
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Action
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {Object.entries(menuData).map(
-                                                    (dish, index) => (
-                                                        <MenuTableList
-                                                            key={dish[0]}
-                                                            dish={dish[1]}
-                                                            dishKey={index}
-                                                            dishID={dish[0]}
-                                                            handleDelete={
-                                                                deleteDish
-                                                            }
-                                                            handleUpdate={
-                                                              updateDishForm
-                                                            }
-                                                        />
-                                                    )
-                                                )}
-                                            </tbody>
-                                        </table>
+                        
+                        <div className="tab-right-section w-full">
+                            <div
+                                className={`w-full ${
+                                    toggleState === 2 ? "block" : "hidden"
+                                }`}
+                            >
+                                <div className="px-2 md:px-8 ">
+                                    <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Menu</h1>
+                                    <button
+                                        onClick={() => setToggleModal(!toggleModal)}
+                                        className="mt-4 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
+                                    >
+                                        Add New Dish
+                                    </button>
+                                    {/* <div className="Table">
+                                        <div className="h-[28rem] overflow-auto rounded-lg shadow-md my-8">
+                                            <table className="w-full h-full overflow-scroll" border="1">
+                                                <thead className="bg-gray-50 border-b-3 border-gray-200">
+                                                    <tr className="">
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            No.
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Name
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Price
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Main Category
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Sub Category
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Unit
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Availability
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Image
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Ratings
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Reviews
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Action
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {Object.entries(menuData).map(
+                                                        (dish, index) => (
+                                                            <MenuTableList
+                                                                key={dish[0]}
+                                                                dish={dish[1]}
+                                                                dishKey={index}
+                                                                dishID={dish[0]}
+                                                                handleDelete={
+                                                                    deleteDish
+                                                                }
+                                                                handleUpdate={
+                                                                updateDishForm
+                                                                }
+                                                            />
+                                                        )
+                                                    )}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div> */}
+                                    <div className="flex items-center justify-around flex-wrap w-full mt-3 ">
+                                        {Object.entries(menuData).map((dish, index) =>
+                                                typeof menuData == null ? (
+                                                    ""
+                                                ) : (
+                                                    <OwnerPageDishCard
+                                                        key={dish[0]}
+                                                        dish={dish[1]}
+                                                        handleUpdate={updateDishForm}
+                                                        handleDelete={deleteDish}
+                                                        dishID={dish[0]}
+                                                    />
+                                                )
+                                            )}
                                     </div>
-                                </div> */}
-                                <div className="flex items-center justify-around flex-wrap w-full mt-3 ">
-                                    {Object.entries(menuData).map((dish, index) =>
-                                            typeof menuData == null ? (
-                                                ""
-                                            ) : (
-                                                <OwnerPageDishCard
-                                                    key={dish[0]}
-                                                    dish={dish[1]}
-                                                    handleUpdate={updateDishForm}
-                                                    handleDelete={deleteDish}
-                                                    dishID={dish[0]}
-                                                />
-                                            )
-                                        )}
                                 </div>
                             </div>
-                        </div>
-                        <div
-                            className={`w-full ${
-                                toggleState ===  3 ? "block" : "hidden"
-                            }`}
-                        >
-                            <div className="px-1 sm:px-8 ">
-                                <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Reservations</h1>
-                                {/* <button
-                                    onClick={() => setToggleModal(!toggleModal)}
-                                    className="mt-4 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
-                                >
-                                    Add New Dish
-                                </button> */}
-                                
-                                {/* <div className="reservation-table">
-                                    <div className="overflow-auto rounded-lg shadow-md my-8">
-                                        <table className="w-full" border="1">
-                                            <thead className="bg-gray-50 border-b-3 border-gray-200">
-                                                <tr className="">
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        No.
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Name
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Party Size
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Date
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Time Reservation
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Contact Number
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        Status
-                                                    </th>
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
-                                                        
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {Object.entries(reservationsData).map(
-                                                    (dish, index) => (
-                                                        <ReservationsListOwner
-                                                            key={dish[0]}
-                                                            dish={dish[1]}
-                                                            dishKey={index}
-                                                            dishID={dish[0]}
-                                                            handleDelete={
-                                                                deleteDish
-                                                            }
-                                                            handleUpdate={
-                                                              updateDishForm
-                                                            }
-                                                        />
-                                                    )
-                                                )}
-                                                
-                                            </tbody>
-                                        </table>
+                            <div
+                                className={`w-full ${
+                                    toggleState ===  3 ? "block" : "hidden"
+                                }`}
+                            >
+                                <div className="px-1 sm:px-8 ">
+                                    <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Reservations</h1>
+                                    {/* <button
+                                        onClick={() => setToggleModal(!toggleModal)}
+                                        className="mt-4 p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]"
+                                    >
+                                        Add New Dish
+                                    </button> */}
+                                    
+                                    {/* <div className="reservation-table">
+                                        <div className="overflow-auto rounded-lg shadow-md my-8">
+                                            <table className="w-full" border="1">
+                                                <thead className="bg-gray-50 border-b-3 border-gray-200">
+                                                    <tr className="">
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            No.
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Name
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Party Size
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Date
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Time Reservation
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Contact Number
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            Status
+                                                        </th>
+                                                        <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                            
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {Object.entries(reservationsData).map(
+                                                        (dish, index) => (
+                                                            <ReservationsListOwner
+                                                                key={dish[0]}
+                                                                dish={dish[1]}
+                                                                dishKey={index}
+                                                                dishID={dish[0]}
+                                                                handleDelete={
+                                                                    deleteDish
+                                                                }
+                                                                handleUpdate={
+                                                                updateDishForm
+                                                                }
+                                                            />
+                                                        )
+                                                    )}
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div> */}
+                                    <div className="flex items-center justify-around flex-wrap w-full mt-3 ">
+                                        {Object.entries(reservationsData).map((reservation, index) =>
+                                                typeof menuData == null ? (
+                                                    ""
+                                                ) : (
+                                                    <ReservationsCard
+                                                        key={reservation[0]}
+                                                        dish={reservation[1]}
+                                                        handleAcceptReservation={handleAcceptReservation}
+                                                        handleDenyReservation={handleDenyReservation}
+                                                        dishID={reservation[0]}
+                                                    />
+                                                )
+                                            )}
                                     </div>
-                                </div> */}
-                                <div className="flex items-center justify-around flex-wrap w-full mt-3 ">
-                                    {Object.entries(reservationsData).map((reservation, index) =>
-                                            typeof menuData == null ? (
-                                                ""
-                                            ) : (
-                                                <ReservationsCard
-                                                    key={reservation[0]}
-                                                    dish={reservation[1]}
-                                                    handleAcceptReservation={handleAcceptReservation}
-                                                    handleDenyReservation={handleDenyReservation}
-                                                    dishID={reservation[0]}
-                                                />
-                                            )
-                                        )}
                                 </div>
                             </div>
-                        </div>
-                        <div
-                            className={`w-full ${
-                                toggleState ===  4 ? "block" : "hidden"
-                            }`}
-                        >
-                            <div className="px-1 sm:px-8 flex flex-col">
-                                <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Gallery</h1>
-                                <div className="flex items-center justify-around flex-col w-full mt-3 ">
-                                    <div className="main-image w-full px-2 flex flex-col justify-center">
-                                        <h1 className="text-lg sm:text-2xl text-center p-2 font-semibold">Main Picture</h1>
-                                        
-                                        <div className="flex justify-center py-3 items-center gap-2">
-                                            <input type="file" className="file-input file-input-bordered file-input-sm sm:file-input-md w-full max-w-xs" onChange={(e) => (setGalleryImageMain(e.target.files[0]))} />
-                                            <button onClick={uploadMain} className="p-1 sm:p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]">Upload</button>
+                            <div
+                                className={`w-full ${
+                                    toggleState ===  4 ? "block" : "hidden"
+                                }`}
+                            >
+                                <div className="px-1 sm:px-8 flex flex-col">
+                                    <h1 className="text-2xl sm:text-3xl font-bold pl-5 my-5">Gallery</h1>
+                                    <div className="flex items-center justify-around flex-col w-full mt-3 ">
+                                        <div className="main-image w-full px-2 flex flex-col justify-center">
+                                            <h1 className="text-lg sm:text-2xl text-center p-2 font-semibold">Main Picture</h1>
+                                            
+                                            <div className="flex justify-center py-3 items-center gap-2">
+                                                <input type="file" className="file-input file-input-bordered file-input-sm sm:file-input-md w-full max-w-xs" onChange={(e) => (setGalleryImageMain(e.target.files[0]))} />
+                                                <button onClick={uploadMain} className="p-1 sm:p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]">Upload</button>
+                                            </div>
+                                            <div className="relative w-full h-40 sm:h-96">
+                                                <Image src={restaurantData.src ? restaurantData.src: "/assets/dishpic/NoSrc.jpg" } layout="fill" objectFit="cover" alt=""/>
+                                            </div>
                                         </div>
-                                        <div className="relative w-full h-40 sm:h-96">
-                                            <Image src={restaurantData.src ? restaurantData.src: "/assets/dishpic/NoSrc.jpg" } layout="fill" objectFit="cover" alt=""/>
-                                        </div>
-                                    </div>
-                                    <div className="gallery-image w-full flex flex-col justify-center">
-                                        <h1 className="text-lg sm:text-2xl text-center p-2 font-semibold">Gallery Pictures</h1>
+                                        <div className="gallery-image w-full flex flex-col justify-center">
+                                            <h1 className="text-lg sm:text-2xl text-center p-2 font-semibold">Gallery Pictures</h1>
 
-                                        <div className="flex justify-center py-3 items-center gap-2">
-                                            <input type="file" className="file-input file-input-bordered file-input-sm sm:file-input-md w-full max-w-xs" onChange={handleChangeMultiUpload} multiple/>
-                                            <button onClick={uploadGallery} className="p-1 sm:p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]">Upload</button>
-                                        </div>
+                                            <div className="flex justify-center py-3 items-center gap-2">
+                                                <input type="file" className="file-input file-input-bordered file-input-sm sm:file-input-md w-full max-w-xs" onChange={handleChangeMultiUpload} multiple/>
+                                                <button onClick={uploadGallery} className="p-1 sm:p-3 bg-orange-peel rounded-lg text-white hover:bg-[#ff7c1c]">Upload</button>
+                                            </div>
 
-                                        <div className="w-full px-2">
-                                            <OwnerPageMasonry />
+                                            <div className="w-full px-2">
+                                                <OwnerPageMasonry />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

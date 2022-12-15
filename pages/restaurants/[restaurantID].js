@@ -29,6 +29,7 @@ import useFetchOwnerRestaurant from "../../hooks/fetchOwnerRestaurant";
 import useFetchUserData from "../../hooks/fetchUserData";
 import DishCardsSmall from "../../components/dishCardsSmall";
 import { v4 } from "uuid";
+import { MdEmail, MdCall, MdLocationOn } from "react-icons/md";
 
 
 export async function getStaticPaths() {
@@ -941,6 +942,29 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                             <h1 className="text-lg text-center py-4 sm:text-2xl font-bold pb-5">
                                 Additional Information
                             </h1>
+                            <div className="flex flex-col gap-2">
+                                <div className="flex flex-row px-2 text-center gap-4 justify-between items-center">
+                                    <MdEmail
+                                        size="1.8em"
+                                        className="text-gray-700 group-hover:text-white"
+                                    />
+                                    <p className="text-2xl">{restaurant.emailAddress}</p>
+                                </div>
+                                <div className="flex flex-row px-2 text-center gap-4 justify-between items-center">
+                                    <MdCall
+                                        size="1.8em"
+                                        className="text-gray-700 group-hover:text-white"
+                                    />
+                                    <p className="text-2xl">0{restaurant.contactNumber}</p>
+                                </div>
+                                <div className="flex flex-row px-2 text-center gap-4 justify-between items-center">
+                                    <MdLocationOn
+                                        size="1.8em"
+                                        className="text-gray-700 group-hover:text-white"
+                                    />
+                                    <p className="text-1xl">Tambak, New Washington, Aklan</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
