@@ -369,7 +369,7 @@ const Navbar2 = () => {
                                     <a>Settings</a>
                                 </li> */}
                                 <li onClick={handleRedirect}>
-                                    <a>Logout</a>
+                                    <a>Sign out</a>
                                 </li>
                             </ul>
                         </div>
