@@ -104,7 +104,7 @@ export default function Login() {
                         </div>
                         {/* <h2 className="text-3xl font-medium"></h2> */}
                         <div className="py-4">
-                            <div className="flex flex-col gap-2">
+                            {/* <div className="flex flex-col gap-2">
                                 <h1 className="text-lg text-center font-md text-slate-900 select-none uppercase">
                                     {isLoggingIn ? "Login" : "Register"}
                                 </h1>
@@ -147,7 +147,7 @@ export default function Login() {
                                 >
                                     {!isLoggingIn ? "Login" : "Register"}{" "}
                                 </h2>
-                            </div>
+                            </div> */}
                             {/* <h3 className="py-4">
                                 Sign in with one of the providers
                             </h3> */}
