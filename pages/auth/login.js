@@ -135,7 +135,7 @@ export default function Login() {
                                 />
                                 <button
                                     onClick={submitHandler}
-                                    className="py-2 text-slate-900 w-full max-w-[40ch] border border-slate-900 border-solid uppercase duration-300
+                                    className="py-2 text-slate-900 w-full border border-slate-900 border-solid uppercase duration-300
                         relative after:absolute after:top-0 after:right-full after:bg-slate-900 after:z-10 after:w-full after:h-full overflow-hidden 
                         hover:after:translate-x-full after:duration-300 hover:text-white"
                                 >
