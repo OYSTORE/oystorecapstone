@@ -414,7 +414,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                     [dishIDArray]:{
                         reviewLists: {
                             [currentUser.uid]: {
-                            name:currentUser.displayName, reviewerUserID:currentUser.uid, 
+                            name:currentUser.displayName || "User", reviewerUserID:currentUser.uid, 
                              rating:dishRating, datePublished:currentDateReview, 
                             }
                         },

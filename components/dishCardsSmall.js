@@ -118,9 +118,9 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
                         <span className="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
                             {!rating ? 0 : rating}
                         </span>
-                        <span className="ml-2 text-sm ">
+                        <p className="ml-2 text-sm ">
                         {reviews} reviews
-                        </span>
+                        </p>
                     </div>
                    
                 </div>
@@ -169,10 +169,10 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
                                 text-xs font-medium text-white 
                                 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 
                                 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${
-                                    !isBookmarked
-                                        ? "bg-orange-peel hover:bg-[#fa812f]"
-                                        : "bg-tiffany-blue"
-                                } ease-in-out duration-300`}
+                                !isBookmarked
+                                    ? "bg-orange-peel hover:bg-[#fa812f] dark:bg-blue-600 "
+                                    : "bg-tiffany-blue "
+                            } ease-in-out duration-300`}
                     >
                         {!isBookmarked ? "Add to bookmarks" : "Added to bookmarks"}
                     </a>

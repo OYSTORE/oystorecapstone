@@ -682,7 +682,7 @@ const Ownerpage = () => {
                                             </table>
                                         </div>
                                     </div> */}
-                                    <div className="flex items-center justify-around flex-wrap w-full mt-3 ">
+                                    <div className="flex items-center justify-around flex-wrap w-full mt-3 gap-1">
                                         {Object.entries(reservationsData).map((reservation, index) =>
                                                 typeof menuData == null ? (
                                                     ""

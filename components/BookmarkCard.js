@@ -38,7 +38,7 @@ function BookmarkCard({ dish, handleAdd, handleRemove, dishID, carts }) {
     // const [currentValueFixed, setCurrentValueFixed] = useState(Math.floor(rating));
     const stars = Array(5).fill(0);
     return (
-        <div className="flex flex-row sm:flex-col w-11/12 sm:w-56 h-48 sm:h-[22rem] rounded-none sm:rounded-xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 my-2 bg-white border">
+        <div className="dark:bg-slate-800 flex flex-row sm:flex-col w-11/12 sm:w-56 h-48 sm:h-[22rem] rounded-none sm:rounded-xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 my-2 bg-white border">
             <div className="relative w-full sm:w-full h-48">
                 <Image
                    src={dish.dishimg || "/assets/dishpic/NoSrc.jpg"}
@@ -84,11 +84,11 @@ function BookmarkCard({ dish, handleAdd, handleRemove, dishID, carts }) {
                         </span>
                     </div>
                     <div className="flex flex-wrap justify-center items-center ">
-                        <span className="pl-2 text-sm text-center ">
+                        <p className="pl-2 text-sm text-center ">
                             {reviews == 0
                                 ? reviews + " review"
                                 : reviews + " reviews"}
-                        </span>
+                        </p>
                     </div>
                 </div>
                 <div className=" flex flex-row justify-center items-center">
@@ -99,7 +99,7 @@ function BookmarkCard({ dish, handleAdd, handleRemove, dishID, carts }) {
                 <div className="w-full my-auto sm:my-2 p-1 flex flex-row items-center justify-around  ">
                     <a
                         onClick={() => handleRemove(dishID.toString())}
-                        className="select-none cursor-pointer rounded-lg bg-[#fa4032] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#fa812f] focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        className="select-none cursor-pointer rounded-lg bg-[#fa4032] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#fa812f] focus:outline-none "
                     >
                         Remove
                     </a>

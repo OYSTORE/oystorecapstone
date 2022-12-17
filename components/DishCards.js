@@ -114,11 +114,11 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
                     }
                     className={`select-none cursor-pointer rounded-lg px-5 py-2.5  my-2 text-center 
                             text-sm font-medium text-white 
-                            focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 
+                            focus:outline-none focus:ring-4 focus:ring-blue-300 
                             dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${
                                 !isBookmarked
-                                    ? "bg-orange-peel hover:bg-[#fa812f]"
-                                    : "bg-tiffany-blue"
+                                    ? "bg-orange-peel hover:bg-[#fa812f] dark:bg-blue-600 "
+                                    : "bg-tiffany-blue "
                             } ease-in-out duration-300`}
                 >
                     {!isBookmarked ? "Add to bookmarks" : "Bookmarked"}

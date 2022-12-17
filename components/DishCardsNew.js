@@ -110,8 +110,8 @@ function DishCardsNew({ dish, handleAdd, handleRemove, dishID, carts }) {
                             focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 
                             dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${
                                 !isBookmarked
-                                    ? "bg-orange-peel hover:bg-[#fa812f]"
-                                    : "bg-tiffany-blue"
+                                    ? "bg-orange-peel hover:bg-[#fa812f] dark:bg-blue-600 "
+                                    : "bg-tiffany-blue "
                             } ease-in-out duration-300`}
                 >
                     {!isBookmarked ? "Add to bookmarks" : "Bookmarked"}
