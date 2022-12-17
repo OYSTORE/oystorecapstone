@@ -239,8 +239,8 @@ const DishesPage = ({ dishesList }) => {
             
             {currentUser ? 
            (<> <Navbar2 />
-            <div className="flex flex-row-reverse">
-                <div className="w-full md:w-4/5">
+            <div className="flex flex-row-reverse min-h-screen">
+                <div className="w-full md:w-4/5 ">
                     <div className="flex flex-wrap justify-between items-center px-2 sticky top-16 z-10 bg-white dark:bg-base-100">
                         <h1 className="pl-4">
                             We found <b>{dishList.filter(dish => dish.name.toLowerCase().includes(query)).length}</b> dishes for you

@@ -227,11 +227,11 @@ const RestaurantsPage = ({ restaurantList }) => {
             {currentUser ? 
            (<> <Navbar2 />
             <div className="flex flex-row-reverse">
-                <div className="w-full">
-                    <div className="flex flex-wrap justify-center items-center sm:justify-between after:px-2 sticky top-16 z-10 bg-white">
-                        <div className="pl-4">
+                <div className="w-full min-h-screen">
+                    <div className="dark:bg-base-100 flex flex-wrap justify-center items-center sm:justify-between after:px-2 sticky top-16 z-10 bg-white">
+                        <h1 className="pl-4">
                             We found <b>{dishList.filter(dish => dish.name.toLowerCase().includes(query)).length}</b> restaurants for you.
-                        </div>
+                        </h1>
                         <div className="flex flex-row items-center px-2">
                               <input
                                 type="text"
@@ -239,7 +239,7 @@ const RestaurantsPage = ({ restaurantList }) => {
                                 placeholder="Search..."
                                 id="dishesSearchBar"
                                 onChange={(e) => setQuery(e.target.value)}
-                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                              />
                             
                                 {/* <svg
@@ -261,7 +261,7 @@ const RestaurantsPage = ({ restaurantList }) => {
                         <div className="flex flex-row gap-2">
                             <div className="p-2">
                                 <div className="flex flex-row items-center">
-                                    <BiGridAlt size="1.8em" className="mr-2" />
+                                    <BiGridAlt size="1.8em" className="mr-2 dark:text-white" />
                                     <p className="pr-2 hidden md:block">Show:</p>
                                     <select
                                         name="shownumber"
@@ -278,7 +278,7 @@ const RestaurantsPage = ({ restaurantList }) => {
                             </div>
                             <div className="p-2 ">
                                 <div className="flex flex-row justify-center items-center">
-                                    <BiSort size="1.8em" className="mr-2" />
+                                    <BiSort size="1.8em" className="mr-2 dark:text-white" />
                                     <p className="pr-2 hidden md:block">Sort:</p>
                                     <select
                                         name="sort"
