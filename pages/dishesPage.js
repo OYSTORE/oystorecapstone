@@ -306,7 +306,7 @@ const DishesPage = ({ dishesList }) => {
                                 {/* <h1 className="text-md font-medium">Categories</h1>  */}
                                 <div className="p-2 flex flex-row  gap-2">
                                     <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("All")}>All</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Apetizers")}>Appetizers</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Apetizers")}>Atizers</button>
                                     <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beef")}>Beef</button>
                                     <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beverage")}>Beverages</button>
                                     <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Chicken")}>Chicken</button>
@@ -355,7 +355,7 @@ const DishesPage = ({ dishesList }) => {
                                 placeholder="Search..."
                                 id="dishesSearchBar"
                                 onChange={(e) => setQuery(e.target.value)}
-                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                              />
                             
                                 <svg
@@ -420,18 +420,18 @@ const DishesPage = ({ dishesList }) => {
                         </div>
                         <div className="p-2 ">
                           <h1 className="text-lg font-medium">Categories</h1>
-                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("All")}>All</button>
-                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Apetizers")}>Appetizers</button>
-                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beef")}>Beef</button>
-                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beverage")}>Beverages</button>
-                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Noodles")}>Noodles</button>
-                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Oysters")}>Oysters</button>
-                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Pork")}>Pork</button>
-                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Rice")}>Rice</button>
-                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Seafood")}>Seafood</button>
-                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Shellfish")}>Shellfish</button>
-                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Side Dish")}>Side Dish</button>
-                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Vegetables")}>Vegetables</button>
+                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("All")}>All</button>
+                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Apetizers")}>Appetizers</button>
+                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beef")}>Beef</button>
+                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beverage")}>Beverages</button>
+                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Noodles")}>Noodles</button>
+                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Oysters")}>Oysters</button>
+                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Pork")}>Pork</button>
+                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Rice")}>Rice</button>
+                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Seafood")}>Seafood</button>
+                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Shellfish")}>Shellfish</button>
+                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Side Dish")}>Side Dish</button>
+                          <button className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Vegetables")}>Vegetables</button>
                         </div>
                     </div>
                 </div>

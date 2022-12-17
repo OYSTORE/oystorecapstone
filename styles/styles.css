@@ -34,7 +34,9 @@ body {
         background: #334155;
         color:white;
     }
-    
+    button{
+        color:white
+    }
     
     /* .day.dark-scheme {
       background: #333;
