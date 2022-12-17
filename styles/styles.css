@@ -8,6 +8,7 @@ body {
     box-sizing: border-box;
     
 }
+
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
@@ -21,3 +22,27 @@ body {
 .my-active-tabs{
     display:block
 }
+
+
+@media (prefers-color-scheme: dark) {
+
+    * h1, h2, h3, h4, h5, h6, p, label{
+        color: white;
+
+    }
+    input[type],textarea, select{
+        background: #334155;
+        color:white;
+        
+    }
+    
+    
+    /* .day.dark-scheme {
+      background: #333;
+      color: white;
+    }
+    .night.dark-scheme {
+      background: black;
+      color: #ddd;
+    } */
+  }

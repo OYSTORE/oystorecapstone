@@ -241,20 +241,20 @@ const DishesPage = ({ dishesList }) => {
            (<> <Navbar2 />
             <div className="flex flex-row-reverse">
                 <div className="w-full md:w-4/5">
-                    <div className="flex flex-wrap justify-between items-center px-2 sticky top-16 z-10 bg-white">
-                        <div className="pl-4">
+                    <div className="flex flex-wrap justify-between items-center px-2 sticky top-16 z-10 bg-white dark:bg-base-100">
+                        <h1 className="pl-4">
                             We found <b>{dishList.filter(dish => dish.name.toLowerCase().includes(query)).length}</b> dishes for you
-                        </div>
+                        </h1>
                         <div className="flex flex-row gap-0 md:gap-2">
                             <div className="p-1 md:p-2">
                                 <div className="flex flex-row items-center">
-                                    <BiGridAlt size="1.3em" className="mr-2" />
+                                    <BiGridAlt size="1.3em" className="mr-2 dark:text-white" />
                                     <p className="pr-2 hidden sm:block">Show:</p>
                                     <select
                                         name="shownumber"
                                         id="shownumber"
                                         onChange={handleAddInputChangeShow}
-                                        className="rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        className="rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                     >
                                         <option value="20">20</option>
                                         <option value="50">50</option>
@@ -267,13 +267,13 @@ const DishesPage = ({ dishesList }) => {
                             </div>
                             <div className="p-1 md:p-2">
                                 <div className="flex flex-row justify-center items-center">
-                                    <BiSort size="1.3em" className="mr-2" />
+                                    <BiSort size="1.3em" className="mr-2 dark:text-white" />
                                     <p className="pr-2 hidden sm:block">Sort:</p>
                                     <select
                                         name="sort"
                                         id="sort"
                                         onChange={handleAddInputChangeSort}
-                                        className="px-1 rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        className="px-1 rounded-lg shadow-sm border-gray-300 focus:border-orange-peelfocus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                     >
                                         <option value="topRatings">
                                             Top Rated
@@ -299,25 +299,25 @@ const DishesPage = ({ dishesList }) => {
                                     placeholder="Search..."
                                     id="dishesSearchBar"
                                     onChange={(e) => setQuery(e.target.value)}
-                                    className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                    className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                 />
                             </div>
                             <div className="flex flex-row mr-2 w-full shadow-md overflow-x-scroll">
                                 {/* <h1 className="text-md font-medium">Categories</h1>  */}
                                 <div className="p-2 flex flex-row  gap-2">
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("All")}>All</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Apetizers")}>Appetizers</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beef")}>Beef</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beverage")}>Beverages</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Chicken")}>Chicken</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Noodles")}>Noodles</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Oysters")}>Oysters</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Pork")}>Pork</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Rice")}>Rice</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Seafood")}>Seafood</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Shellfish")}>Shellfish</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Side Dish")}>Side Dish</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel hover:text-white transition-all ease-in-out " onClick={() => filterItem("Vegetables")}>Vegetables</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("All")}>All</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Apetizers")}>Appetizers</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beef")}>Beef</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beverage")}>Beverages</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Chicken")}>Chicken</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Noodles")}>Noodles</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Oysters")}>Oysters</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Pork")}>Pork</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Rice")}>Rice</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Seafood")}>Seafood</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Shellfish")}>Shellfish</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Side Dish")}>Side Dish</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Vegetables")}>Vegetables</button>
                                 </div>
                             </div>
                         </div>

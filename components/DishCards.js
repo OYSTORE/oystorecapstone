@@ -38,7 +38,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
     // const [currentValueFixed, setCurrentValueFixed] = useState(Math.floor(rating));
     const stars = Array(5).fill(0)
     return (
-        <div className="snap-start flex flex-col w-56 h-[20rem] rounded-xl shadow-sm hover:shadow-lg transition duration-300 hover:-translate-y-4 border my-2 bg-white">
+        <div className="dark:bg-slate-800 snap-start flex flex-col w-56 h-[20rem] rounded-xl shadow-sm hover:shadow-lg transition duration-300 hover:-translate-y-4 border my-2 ">
             {/* <Card
                 imgAlt="{restaurant.name}"
                 imgSrc={"/assets/restaurants/"+restaurant.src} className=" cursor-pointer "
@@ -58,7 +58,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
             </div>
             <div className="flex flex-row flex-wrap px-4 py-2 drop-shadow">
                 <a href="#">
-                    <h5 className="leading-tight text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
+                    <h5 className="leading-tight text-sm font-semibold tracking-tight">
                         {dish.name}
                     </h5>
                     {/* <h6 className="text-xs">{isBookmarked.toString()}</h6> */}
@@ -87,14 +87,14 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
                                <span className="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
                                    {!rating ? 0 : rating}
                                </span>
-                               <span className="pl-2 text-sm ">
+                               <p className="pl-2 text-sm ">
                                    {reviews} reviews
-                                </span>
+                                </p>
                            </div>
                            
                 </div>
                 <div className=" flex flex-row justify-center items-center">
-                     <p className="text-xs sm:text-sm font-semibold">Php {dish.price}&nbsp;&nbsp;{dish.unit}</p>
+                     <p className="text-xs sm:text-sm font-semibold">Php {dish.price}&nbsp;per&nbsp;{dish.unit}</p>
                                 
                 </div>     
                    

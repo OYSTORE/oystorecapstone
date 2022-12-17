@@ -296,67 +296,67 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                                         <div className="flex flex-col">
                                             <label
                                                 htmlFor="name-reservation"
-                                                className="text-lg font-medium text-gray-700"
+                                                className="text-lg font-medium text-gray-700 dark:text-white"
                                             >
                                                 Name of Owner
                                             </label>
                                             <input type="text" name="owner-name" id="ownerName" onChange={handleAddInputChange} value={data.ownerName} required 
-                                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                             />
                                         </div>
                                         <div className="flex flex-col">
                                             <label
                                                 htmlFor="name-reservation"
-                                                className="text-lg font-medium text-gray-700"
+                                                className="text-lg font-medium text-gray-700 dark:text-white"
                                             >
                                                 Email Address
                                             </label>
                                             <input type="email" name="owner-email" id="ownerEmail" onChange={handleAddInputChange} value={data.ownerEmail} required 
-                                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                             />
                                         </div>
                                         <div className="flex flex-col pb-2">
                                             <label
                                                 htmlFor="contact-reservation"
-                                                className="text-lg font-medium text-gray-700"
+                                                className="text-lg font-medium text-gray-700 dark:text-white"
                                             >
                                                 Contact Number
                                             </label>
                                             <input type="number" name="owner-contact" id="ownerContact" onChange={handleAddInputChange} min="999999999" value={data.ownerContact} required 
-                                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                             />
                                         </div>
                                         <div className="flex flex-col pb-2">
                                             <label
                                                 htmlFor="contact-reservation"
-                                                className="text-lg font-medium text-gray-700"
+                                                className="text-lg font-medium text-gray-700 dark:text-white"
                                             >
                                                 Restaurant Name
                                             </label>
                                             <input type="text" name="restaurant-name" id="name" onChange={handleAddInputChange} min="999999999" value={data.name} required 
-                                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                             />
                                         </div>
                                         <div className="flex flex-col">
                                             <label
                                                 htmlFor="name-reservation"
-                                                className="text-lg font-medium text-gray-700"
+                                                className="text-lg font-medium text-gray-700 dark:text-white"
                                             >
                                                 Restaurant Email Address
                                             </label>
                                             <input type="email" name="restaurant-email" id="emailAddress" onChange={handleAddInputChange} value={data.emailAddress} required 
-                                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                             />
                                         </div>
                                         <div className="flex flex-col pb-2">
                                             <label
                                                 htmlFor="contact-reservation"
-                                                className="text-lg font-medium text-gray-700"
+                                                className="text-lg font-medium text-gray-700 dark:text-white"
                                             >
                                                 Restaurant Contact Number
                                             </label>
                                             <input type="number" name="restaurant-contact" id="contactNumber" onChange={handleAddInputChange} min="999999999" value={data.contactNumber} required 
-                                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                                className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                             />
                                         </div>
                                         <div className="flex flex-row items-center justify-center pb-2 gap-2">

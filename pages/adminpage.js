@@ -139,7 +139,7 @@ const Adminpage = () => {
     //   }
     // }
     
-    const handleAddNewDish = async(e) =>{
+    const handleAddRestaurant = async(e) =>{
       e.preventDefault();
       const restaurantRef = doc(db, "Restaurants", data.restaurantID);
       await setDoc(
@@ -152,9 +152,10 @@ const Adminpage = () => {
             menu:{},
             reviews:0,
             ratings:0,
-            src:"/assets/dishpic/NoSrc.jpg",
+            src:"",
             reservations:{},
             reviewLists:{},
+            galleryImages:[],
           },
           { merge: true }
       );
@@ -543,7 +544,7 @@ const Adminpage = () => {
                             </p>
                             <h1 className="px-3 py-2 text-lg font-semibold">Add New Restaurant</h1>
                             <div>
-                              <form onSubmit={handleAddNewDish} >
+                              <form onSubmit={handleAddRestaurant} >
                                   <div className="px-3">
                                       <div className="flex flex-col gap-3">
                                         <label
