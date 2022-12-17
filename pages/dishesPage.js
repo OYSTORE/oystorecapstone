@@ -305,10 +305,10 @@ const DishesPage = ({ dishesList }) => {
                                 />
                             </div>
                             <div className="flex flex-row mr-2 w-full shadow-md overflow-x-scroll">
-                                <h1 className="text-md font-medium">Categories</h1> 
+                                
                                 <div className="p-2 flex flex-row  gap-2">
                                     <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => {filterItem("All")}}>All</button>
-                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Apetizers")}>sda</button>
+                                    <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Apetizers")}>Appetizers</button>
                                     <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beef")}>Beef</button>
                                     <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Beverage")}>Beverages</button>
                                     <button className="text-sm px-1 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out " onClick={() => filterItem("Chicken")}>Chicken</button>
