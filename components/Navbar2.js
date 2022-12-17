@@ -119,7 +119,7 @@ const Navbar2 = () => {
                                 </h3>
                             </li>
                         </Link>
-                        <Link href="/DishesPage">
+                        <Link href="/dishesPage">
                             <li
                                 onClick={() => setOpen(false)}
                                 className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
@@ -133,7 +133,7 @@ const Navbar2 = () => {
                                 </h3>
                             </li>
                         </Link>
-                        <Link href="/RestaurantsPage">
+                        <Link href="/restaurantsPage">
                             <li
                                 onClick={() => setOpen(false)}
                                 className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
@@ -147,7 +147,7 @@ const Navbar2 = () => {
                                 </h3>
                             </li>
                         </Link>
-                        <Link href="/Bookmarks">
+                        <Link href="/bookmarks">
                             <li
                                 onClick={() => setOpen(false)}
                                 className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
@@ -161,7 +161,7 @@ const Navbar2 = () => {
                                 </h3>
                             </li>
                         </Link>
-                        <Link href="/Reservations">
+                        <Link href="/reservations">
                             <li
                                 onClick={() => setOpen(false)}
                                 className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
@@ -176,7 +176,7 @@ const Navbar2 = () => {
                             </li>
                         </Link>
                         {ownerStatus && (
-                            <Link href="/Ownerpage">
+                            <Link href="/ownerpage">
                                 <li
                                     onClick={() => setOpen(false)}
                                     className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
@@ -192,7 +192,7 @@ const Navbar2 = () => {
                             </Link>
                         )}
                         {adminStatus && (
-                            <Link href="/Adminpage">
+                            <Link href="/adminpage">
                                 <li
                                     onClick={() => setOpen(false)}
                                     className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
