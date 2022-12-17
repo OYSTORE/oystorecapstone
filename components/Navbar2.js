@@ -84,7 +84,7 @@ const Navbar2 = () => {
             >
                 <div className="flex flex-row justify-start items-center gap-3 px-6 py-[0.64rem] border-b">
                     <AiOutlineMenu
-                        className="cursor-pointer"
+                        className="cursor-pointer dark:text-white"
                         size="1.8em"
                         onClick={() => setOpen(!isOpen)}
                     />
@@ -235,7 +235,7 @@ const Navbar2 = () => {
             <div className="navbar bg-base-100 shadow-sm sticky top-0 z-20">
                 <div className="navbar-start">
                     <AiOutlineMenu
-                        className="cursor-pointer ml-4"
+                        className="cursor-pointer ml-4 dark:text-white"
                         tabIndex={0}
                         size="1.8em"
                         onClick={() => setOpen(!isOpen)}
