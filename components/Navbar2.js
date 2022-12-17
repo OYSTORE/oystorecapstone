@@ -119,7 +119,7 @@ const Navbar2 = () => {
                                 </h3>
                             </li>
                         </Link>
-                        <Link href="/dishespage">
+                        <Link href="/disheslist">
                             <li
                                 onClick={() => setOpen(false)}
                                 className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
@@ -133,7 +133,7 @@ const Navbar2 = () => {
                                 </h3>
                             </li>
                         </Link>
-                        <Link href="/restaurantspage">
+                        <Link href="/restaurantlist">
                             <li
                                 onClick={() => setOpen(false)}
                                 className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
