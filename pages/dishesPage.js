@@ -71,7 +71,7 @@ export async function getServerSideProps(context) {
         },
     };
 }
-const DishesPage = ({ dishesList }) => {
+const Dishespage = ({ dishesList }) => {
     useEffect(() => {
         !currentUser ? Router.push("/") : "";
         
@@ -444,4 +444,4 @@ const DishesPage = ({ dishesList }) => {
     );
 };
 
-export default DishesPage;
+export default Dishespage;
