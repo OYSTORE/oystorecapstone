@@ -105,7 +105,7 @@ export default function Login() {
                         {/* <h2 className="text-3xl font-medium"></h2> */}
                         <div className="py-4">
                             <div className="flex flex-col gap-2">
-                                <h1 className="text-lg text-center font-md text-slate-900 select-none uppercase">
+                                <h1 className="text-lg text-center font-md text-slate-900 select-none uppercase dark:text-white">
                                     {isLoggingIn ? "Login" : "Register"}
                                 </h1>
                                 {error && (
@@ -119,7 +119,7 @@ export default function Login() {
                                     onChange={(e) => setEmail(e.target.value)}
                                     type="text"
                                     className="outline-none text-slate-900 p-2 w-full max-w-[40ch] duration-300 
-                                    border-2 border-solid border-slate-900 focus:border-orange-300"
+                                    border-2 border-solid rounded-lg shadow-sm border-white focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600 "
                                     placeholder="Email Address"
                                 />
 
@@ -130,19 +130,20 @@ export default function Login() {
                                     }
                                     type="password"
                                     className="outline-none text-slate-900 p-2 w-full max-w-[40ch] duration-300 
-                                    border-2 border-solid border-slate-900 focus:border-orange-300"
+                                    border-2 border-solid rounded-lg shadow-sm border-white focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                     placeholder="Password"
                                 />
                                 <button
                                     onClick={submitHandler}
                                     className="py-2 text-slate-900 w-full border border-slate-900 border-solid uppercase duration-300
-                        relative after:absolute after:top-0 after:right-full after:bg-slate-900 after:z-10 after:w-full after:h-full overflow-hidden 
+                        relative after:absolute after:top-0 after:right-full after:bg-orange-peel after:z-10 after:w-full after:h-full overflow-hidden dark:bg-blue-600
+                        dark:after:bg-orange-peel
                         hover:after:translate-x-full after:duration-300 hover:text-white"
                                 >
                                     <h2 className="relative z-20">SUBMIT</h2>
                                 </button>
                                 <h2
-                                    className="select-none cursor-pointer"
+                                    className="select-none cursor-pointer "
                                     onClick={() => setIsLoggingIn(!isLoggingIn)}
                                 >
                                     {!isLoggingIn ? "Login" : "Register"}{" "}
@@ -154,7 +155,7 @@ export default function Login() {
                             <div className="flex flex-col gap-4 items-center justify-center ">
                                 <button
                                     onClick={GoogleLogin}
-                                    className="text-white bg-orange-peel p-3 w-full font-medium rounded-lg flex items-center justify-center align-middle gap-2 "
+                                    className="text-white bg-orange-peel dark:bg-blue-600 p-3 w-full font-medium rounded-lg flex items-center justify-center align-middle gap-2 "
                                 >
                                     <FcGoogle className="text-2xl bg-white" />
                                     Sign in with Google

@@ -407,7 +407,7 @@ const Ownerpage = () => {
                         ref={ref2}
                     >
                         
-                        <div className="z-10 bg-white sticky bottom-0 sm:block side-tabs flex flex-col flex-wrap side-navbar w-full sm:w-72 sm:h-[90vh] border">
+                        <div className="z-10 bg-white dark:bg-base-100 sticky bottom-0 sm:block side-tabs flex flex-col flex-wrap side-navbar w-full sm:w-72 sm:h-[90vh]">
                             <div className="m-0 items-center flex flex-col ">
                                
                                 <ul className="w-full mx-0 flex flex-row sm:flex-col justify-around">
@@ -443,7 +443,7 @@ const Ownerpage = () => {
                                         ${
                                             toggleState === 2
                                                 ? " border-orange-peel"
-                                                : "border-white"
+                                                : "border-white dark:border-base-100"
                                         }`}
                                         onClick={() => toggleTab(2)}
                                     >
@@ -452,14 +452,14 @@ const Ownerpage = () => {
                                             className={
                                                 toggleState === 2
                                                     ? "text-orange-peel"
-                                                    : "text-gray-700"
+                                                    : "text-gray-700 dark:text-white"
                                             }
                                         />
                                         <h3
                                             className={`text-base hidden sm:block font-medium ${
                                                 toggleState === 2
                                                     ? "text-orange-peel"
-                                                    : "text-gray-700"
+                                                    : "text-gray-700 dark:text-white"
                                             }`}
                                         >
                                             Menu
@@ -470,7 +470,7 @@ const Ownerpage = () => {
                                         ${
                                             toggleState === 3
                                                 ? " border-orange-peel"
-                                                : "border-white"
+                                                : "border-white dark:border-base-100"
                                         }`}
                                         onClick={() => toggleTab(3)}
                                     >
@@ -479,14 +479,14 @@ const Ownerpage = () => {
                                             className={
                                                 toggleState === 3   
                                                     ? "text-orange-peel"
-                                                    : "text-gray-700"
+                                                    : "text-gray-700 dark:text-white"
                                             }
                                         />
                                         <h3
                                             className={`text-base  hidden sm:block font-medium ${
                                                 toggleState === 3
                                                     ? "text-orange-peel"
-                                                    : "text-gray-700"
+                                                    : "text-gray-700 dark:text-white"
                                             }`}
                                         >
                                             Reservations
@@ -497,7 +497,7 @@ const Ownerpage = () => {
                                         ${
                                             toggleState === 4
                                                 ? " border-orange-peel"
-                                                : "border-white"
+                                                : "border-white dark:border-base-100"
                                         }`}
                                         onClick={() => toggleTab(4)}
                                     >
@@ -506,14 +506,14 @@ const Ownerpage = () => {
                                             className={
                                                 toggleState === 4
                                                     ? "text-orange-peel"
-                                                    : "text-gray-700"
+                                                    : "text-gray-700 dark:text-white"
                                             }
                                         />
                                         <h3
                                             className={`text-base hidden sm:block font-medium ${
                                                 toggleState === 4
                                                     ? "text-orange-peel"
-                                                    : "text-gray-700"
+                                                    : "text-gray-700 dark:text-white"
                                             }`}
                                         >
                                             Gallery
@@ -748,7 +748,7 @@ const Ownerpage = () => {
                             toggleModal
                                 ? "visible opacity-100 translate-y-32"
                                 : "invisible opacity-0 -translate-y-28"
-                        } ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white rounded-lg  absolute top-0 left-0 right-0 mx-auto`}
+                        } ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white dark:bg-slate-800 rounded-lg  absolute top-0 left-0 right-0 mx-auto`}
                     >
                         <div className="p-2">
                             <p
@@ -764,7 +764,7 @@ const Ownerpage = () => {
                                       <div className="flex flex-col gap-3">
                                         <label
                                             htmlFor="name"
-                                            className="text-lg font-medium text-gray-700"
+                                            className="text-lg font-medium "
                                         >
                                              Upload Image
                                         </label>
@@ -774,32 +774,32 @@ const Ownerpage = () => {
                                            
                                         <label
                                             htmlFor="name"
-                                            className="text-lg font-medium text-gray-700"
+                                            className="text-lg font-medium"
                                         >
                                              Dish Name
                                         </label>
                                         <input type="text" name="dish-name" id="name" onChange={handleAddInputChange} value={data.name} required 
-                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                         />
                                         <label
                                             htmlFor="price"
-                                            className="text-lg font-medium text-gray-700"
+                                            className="text-lg font-medium "
                                         >
                                              Price (Number only)
                                         </label>
                                         <input placeholder="In Php (Just input the number only)" type="number" name="dish-price" id="price" onChange={handleAddInputChange} value={data.price} required 
-                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                         />
                                         
 
                                           <label
                                               htmlFor="main_category"
-                                              className="text-lg font-medium text-gray-700"
+                                              className="text-lg font-medium"
                                           >
                                               Category
                                           </label>
                                           <select name="dish-main-categ" id="main_category" onChange={handleAddInputChange} value={data.main_category} required 
-                                          className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel">
+                                          className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600">
                                               <option value=""></option>
                                               <option value="Apetizers">Apetizers</option>
                                               <option value="Beef">Beef</option>
@@ -817,21 +817,21 @@ const Ownerpage = () => {
                                           
                                           <label
                                               htmlFor="unit"
-                                              className="text-lg font-medium text-gray-700"
+                                              className="text-lg font-medium "
                                           >
                                               Unit
                                           </label>
                                           <input placeholder="Ex: per serving, per cup, per 6 pieces, etc." type="text" name="dish-unit" id="unit" onChange={handleAddInputChange} value={data.unit} required 
-                                              className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                              className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                           />
                                           <label
                                               htmlFor="isAvailable"
-                                              className="text-lg font-medium text-gray-700"
+                                              className="text-lg font-medium "
                                           >
                                               Availability
                                           </label>
                                           <select name="dish-main-categ" id="isAvailable" onChange={handleAddInputChangeBool} value={data.isAvailable} required 
-                                          className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel">
+                                          className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600">
                                               <option value=""></option>
                                               <option value="true">Available</option>
                                               <option value="false">Currently Not Available</option>
@@ -876,7 +876,7 @@ const Ownerpage = () => {
                             toggleModalUpdate
                                 ? "visible opacity-100 translate-y-32"
                                 : "invisible opacity-0 -translate-y-28"
-                        } ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white rounded-lg  absolute top-0 left-0 right-0 mx-auto`}
+                        } ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white dark:bg-slate-800 rounded-lg  absolute top-0 left-0 right-0 mx-auto`}
                     >
                         <div className="p-2">
                             <p
@@ -892,32 +892,32 @@ const Ownerpage = () => {
                                       <div className="flex flex-col gap-3">
                                         <label
                                             htmlFor="name"
-                                            className="text-lg font-medium text-gray-700"
+                                            className="text-lg font-medium"
                                         >
                                              Dish Name
                                         </label>
                                         <input type="text" name="dish-name" id="name" onChange={handleAddInputChangeUpdate} value={dataUpdate.name} required 
-                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                         />
                                         <label
                                             htmlFor="price"
-                                            className="text-lg font-medium text-gray-700"
+                                            className="text-lg font-medium "
                                         >
                                              Price (Number only)
                                         </label>
                                         <input placeholder="In Php (Just input the number only)" type="number" name="dish-price" id="price" onChange={handleAddInputChangeUpdate} value={dataUpdate.price} required 
-                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                         />
                                         
 
                                           <label
                                               htmlFor="main_category"
-                                              className="text-lg font-medium text-gray-700"
+                                              className="text-lg font-medium "
                                           >
                                               Category
                                           </label>
                                           <select name="dish-main-categ" id="main_category" onChange={handleAddInputChangeUpdate} value={dataUpdate.main_category} required 
-                                          className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel">
+                                          className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600">
                                               <option value=""></option>
                                               <option value="Apetizers">Apetizers</option>
                                               <option value="Beef">Beef</option>
@@ -935,21 +935,21 @@ const Ownerpage = () => {
                                           
                                           <label
                                               htmlFor="unit"
-                                              className="text-lg font-medium text-gray-700"
+                                              className="text-lg font-medium "
                                           >
                                               Unit
                                           </label>
                                           <input placeholder="Ex: per serving, per cup, per 6 pieces, etc." type="text" name="dish-unit" id="unit" onChange={handleAddInputChangeUpdate} value={dataUpdate.unit} required 
-                                              className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                              className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                           />
                                           <label
                                               htmlFor="isAvailable"
-                                              className="text-lg font-medium text-gray-700"
+                                              className="text-lg font-medium "
                                           >
                                               Availability
                                           </label>
                                           <select name="dish-main-categ" id="isAvailable" onChange={handleAddInputChangeBoolUpdate} value={dataUpdate.isAvailable} required 
-                                          className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel">
+                                          className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600">
                                               <option value=""></option>
                                               <option value="true">Available</option>
                                               <option value="false">Currently Not Available</option>

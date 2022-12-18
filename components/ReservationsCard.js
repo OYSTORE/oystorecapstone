@@ -16,7 +16,7 @@ function ReservationsCard({
     //fixed rating
 
     return (
-        <div className="flex flex-row sm:flex-col w-11/12 sm:w-60 border rounded-none sm:rounded-xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 my-2 bg-white justify-center items-center">
+        <div className="flex flex-row sm:flex-col w-11/12 sm:w-60 border rounded-none sm:rounded-xl shadow-md hover:shadow-xl transition duration-300 hover:scale-105 my-2 bg-white dark:bg-slate-800 justify-center items-center">
             <div className="w-full flex justify-center items-center px-1 ">
                 <div className="relative w-20 h-20 sm:w-40 sm:h-40 rounded-full overflow-hidden my-2">
                     <Image
