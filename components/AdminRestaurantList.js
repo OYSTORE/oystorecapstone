@@ -2,7 +2,7 @@ import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 const AdminRestaurantList = ({restaurant, restaurantKey, handleDelete}) => {
     return (
-        <tr className={`border-2 border-gray-100 ${restaurantKey % 2 === 0 ? "bg-gray-50" : "bg-gray-100"}`}>
+        <tr className={`border-2 border-gray-100 ${restaurantKey % 2 === 0 ? "bg-gray-50 dark:bg-slate-700" : "bg-gray-100 dark:bg-slate-800"}`}>
             <td className="p-3 text-sm font-semibold tracking-normal">{restaurantKey}</td>
             <td className="p-3 text-sm font-semibold tracking-normal">{restaurant.name}</td>
             <td className="p-3 text-sm font-semibold tracking-normal">{restaurant.restaurantID}</td>

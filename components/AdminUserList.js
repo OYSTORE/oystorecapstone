@@ -2,7 +2,7 @@ import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 const AdminUserList = ({user, userKey}) => {
     return (
-        <tr className={`border-2 border-gray-100 ${userKey % 2 === 0 ? "bg-gray-50" : "bg-gray-100"}`}>
+        <tr className={`border-2 border-gray-100 ${userKey % 2 === 0 ? "bg-gray-50 dark:bg-slate-700" : "bg-gray-100 dark:bg-slate-800"}`}>
             <td className="p-3 text-sm font-semibold tracking-wide">{userKey}</td>
             <td className="p-3 text-sm font-semibold tracking-wide">{user.name}</td>
             <td className="p-3 text-sm font-semibold tracking-wide">{user.id}</td>

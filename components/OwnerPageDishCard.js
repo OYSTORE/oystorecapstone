@@ -80,7 +80,7 @@ function OwnerPageDishCard({ dish, handleDelete, handleUpdate, dishID, carts }) 
                     
                 </div>
                 <div className=" flex flex-row justify-center items-center">
-                    <p className="text-xs sm:text-sm sm:p-2 font-semibold">Php {dish.price}&nbsp;&nbsp;{dish.unit}</p>
+                    <p className="text-xs sm:text-sm sm:p-2 font-semibold">Php {dish.price}&nbsp;per&nbsp;{dish.unit}</p>
                     
                 </div>
                 <div className="w-full my-auto sm:my-2 p-1 flex flex-row items-center justify-around  ">

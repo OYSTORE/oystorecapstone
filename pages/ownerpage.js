@@ -176,12 +176,13 @@ const Ownerpage = () => {
     // }
     const handleAddNewDish = async(e) =>{
       e.preventDefault();
-      upload();
-      const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
-      const reserveKeyUser =
+     
+        const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
+        const reserveKeyUser =
           Object.keys(menuData).length === 0
               ? 1
               : Math.max(...Object.keys(menuData)) + 1;
+        upload(reserveKeyUser);
       await setDoc(
           restaurantRef,
           {
@@ -189,7 +190,7 @@ const Ownerpage = () => {
                   [reserveKeyUser]: {
                       // dishID: dish.id, userName:,
                       ...data, reviews: 0, ratings: 0, src: "NoSrc.jpg", served_by: restaurantData.name, restaurantID: userData.restaurantOwnerID, sub_category:"N/A"
-                      ,reviewLists:{},
+                      ,reviewLists:{}, dishID:reserveKeyUser,
                   },
               },
           },
@@ -224,6 +225,7 @@ const Ownerpage = () => {
         };
         const handleUpdateDish = async (e) => {
           e.preventDefault();
+          upload(dataUpdate.dishID);
           var dishItemField = "menu." + dataUpdate.dishID;
           const docRef = doc(db, "Restaurants", userData.restaurantOwnerID);
           await updateDoc(docRef, {
@@ -233,33 +235,32 @@ const Ownerpage = () => {
           setData({name:"", price:0, main_category:"", unit:"", isAvailable:""});
       };
       //image upload
-      const [dishImage, setDishImage] = useState('');
+      const [dishImage, setDishImage] = useState(null);
       const [dishImageRef, setDishImageRef] = useState();
-      const upload = () => {
+      const upload = (id) => {
         if(dishImage == null)
             return;
         const imageref = ref(storage, `/restaurants/${userData.restaurantOwnerID}/${dishImage.name + v4()}`);
         uploadBytes(imageref, dishImage).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
-                uploadDishImgUrl(url)
+                uploadDishImgUrl(url, id)
             })
             
-            
-            alert("Image Uploaded")
         });
+        setDishImage(null);
       }
-      const uploadDishImgUrl = async(url) => {
+      const uploadDishImgUrl = async(url, id) => {
         const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
-        const reserveKeyUser =
-            Object.keys(menuData).length === 0
-                ? 1
-                : Math.max(...Object.keys(menuData)) + 1;
+        // const reserveKeyUser =
+        //     Object.keys(menuData).length === 0
+        //         ? 1
+        //         : Math.max(...Object.keys(menuData)) + 1;
         await setDoc(
             restaurantRef,
             {
                 menu: {
-                    [reserveKeyUser]: {
-                        dishImg:url,
+                    [id]: {
+                        dishimg:url,
                     },
                 },
             },
@@ -345,6 +346,30 @@ const Ownerpage = () => {
             { merge: true }
         );
       }
+
+    //   const [dishPic, setDishPic] = useState('');
+    //   const uploadDish = () => {
+    //     if(dishPic == null)
+    //         return;
+    //     const imageref = ref(storage, `/restaurants/${userData.restaurantOwnerID}/Dishpic/${dishPic.name + v4()}`);
+    //     uploadBytes(imageref, dishPic).then((snapshot) => {
+    //         getDownloadURL(snapshot.ref).then((url) => {
+    //             uploadDishImg(url)
+    //         })
+            
+    //     });
+    //   }
+    //   const uploadDishImg = async(url) => {
+    //     const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
+        
+    //     await setDoc(
+    //         restaurantRef,
+    //         {
+    //             [reservekey]:{dishimg: url}
+    //         },
+    //         { merge: true }
+    //     );
+    //   }
       //gallery image upload
       const [galleryImages, setGalleryImages] = useState([]);
       const [galleryUrls, setGalleryUrls] = useState([]);
@@ -771,8 +796,7 @@ const Ownerpage = () => {
                                         </label>
                                         <input type="file" name="dish-img" id="dishimg" className="file-input file-input-bordered file-input-sm sm:file-input-md w-full max-w-xs" onChange={(e) => (setDishImage(e.target.files[0]))}
                                         />
-                                        
-                                           
+                                         
                                         <label
                                             htmlFor="name"
                                             className="text-lg font-medium"

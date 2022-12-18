@@ -22,11 +22,48 @@ import useFetchRequests from "../hooks/fetchRequests";
 import AdminRequestList from "../components/AdminRequestList";
 
 const Adminpage = () => {
-    useEffect(() => {
-        !currentUser ? Router.push("/") : ""
-    },[currentUser])
+    const {ownerStatus} = useFetchUserData();
+    const [status, setStatus] = useState(ownerStatus);
+    // const [ownerStatus, setOwnerStatus] = useState(false)
     const { currentUser } = useAuth();
+    useEffect(() => {
+            !currentUser ? Router.push("/"):"";
+            setTimeout(() => {
+                try{
+                    status ? "":setStatus(false);
+                }catch(err){
+                    
+                }
+            }, 3000);
+            if (status == undefined){
+                
+            }else if (status != false){
+                Router.push("/")
+            }
+                
+            
+        // async function fetchData() {
+        //     try {
+        //         const userRef = doc(db, "users", currentUser.uid);
+        //         const docSnap = await getDoc(userRef);
+        //         if (docSnap.exists()) {
+        //             // console.log("Document data:", docSnap.data());
+        //                 setOwnerStatus(true)
+        //                 console.log("h1")
+        //         } else {
+        //             // doc.data() will be undefined in this case
+        //             console.log("No such document!");
+        //         }
 
+        //     } catch (err) {
+        //         console.log(err)
+        //     } 
+        // }
+        // fetchData();
+        
+    },[currentUser,status])
+ 
+    
     // testing protected routes
     // const [isOwnerValue, setIsOwnerValue] = useState();
     // useEffect(() => {
@@ -225,7 +262,7 @@ const Adminpage = () => {
     return (
         <>
              
-            {userData.isAdmin && (
+             {currentUser && userData.isAdmin ?  (
                 <>
                 <Navbar2 />
                     <div className={`flex sm:flex-row flex-col-reverse 
@@ -233,7 +270,7 @@ const Adminpage = () => {
                         } ease-in-out duration-300`}
                         ref={ref}
                     >
-                         <div className="z-10 bg-white sticky bottom-0 sm:block side-tabs flex flex-col flex-wrap side-navbar w-full sm:w-72 sm:h-[90vh] border">
+                         <div className="z-10 bg-white dark:bg-base-100 sticky bottom-0 sm:block side-tabs flex flex-col flex-wrap side-navbar w-full sm:w-72 sm:h-[90vh] ">
                             <div className="m-0 items-center flex flex-col ">
                                
                                 <ul className="w-full mx-0 flex flex-row sm:flex-col justify-around">
@@ -242,8 +279,8 @@ const Adminpage = () => {
                                         className={`group border-box px-6 py-3 flex flex-row justify-center sm:justify-start items-center gap-5 cursor-pointer border-b-4 sm:border-l-4 sm:border-0
                                         ${
                                             toggleState === 2
-                                                ? " border-orange-peel"
-                                                : "border-white"
+                                                ? " border-orange-peel "
+                                                : "border-white dark:border-base-100"
                                         }`}
                                         onClick={() => toggleTab(2)}
                                     >
@@ -252,14 +289,14 @@ const Adminpage = () => {
                                             className={
                                                 toggleState === 2   
                                                     ? "text-orange-peel"
-                                                    : "text-gray-700"
+                                                    : "text-gray-700 dark:text-white"
                                             }
                                         />
                                         <h3
                                             className={`text-base  hidden sm:block font-medium ${
                                                 toggleState === 2
                                                     ? "text-orange-peel"
-                                                    : "text-gray-700"
+                                                    : "text-gray-700 dark:text-white"
                                             }`}
                                         >
                                             Restaurants
@@ -270,7 +307,7 @@ const Adminpage = () => {
                                         ${
                                             toggleState === 3
                                                 ? " border-orange-peel"
-                                                : "border-white"
+                                                : "border-white dark:border-base-100"
                                         }`}
                                         onClick={() => toggleTab(3)}
                                     >
@@ -279,14 +316,14 @@ const Adminpage = () => {
                                             className={
                                                 toggleState === 3
                                                     ? "text-orange-peel"
-                                                    : "text-gray-700"
+                                                    : "text-gray-700 dark:text-white"
                                             }
                                         />
                                         <h3
                                             className={`text-base hidden sm:block font-medium ${
                                                 toggleState === 3
                                                     ? "text-orange-peel"
-                                                    : "text-gray-700"
+                                                    : "text-gray-700 dark:text-white"
                                             }`}
                                         >
                                             Users
@@ -297,7 +334,7 @@ const Adminpage = () => {
                                         ${
                                             toggleState === 4
                                                 ? " border-orange-peel"
-                                                : "border-white"
+                                                : "border-white dark:border-base-100"
                                         }`}
                                         onClick={() => toggleTab(4)}
                                     >
@@ -306,14 +343,14 @@ const Adminpage = () => {
                                             className={
                                                 toggleState === 4
                                                     ? "text-orange-peel"
-                                                    : "text-gray-700"
+                                                    : "text-gray-700 dark:text-white"
                                             }
                                         />
                                         <h3
                                             className={`text-base hidden sm:block font-medium ${
                                                 toggleState === 4
                                                     ? "text-orange-peel"
-                                                    : "text-gray-700"
+                                                    : "text-gray-700 dark:text-white"
                                             }`}
                                         >
                                             Requests
@@ -337,10 +374,10 @@ const Adminpage = () => {
                                     Add New Restaurant
                                 </button>
                                 <div>
-                                    <div className="h-[28rem] overflow-auto rounded-lg shadow-md my-8">
-                                        <table className="w-full h-full overflow-scroll" border="1">
+                                    <div className="h-[28rem] overflow-auto rounded-lg shadow-md my-8 ">
+                                        <table className="w-full h-full overflow-scroll " border="1">
                                             <thead className="bg-gray-50 border-b-3 border-gray-200">
-                                                <tr className="">
+                                                <tr className="dark:bg-slate-800 text-white">
                                                     <th className="p-3 text-sm font-semibold tracking-wide text-left ">
                                                         No.
                                                     </th>
@@ -370,7 +407,7 @@ const Adminpage = () => {
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody className="dark:bg-slate-800 text-white">
                                                 {restaurantList.map(
                                                     (restaurant, index) => (
                                                         <AdminRestaurantList
@@ -408,8 +445,8 @@ const Adminpage = () => {
                                 <div>
                                     <div className="overflow-auto rounded-lg shadow-md my-8">
                                         <table className="w-full" border="1">
-                                            <thead className="bg-gray-50 border-b-3 border-gray-200">
-                                                <tr className="">
+                                            <thead className="bg-gray-50 border-b-3 border-gray-200 ">
+                                                <tr className="dark:bg-slate-800 text-white">
                                                     <th className="p-3 text-sm font-semibold tracking-wide text-left ">
                                                         No.
                                                     </th>
@@ -430,7 +467,7 @@ const Adminpage = () => {
                                                     </th> */}
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody className="dark:bg-slate-800 text-white">
                                                 {userList.map(
                                                     (user, index) => (
                                                         <AdminUserList
@@ -465,7 +502,7 @@ const Adminpage = () => {
                                     <div className="h-[70vh] overflow-auto rounded-lg shadow-md my-8">
                                         <table className="w-full overflow-scroll" border="1">
                                             <thead className="bg-gray-50 border-b-3 border-gray-200">
-                                                <tr className="">
+                                                <tr className="dark:bg-slate-800 text-white">
                                                     <th className="p-3 text-sm font-semibold tracking-wide text-left ">
                                                         No.
                                                     </th>
@@ -499,7 +536,7 @@ const Adminpage = () => {
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody className="dark:bg-slate-800 text-white">
                                                 {Object.values(requests).map(
                                                     (request, index) => (
                                                         <AdminRequestList
@@ -533,7 +570,7 @@ const Adminpage = () => {
                             toggleModal
                                 ? "visible opacity-100 translate-y-32"
                                 : "invisible opacity-0 -translate-y-28"
-                        } ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white rounded-lg  absolute top-0 left-0 right-0 mx-auto`}
+                        } ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white dark:bg-base-100 rounded-lg  absolute top-0 left-0 right-0 mx-auto`}
                     >
                         <div className="p-2">
                             <p
@@ -549,40 +586,40 @@ const Adminpage = () => {
                                       <div className="flex flex-col gap-3">
                                         <label
                                             htmlFor="name"
-                                            className="text-lg font-medium text-gray-700"
+                                            className="text-lg font-medium "
                                         >
                                              Restaurant Name
                                         </label>
                                         <input type="text" name="restaurant-name" id="name" onChange={handleAddInputChange} value={data.name} required 
-                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                         />
                                           <label
                                               htmlFor="emailAddress"
-                                              className="text-lg font-medium text-gray-700"
+                                              className="text-lg font-medium "
                                           >
                                               Email Address
                                           </label>
                                           <input placeholder="" type="email" name="res-email" id="emailAddress" onChange={handleAddInputChange} value={data.emailAddress} required 
-                                              className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                              className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                           />
                                         <label
                                             htmlFor="contactNumber"
-                                            className="text-lg font-medium text-gray-700"
+                                            className="text-lg font-medium "
                                         >
                                              Contact Number
                                         </label>
                                         <input placeholder="Ex: 09123456789" type="number" name="res-no" id="contactNumber" onChange={handleAddInputChange} value={data.contactNumber} min="999999999" required 
-                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                         />
                                         
                                         <label
                                               htmlFor="restaurantID"
-                                              className="text-lg font-medium text-gray-700"
+                                              className="text-lg font-medium "
                                           >
                                               User ID of Owner&apos;s Account
                                         </label>
                                         <input placeholder="" type="text" name="res-ownerID" id="restaurantID" onChange={handleAddInputChange} value={data.restaurantID} required 
-                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                            className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                         />
                                       </div>
                                       
@@ -603,7 +640,7 @@ const Adminpage = () => {
                             toggleModalUpdate
                                 ? "visible opacity-100 translate-y-32"
                                 : "invisible opacity-0 -translate-y-28"
-                        } ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white rounded-lg  absolute top-0 left-0 right-0 mx-auto`}
+                        } ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white dark:bg-base-100 rounded-lg  absolute top-0 left-0 right-0 mx-auto`}
                     >
                         <div className="p-2">
                             <p
@@ -619,7 +656,7 @@ const Adminpage = () => {
                                       <div className="flex flex-col gap-3">
                                         <label
                                             htmlFor="name"
-                                            className="text-lg font-medium text-gray-700"
+                                            className="text-lg font-medium "
                                         >
                                              Dish Name
                                         </label>
@@ -716,7 +753,8 @@ const Adminpage = () => {
                         </div>
                     </div>
                 </>
-            )}
+            )
+            : ""}
         </>
     );
 };

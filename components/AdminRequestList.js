@@ -2,7 +2,7 @@ import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 const AdminRequestList = ({request, requestKey, handleDelete}) => {
     return (
-        <tr className={`border-2 border-gray-100 ${requestKey % 2 === 0 ? "bg-gray-50" : "bg-gray-100"}`}>
+        <tr className={`border-2 border-gray-100 ${requestKey % 2 === 0 ? "bg-gray-50 dark:bg-slate-700" : "bg-gray-100 dark:bg-slate-800"}`}>
             <td className="p-3 text-sm font-semibold tracking-normal">{requestKey}</td>
             <td className="p-3 text-sm font-semibold tracking-normal">{request.ownerName}</td>
             <td className="p-3 text-sm font-semibold tracking-normal">{request.ownerEmail}</td>
