@@ -468,35 +468,8 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                         />
                     </div>
                 </label>
-
-                <input
-                    type="checkbox"
-                    id="my-modal-0"
-                    className="modal-toggle"
-                />
-                <div className="modal">
-                    <div className="modal-box relative">
-                        <label
-                            htmlFor="my-modal-0"
-                            className="btn btn-sm btn-circle absolute right-2 top-2 z-10"
-                        >
-                            ✕
-                        </label>
-                        <div className="relative w-full h-56 sm:h-96">
-                            <Image
-                                src={restaurant.src || "/assets/dishpic/NoSrc.jpg"}
-                                layout="fill"
-                                objectFit="contain"
-                                priority
-                                alt="..."
-                                className="object-center"
-                            />
-                        </div>
-                        <h1 className="text-base text-center">
-                            Photo of {restaurant.name}
-                        </h1>
-                    </div>
-                </div>
+                
+                
                 <div className="flex flex-col md:flex-row w-full gap-0 md:gap-8 px-2 lg:px-40 align-center justify-center">
                     <div className=" bg-white dark:bg-base-100 w-full md:w-[60%] px-4 shadow-md">
                         <div className="border-b-2 py-4 bg-white dark:bg-base-100  z-20">
@@ -608,31 +581,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                         />
                                         </div>
                                     </label>
-                                    <input
-                                        type="checkbox"
-                                        id="my-modal-1"
-                                        className="modal-toggle"
-                                    />
-                                    <div className="modal">
-                                        <div className="modal-box relative">
-                                            <label
-                                                htmlFor="my-modal-1"
-                                                className="btn btn-sm btn-circle absolute right-2 top-2 z-10"
-                                            >
-                                                ✕
-                                            </label>
-                                            <div className="relative w-full h-56 sm:h-96">
-                                                <Image
-                                                    src={restaurant.galleryImages[0] || "/assets/dishpic/NoSrc.jpg"}
-                                                    layout="fill"
-                                                    objectFit="contain"
-                                                    priority
-                                                    alt="..."
-                                                    className="object-center"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
 
                                 <div className="photos2 relative col-span-2 ">
@@ -651,31 +600,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                         />
                                         </div>
                                     </label>
-                                    <input
-                                        type="checkbox"
-                                        id="my-modal-2"
-                                        className="modal-toggle"
-                                    />
-                                    <div className="modal">
-                                        <div className="modal-box relative">
-                                            <label
-                                                htmlFor="my-modal-2"
-                                                className="btn btn-sm btn-circle absolute right-2 top-2 z-10"
-                                            >
-                                                ✕
-                                            </label>
-                                            <div className="relative w-full h-56 sm:h-96">
-                                                <Image
-                                                    src={restaurant.galleryImages[1] || "/assets/dishpic/NoSrc.jpg"}
-                                                    layout="fill"
-                                                    objectFit="contain"
-                                                    priority
-                                                    alt="..."
-                                                    className="object-center"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div className="photos3 relative">
                                     <label
@@ -693,31 +618,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                         />
                                         </div>
                                     </label>
-                                    <input
-                                        type="checkbox"
-                                        id="my-modal-3"
-                                        className="modal-toggle"
-                                    />
-                                    <div className="modal">
-                                        <div className="modal-box relative">
-                                            <label
-                                                htmlFor="my-modal-3"
-                                                className="btn btn-sm btn-circle absolute right-2 top-2 z-10"
-                                            >
-                                                ✕
-                                            </label>
-                                            <div className="relative w-full h-56 sm:h-96">
-                                                <Image
-                                                    src={restaurant.galleryImages[2] || "/assets/dishpic/NoSrc.jpg"}
-                                                    layout="fill"
-                                                    objectFit="contain"
-                                                    priority
-                                                    alt="..."
-                                                    className="object-center"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
 
                                 <div className="photos4 relative">
@@ -736,31 +637,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                         />
                                         </div>
                                     </label>
-                                    <input
-                                        type="checkbox"
-                                        id="my-modal-4"
-                                        className="modal-toggle"
-                                    />
-                                    <div className="modal">
-                                        <div className="modal-box relative">
-                                            <label
-                                                htmlFor="my-modal-4"
-                                                className="btn btn-sm btn-circle absolute right-2 top-2 z-10"
-                                            >
-                                                ✕
-                                            </label>
-                                            <div className="relative w-full h-56 sm:h-96">
-                                                <Image
-                                                    src={restaurant.galleryImages[3] || "/assets/dishpic/NoSrc.jpg"}
-                                                    layout="fill"
-                                                    objectFit="contain"
-                                                    priority
-                                                    alt="..."
-                                                    className="object-center"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -1131,6 +1008,134 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                     </div> */}
                                 </div>
                         </div>
+                </div>
+                <input
+                    type="checkbox"
+                    id="my-modal-0"
+                    className="modal-toggle"
+                />
+                <div className="modal">
+                    <div className="modal-box relative">
+                        <label
+                            htmlFor="my-modal-0"
+                            className="btn btn-sm btn-circle absolute right-2 top-2 z-10"
+                        >
+                            ✕
+                        </label>
+                        <div className="relative w-full h-56 sm:h-96">
+                            <Image
+                                src={restaurant.src || "/assets/dishpic/NoSrc.jpg"}
+                                layout="fill"
+                                objectFit="contain"
+                                priority
+                                alt="..."
+                                className="object-center"
+                            />
+                        </div>
+                        <h1 className="text-base text-center">
+                            Photo of {restaurant.name}
+                        </h1>
+                    </div>
+                </div>
+                <input
+                    type="checkbox"
+                    id="my-modal-1"
+                    className="modal-toggle"
+                />
+                <div className="modal">
+                    <div className="modal-box relative">
+                        <label
+                            htmlFor="my-modal-1"
+                            className="btn btn-sm btn-circle absolute right-2 top-2 z-10"
+                        >
+                            ✕
+                        </label>
+                        <div className="relative w-full h-56 sm:h-96">
+                            <Image
+                                src={restaurant.galleryImages[0] || "/assets/dishpic/NoSrc.jpg"}
+                                layout="fill"
+                                objectFit="contain"
+                                priority
+                                alt="..."
+                                className="object-center"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <input
+                    type="checkbox"
+                    id="my-modal-2"
+                    className="modal-toggle"
+                />
+                <div className="modal">
+                    <div className="modal-box relative">
+                        <label
+                            htmlFor="my-modal-2"
+                            className="btn btn-sm btn-circle absolute right-2 top-2 z-10"
+                        >
+                            ✕
+                        </label>
+                        <div className="relative w-full h-56 sm:h-96">
+                            <Image
+                                src={restaurant.galleryImages[1] || "/assets/dishpic/NoSrc.jpg"}
+                                layout="fill"
+                                objectFit="contain"
+                                priority
+                                alt="..."
+                                className="object-center"
+                            />
+                        </div>
+                    </div>
+                </div>
+				<input
+                    type="checkbox"
+                    id="my-modal-3"
+                    className="modal-toggle"
+                />
+                <div className="modal">
+                    <div className="modal-box relative">
+                        <label
+                            htmlFor="my-modal-3"
+                            className="btn btn-sm btn-circle absolute right-2 top-2 z-10"
+                        >
+                            ✕
+                        </label>
+                        <div className="relative w-full h-56 sm:h-96">
+                            <Image
+                                src={restaurant.galleryImages[2] || "/assets/dishpic/NoSrc.jpg"}
+                                layout="fill"
+                                objectFit="contain"
+                                priority
+                                alt="..."
+                                className="object-center"
+                            />
+                        </div>
+                    </div>
+                </div>
+				<input
+                    type="checkbox"
+                    id="my-modal-4"
+                    className="modal-toggle"
+                />
+                <div className="modal">
+                    <div className="modal-box relative">
+                        <label
+                            htmlFor="my-modal-4"
+                            className="btn btn-sm btn-circle absolute right-2 top-2 z-10"
+                        >
+                            ✕
+                        </label>
+                        <div className="relative w-full h-56 sm:h-96">
+                            <Image
+                                src={restaurant.galleryImages[3] || "/assets/dishpic/NoSrc.jpg"}
+                                layout="fill"
+                                objectFit="contain"
+                                priority
+                                alt="..."
+                                className="object-center"
+                            />
+                        </div>
+                    </div>
                 </div>
             <Footer /></>)
             : ""}

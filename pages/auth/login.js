@@ -94,17 +94,30 @@ export default function Login() {
                 <div className="w-full md:w-1/2 flex items-center justify-center">
                     <div className="w-full lg:w-1/2 flex flex-col items-center justify-center border-2 shadow-xl p-10 text-gray-700 rounded-lg">
                         <div className="navbar-center">
-                            <Image
+                            {/* <Image
                                 src="/assets/logo-oystore.png"
                                 width="180"
                                 height="46"
                                 className="my-4 self-center"
                                 alt="logo"
-                            />
+                            /> */}
+                            <picture>
+                                <source
+                                 className="cursor-pointer"
+                                srcSet="/assets/logo-oystore-dark.png"
+                                media="(prefers-color-scheme: dark)"
+                                />
+                                <img
+                                src='/assets/logo-oystore-light.png'
+                                width='180'
+                                height='46'
+                                alt='Logo'
+                                />
+                            </picture>
                         </div>
                         {/* <h2 className="text-3xl font-medium"></h2> */}
                         <div className="py-4">
-                            <div className="flex flex-col gap-2">
+                            {/* <div className="flex flex-col gap-2">
                                 <h1 className="text-lg text-center font-md text-slate-900 select-none uppercase dark:text-white">
                                     {isLoggingIn ? "Login" : "Register"}
                                 </h1>
@@ -148,7 +161,7 @@ export default function Login() {
                                 >
                                     {!isLoggingIn ? "Login" : "Register"}{" "}
                                 </h2>
-                            </div>
+                            </div> */}
                             {/* <h3 className="py-4">
                                 Sign in with one of the providers
                             </h3> */}

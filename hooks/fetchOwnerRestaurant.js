@@ -13,6 +13,7 @@ export default function useFetchOwnerRestaurant() {
     const [userReviewLists, setUserReviewLists] = useState([])
     const [userData, setUserData] = useState({})
     const [carts, setCarts] = useState([])
+    const [gallery, setGallery] = useState([])
     const { currentUser } = useAuth()
 
     useEffect(() => {
@@ -38,6 +39,7 @@ export default function useFetchOwnerRestaurant() {
                     setRestaurantData(doc.data());
                     setMenuData(doc.data().menu)
                     setReservationsData(doc.data().reservations)
+                    setGallery(doc.data().galleryImages)
                 });
                 /*const docSnap = await getDoc(docRef)
                 if (docSnap.exists()) {
@@ -56,5 +58,5 @@ export default function useFetchOwnerRestaurant() {
         fetchData()
     }, [])
 
-    return { isLoading, isError, restaurantData, userReservationsData, userData, menuData, reservationsData, carts, userReviewLists}
+    return { isLoading, isError, restaurantData, userReservationsData, gallery, userData, menuData, reservationsData, carts, userReviewLists}
 }

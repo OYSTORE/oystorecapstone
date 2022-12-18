@@ -126,7 +126,8 @@ const Ownerpage = () => {
         setRestaurantData,
         userData,
         menuData,
-        reservationsData
+        reservationsData,
+        gallery
     } = useFetchOwnerRestaurant();
     const [toggleState, setToggleState] = useState(2);
     const toggleTab = (index) => {
@@ -727,7 +728,7 @@ const Ownerpage = () => {
                                             </div>
 
                                             <div className="w-full px-2">
-                                                <OwnerPageMasonry />
+                                                <OwnerPageMasonry images2={gallery}/>
                                             </div>
                                         </div>
                                     </div>
@@ -890,6 +891,15 @@ const Ownerpage = () => {
                               <form onSubmit={handleUpdateDish} >
                                   <div className="px-3">
                                       <div className="flex flex-col gap-3">
+                                        <label
+                                                htmlFor="name"
+                                                className="text-lg font-medium "
+                                            >
+                                                Upload Image
+                                            </label>
+                                            <input type="file" name="dish-img" id="dishimg" className="file-input file-input-bordered file-input-sm sm:file-input-md w-full max-w-xs" onChange={(e) => (setDishImage(e.target.files[0]))}
+                                            />
+                                            
                                         <label
                                             htmlFor="name"
                                             className="text-lg font-medium"

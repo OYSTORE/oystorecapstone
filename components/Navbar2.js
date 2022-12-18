@@ -21,6 +21,7 @@ import { FaCalendarCheck } from "react-icons/fa";
 import useFetchOwnerRestaurant from "../hooks/fetchOwnerRestaurant";
 import useFetchUserData from "../hooks/fetchUserData";
 import useFetchUserType from "../hooks/fetchUserType";
+import { useTheme } from "next-themes";
 
 const Navbar2 = () => {
     {
@@ -74,6 +75,19 @@ const Navbar2 = () => {
     // const { carts, loading, error, setCarts } = useFetchCarts();
     //console.log(Object.values(carts[1].name))
     const [isOpen, setOpen] = useState(false);
+
+    //themes dark mode button
+    const { systemTheme, theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+  
+    useEffect(() => {
+      setMounted(true);
+    }, []);
+  
+    if (!mounted) return null;
+    const currentTheme = theme === 'system' ? systemTheme : theme;
+
+   
     return (
         <>
             <div
@@ -90,8 +104,8 @@ const Navbar2 = () => {
                     />
                     <Link href="/">
                         <>
-                            <Image
-                                className="cursor-pointer"
+                            {/* <Image
+                                className="cursor-pointer dark:hidden"
                                 src="/assets/logo-oystore-light.png"
                                 width="180"
                                 height="46"
@@ -99,9 +113,23 @@ const Navbar2 = () => {
                                 alt="logo"
                                 priority
                                 referrerPolicy="no-referrer" 
-                            />
+                            /> */}
+                            <picture>
+                                <source
+                                 className="cursor-pointer"
+                                srcSet="/assets/logo-oystore-dark.png"
+                                media="(prefers-color-scheme: dark)"
+                                />
+                                <img
+                                src='/assets/logo-oystore-light.png'
+                                width='180'
+                                height='46'
+                                alt='Logo'
+                                />
+                            </picture>
                         </>
                     </Link>
+                    
                 </div>
                 <div className="mt-2">
                     <ul>
@@ -258,14 +286,27 @@ const Navbar2 = () => {
                 </div>
                 <Link href="/">
                     <div className="navbar-center cursor-pointer">
-                        <Image
+                        {/* <Image
                             src="/assets/logo-oystore-light.png"
                             width="180"
                             height="46"
                             layout="fixed"
                             alt="logo"
                             priority
-                        />
+                        /> */}
+                        <picture>
+                                <source
+                                 className="cursor-pointer"
+                                srcSet="/assets/logo-oystore-dark.png"
+                                media="(prefers-color-scheme: dark)"
+                                />
+                                <img
+                                src='/assets/logo-oystore-light.png'
+                                width='180'
+                                height='46'
+                                alt='Logo'
+                                />
+                        </picture>
                     </div>
                 </Link>
                 <div className="navbar-end">
