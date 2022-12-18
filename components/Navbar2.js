@@ -77,7 +77,7 @@ const Navbar2 = () => {
     return (
         <>
             <div
-                className={`bg-white h-full w-[60] fixed top-0 left-0 z-40 flex flex-col
+                className={`bg-white dark:bg-base-100 h-full w-[60] fixed top-0 left-0 z-40 flex flex-col
           ${
               isOpen ? "translate-x-0" : "-translate-x-full"
           } ease-in-out duration-300`}
@@ -112,9 +112,9 @@ const Navbar2 = () => {
                             >
                                 <AiFillHome
                                     size="1.8em"
-                                    className="text-gray-700 group-hover:text-white"
+                                    className="text-gray-700 dark:text-white group-hover:text-white"
                                 />
-                                <h3 className=" text-gray-700 text-base font-medium   group-hover:text-white">
+                                <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
                                     Home
                                 </h3>
                             </li>
@@ -126,9 +126,9 @@ const Navbar2 = () => {
                             >
                                 <GiChickenOven
                                     size="1.8em"
-                                    className="text-gray-700 group-hover:text-white"
+                                    className="text-gray-700 dark:text-white group-hover:text-white"
                                 />
-                                <h3 className=" text-gray-700 text-base font-medium   group-hover:text-white">
+                                <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
                                     Dishes
                                 </h3>
                             </li>
@@ -140,9 +140,9 @@ const Navbar2 = () => {
                             >
                                 <MdOutlineRestaurant
                                     size="1.8em"
-                                    className="text-gray-700 group-hover:text-white"
+                                    className="text-gray-700 dark:text-white group-hover:text-white"
                                 />
-                                <h3 className=" text-gray-700 text-base font-medium   group-hover:text-white">
+                                <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
                                     Restaurants
                                 </h3>
                             </li>
@@ -154,9 +154,9 @@ const Navbar2 = () => {
                             >
                                 <MdBookmarks
                                     size="1.8em"
-                                    className="text-gray-700 group-hover:text-white"
+                                    className="text-gray-700 dark:text-white group-hover:text-white"
                                 />
-                                <h3 className=" text-gray-700 text-base font-medium   group-hover:text-white">
+                                <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
                                     Bookmarks
                                 </h3>
                             </li>
@@ -168,9 +168,9 @@ const Navbar2 = () => {
                             >
                                 <FaCalendarCheck
                                     size="1.8em"
-                                    className="text-gray-700 group-hover:text-white"
+                                    className="text-gray-700 dark:text-white  group-hover:text-white"
                                 />
-                                <h3 className=" text-gray-700 text-base font-medium   group-hover:text-white">
+                                <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
                                     Reservations
                                 </h3>
                             </li>
@@ -183,9 +183,9 @@ const Navbar2 = () => {
                                 >
                                     <RiAdminFill
                                         size="1.8em"
-                                        className="text-gray-700 group-hover:text-white"
+                                        className="text-gray-700 dark:text-white group-hover:text-white"
                                     />
-                                    <h3 className=" text-gray-700 text-base font-medium   group-hover:text-white">
+                                    <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
                                         Owner&apos;s Dashboard
                                     </h3>
                                 </li>
@@ -199,9 +199,9 @@ const Navbar2 = () => {
                                 >
                                     <RiAdminFill
                                         size="1.8em"
-                                        className="text-gray-700 group-hover:text-white"
+                                        className="text-gray-700 dark:text-white group-hover:text-white"
                                     />
-                                    <h3 className=" text-gray-700 text-base font-medium   group-hover:text-white">
+                                    <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
                                         Admin Dashboard
                                     </h3>
                                 </li>
@@ -369,7 +369,7 @@ const Navbar2 = () => {
                                     <a>Settings</a>
                                 </li> */}
                                 <li onClick={handleRedirect}>
-                                    <a>Sign out</a>
+                                    <a className="dark:text-white dark:hover:bg-blue-600">Sign out</a>
                                 </li>
                             </ul>
                         </div>

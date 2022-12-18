@@ -68,14 +68,14 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
     }
     const [currentValueFixed, setCurrentValueFixed] = useState(rating);
     return (
-        <div className="snap-start flex flex-row  w-full lg:w-3/4 h-40 rounded-xl shadow-sm hover:shadow-lg transition duration-300 hover:-translate-y-2 border my-2 bg-white">
+        <div className=" snap-start flex flex-row  w-full lg:w-3/4 h-40 rounded-xl shadow-sm hover:shadow-lg transition duration-300 hover:-translate-y-2 border my-2 bg-white dark:bg-slate-800">
             {/* <Card
                 imgAlt="{restaurant.name}"
                 imgSrc={"/assets/restaurants/"+restaurant.src} className=" cursor-pointer "
             > */}
 
             {/*<div className="w-[200px] h-[200px] bg-fixed" style={dishbg} >daoishdoashodhao</div>*/}
-            <div className="relative w-2/5 lg:w-80 rounded-xl bg-red-500">
+            <div className="relative w-2/5 lg:w-80 rounded-xl ">
                 <Image
                     src={dish.dishimg || "/assets/dishpic/NoSrc.jpg"}
                     // src="/assets/dishpic/NoSrc.jpg"
@@ -89,7 +89,7 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
             <div className="flex flex-col md:flex-row">
                 <div className=" flex flex-row flex-wrap px-4 py-4 drop-shadow justify-start items-center">
                     <a href="#">
-                        <h5 className=" leading-tight text-xs md:text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                        <h5 className="leading-tight text-xs md:text-lg pr-1 font-semibold tracking-tight text-gray-900 dark:text-white">
                             {dish.name}
                         </h5>
                         
@@ -112,16 +112,16 @@ function DishCardsSmall({ dish, handleAdd, handleRemove, dishID, dishIDArray, ca
                                    
                                 );
                             })}
-                            
-                    </div>
-                    <div className="px-2 flex items-center">    
-                        <span className="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
-                            {!rating ? 0 : rating}
-                        </span>
-                        <p className="ml-2 text-sm ">
-                        {reviews} reviews
-                        </p>
-                    </div>
+                            </div>
+                                <div className="px-2 flex items-center">    
+                                    <span className="mr-2 rounded bg-blue-100 px-2.5 py-0.5 text-sm font-semibold text-blue-800 dark:bg-blue-200 dark:text-blue-800">
+                                        {!rating ? 0 : rating}
+                                    </span>
+                                    <p className="ml-2 text-sm ">
+                                    {reviews} reviews
+                                    </p>
+                            </div>
+                   
                    
                 </div>
                 <div className="flex-row md:flex-col px-4 flex items-center justify-center gap-4">

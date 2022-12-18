@@ -64,7 +64,7 @@ function DishCards({ dish, handleAdd, handleRemove, dishID, carts }) {
                     {/* <h6 className="text-xs">{isBookmarked.toString()}</h6> */}
                     <Link href={"restaurants/" + dish.restaurantID}><h6 className="text-xs">{dish.served_by}</h6></Link>
                 </a>
-                <div className="mt-0 flex items-center">
+                <div className="mt-0 flex items-center ">
                 
                            
                            <div className="flex flex-row items-center justify-center">

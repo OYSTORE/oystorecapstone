@@ -180,13 +180,13 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                         ref={ref}
                         className="no-scrollbar scroll-smooth snap-x flex border-t-2 mb-3 mx-8 max-h-96 max-w-full gap-6 overflow-x-auto py-2"
                     >
-                        <button className="bg-white border rounded-full absolute bottom-[50%] left-2 z-10 cursor-pointer hover:bg-gray-200">
+                        <button className="bg-white dark:text-base-100 border rounded-full absolute bottom-[50%] left-2 z-10 cursor-pointer hover:bg-gray-200">
                             <MdNavigateBefore
                                 size="1.8em"
                                 onClick={() => scroll(-500)}
                             />
                         </button>
-                        <button className="bg-white border rounded-full absolute bottom-[50%] right-2 z-10 cursor-pointer hover:bg-gray-200">
+                        <button className="bg-white dark:text-base-100 border rounded-full absolute bottom-[50%] right-2 z-10 cursor-pointer hover:bg-gray-200">
                             <MdNavigateNext
                                 size="1.8em"
                                 onClick={() => scroll(500)}

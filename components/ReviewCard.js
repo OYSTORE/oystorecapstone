@@ -31,7 +31,7 @@ const ReviewCard = ({review}) => {
                             
                         />
                     </div>
-                    <div className="flex flex-row px-4">{review.name}</div>
+                    <p className="flex flex-row px-4 ">{review.name}</p>
                 </div>
                 <div className="flex flex-row items-center py-1">
                     {stars.map((_, index) => {

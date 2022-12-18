@@ -37,7 +37,12 @@ body {
     button{
         color:white
     }
-    
+    progress::-webkit-progress-value {
+        background: #2563eb !important;
+      }
+    progress::-moz-progress-bar {
+        background-color: #2563eb !important;
+    }
     /* .day.dark-scheme {
       background: #333;
       color: white;
@@ -47,3 +52,4 @@ body {
       color: #ddd;
     } */
   }
+  

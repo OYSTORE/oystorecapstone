@@ -498,8 +498,8 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row w-full gap-0 md:gap-8 px-2 lg:px-40 align-center justify-center">
-                    <div className=" bg-white w-full md:w-[60%] px-4 shadow-md">
-                        <div className="border-b-2 py-4 bg-white z-20">
+                    <div className=" bg-white dark:bg-base-100 w-full md:w-[60%] px-4 shadow-md">
+                        <div className="border-b-2 py-4 bg-white dark:bg-base-100  z-20">
                             <h1 className="text-2xl text-center md:text-3xl font-bold ">
                                 {restaurant.name}
                             </h1>
@@ -527,9 +527,9 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                         })}
                                         
                             </div>
-                            <span className="ml-2 text-sm font-bold">
+                            <p className="ml-2 text-sm font-bold">
                                     {reviews} reviews
-                            </span>
+                            </p>
                         </div>
                         {/* <h1 className="text-2xl font-bold ">
                             Description
@@ -542,8 +542,8 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                             saepe minima natus!
                         </p> */}
                         <div className="menu-container">
-                           <div className="flex flex-row justify-between items-center">
-                                <h1 className="text-2xl font-bold border-b pb-3">
+                           <div className="flex flex-row justify-between items-center border-b">
+                                <h1 className="text-2xl font-bold pb-3">
                                     Menu
                                 </h1>
                                 <h1 className="text-xl text-orange-peel cursor-pointer font-medium" onClick={() => setToggleModalDish(!toggleModal)}>
@@ -551,13 +551,13 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                 </h1>
                            </div>
                             <div className="relative">
-                                <button className="bg-white border rounded-full absolute bottom-[50%] -left-2 z-10 cursor-pointer hover:bg-gray-200">
+                                <button className="bg-white dark:text-base-100 border rounded-full absolute bottom-[50%] -left-2 z-10 cursor-pointer hover:bg-gray-200">
                                     <MdNavigateBefore
                                         size="1.8em"
                                         onClick={() => scroll(-500)}
                                     />
                                 </button>
-                                <button className="bg-white border rounded-full absolute bottom-[50%] -right-4 z-10 cursor-pointer hover:bg-gray-200">
+                                <button className="bg-white dark:text-base-100 border rounded-full absolute bottom-[50%] -right-4 z-10 cursor-pointer hover:bg-gray-200">
                                     <MdNavigateNext
                                         size="1.8em"
                                         onClick={() => scroll(500)}
@@ -784,23 +784,23 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                 <div className="ratings flex flex-col gap-2">
                                     <div className="flex flex-row items-center justify-center gap-4">
                                         <h1 className="text-md">5</h1>
-                                        <progress className="progress w-56" value={counts[5] == undefined ? 0 : counts[5]} max={reviews}></progress>
+                                        <progress className="progress w-56 dark:bg-slate-300" value={counts[5] == undefined ? 0 : counts[5]} max={reviews}></progress>
                                     </div>
                                     <div className="flex flex-row items-center justify-center gap-4">
                                         <h1 className="text-md">4</h1>
-                                        <progress className="progress w-56" value={counts[4] == undefined ? 0 : counts[4]} max={reviews}></progress>
+                                        <progress className="progress w-56 dark:bg-slate-300 " value={counts[4] == undefined ? 0 : counts[4]} max={reviews}></progress>
                                     </div>
                                     <div className="flex flex-row items-center justify-center gap-4">
                                         <h1 className="text-md">3</h1>
-                                        <progress className="progress w-56" value={counts[3] == undefined ? 0 : counts[3]} max={reviews}></progress>
+                                        <progress className="progress w-56 dark:bg-slate-300" value={counts[3] == undefined ? 0 : counts[3]} max={reviews}></progress>
                                     </div>
                                     <div className="flex flex-row items-center justify-center gap-4">
                                         <h1 className="text-md">2</h1>
-                                        <progress className="progress w-56" value={counts[2] == undefined ? 0 : counts[2]} max={reviews}></progress>
+                                        <progress className="progress w-56 dark:bg-slate-300" value={counts[2] == undefined ? 0 : counts[2]} max={reviews}></progress>
                                     </div>
                                     <div className="flex flex-row items-center justify-center gap-4">
                                         <h1 className="text-md">1</h1>
-                                        <progress className="progress w-56" value={counts[1] == undefined ? 0 : counts[1]} max={reviews}></progress>
+                                        <progress className="progress w-56 dark:bg-slate-300" value={counts[1] == undefined ? 0 : counts[1]} max={reviews}></progress>
                                     </div>
                                 </div>
                                 <div className="flex flex-col justify-center items-center gap-4">
@@ -849,12 +849,12 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                     <div className="flex flex-col">
                                         <label
                                             htmlFor="party-size"
-                                            className="text-lg font-medium text-gray-700"
+                                            className="text-lg font-medium text-gray-700 dark:text-white"
                                         >
                                             Party Size
                                         </label>
                                         <select name="party-size" id="partySize" onChange={handleAddInputChange} value={data.partySize} required 
-                                        className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel">
+                                        className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600">
                                             <option value="1">1 person</option>
                                             <option value="2">2 people</option>
                                             <option value="3">3 people</option>
@@ -879,21 +879,21 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                     <div className="flex flex-col">
                                     <label
                                         htmlFor="date-reservation"
-                                        className="text-lg font-medium text-gray-700" 
+                                        className="text-lg font-medium text-gray-700 dark:text-white" 
                                     >
                                         Date
                                     </label>
                                     <input type="date" name="date-reservation" id="dateReservation" onChange={handleAddInputChange} min={currentDate} value={data.dateReservation} required 
-                                        className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                     />
                                     <label
                                         htmlFor="time-reservation"
-                                        className="text-lg font-medium text-gray-700"
+                                        className="text-lg font-medium text-gray-700 dark:text-white"
                                     >
                                         Time
                                     </label>
                                     <select name="time-reservation" id="timeReservation" onChange={handleAddInputChange} value={data.timeReservation} required 
-                                    className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel">
+                                    className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600">
                                         <option value=""></option>
                                         <option value="10:00 AM">10:00 AM</option>
                                         <option value="10:30 AM">10:30 AM</option>
@@ -921,23 +921,23 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                     <div className="flex flex-col">
                                     <label
                                         htmlFor="name-reservation"
-                                        className="text-lg font-medium text-gray-700"
+                                        className="text-lg font-medium text-gray-700 dark:text-white"
                                     >
                                         Name
                                     </label>
                                     <input type="text" name="name-reservation" id="nameReservation" onChange={handleAddInputChange} value={data.nameReservation} required 
-                                        className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                     />
                                     </div>
                                     <div className="flex flex-col pb-2">
                                     <label
                                         htmlFor="contact-reservation"
-                                        className="text-lg font-medium text-gray-700"
+                                        className="text-lg font-medium text-gray-700 dark:text-white"
                                     >
                                         Contact Number
                                     </label>
                                     <input type="number" name="contact-reservation" id="contactReservation" onChange={handleAddInputChange} min="999999999" value={data.contactReservation} required 
-                                        className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                        className="w-full rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                                     />
                                     </div>
                                     <button type="submit" value="submit" className="w-full select-none cursor-pointer
@@ -957,21 +957,21 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                 <div className="flex flex-row px-2 text-center gap-4 justify-between items-center">
                                     <MdEmail
                                         size="1.8em"
-                                        className="text-gray-700 group-hover:text-white"
+                                        className="text-gray-700 dark:text-white group-hover:text-white"
                                     />
                                     <p className="text-xl text-right">{restaurant.emailAddress}</p>
                                 </div>
                                 <div className="flex flex-row px-2 text-center gap-4 justify-between items-center">
                                     <MdCall
                                         size="1.8em"
-                                        className="text-gray-700 group-hover:text-white"
+                                        className="text-gray-700 dark:text-white group-hover:text-white"
                                     />
                                     <p className="text-xl text-right">0{restaurant.contactNumber}</p>
                                 </div>
                                 <div className="flex flex-row px-2 text-center gap-4 justify-between items-center">
                                     <MdLocationOn
                                         size="1.8em"
-                                        className="text-gray-700 group-hover:text-white"
+                                        className="text-gray-700 dark:text-white group-hover:text-white"
                                     />
                                     <p className="text-lg text-right">Tambak, New Washington, Aklan</p>
                                 </div>
@@ -987,7 +987,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                             toggleModal
                                 ? "visible opacity-100 translate-y-32"
                                 : "invisible opacity-0 -translate-y-28"
-                        } ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white rounded-lg fixed top-0 left-0 right-0 mx-auto`}
+                        } ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white dark:bg-base-100 rounded-lg fixed top-0 left-0 right-0 mx-auto`}
                     >
                         <div className="p-2">
                             <p
@@ -999,7 +999,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                             {/* <h1 className="px-3 py-2 text-lg font-semibold">Add New Dish</h1> */}
                             <div>
                                 <div className="flex flex-col px-3">
-                                    <h1 className="text-lg font-medium text-gray-700">
+                                    <h1 className="text-lg font-medium text-gray-700 dark:text-white">
                                     Rating
                                     </h1>
                                     <div className="flex flex-row items-center justify-center gap-4">
@@ -1027,7 +1027,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                         <div className="flex flex-col gap-3">
                                             <label
                                                 htmlFor="name"
-                                                className="text-lg font-medium text-gray-700"
+                                                className="text-lg font-medium text-gray-700 dark:text-white"
                                             >
                                                 Review
                                             </label>
@@ -1052,10 +1052,10 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                             toggleModalDish
                                 ? "visible opacity-100 translate-y-24"
                                 : "invisible opacity-0 -translate-y-28"
-                        } ease-in-out duration-300 z-10 w-11/12 lg:w-3/5 h-4/5 bg-white rounded-lg fixed top-0 left-0 right-0 mx-auto`}
+                        } ease-in-out duration-300 z-10 w-11/12 lg:w-3/5 h-4/5 bg-white dark:bg-base-100 rounded-lg fixed top-0 left-0 right-0 mx-auto`}
                     >
-                        <div className="sticky top-0 flex flex-row justify-between items-center px-7 py-4 bg-white z-10">
-                            <h1 className="text-lg font-medium text-gray-700">
+                        <div className="sticky top-0 flex flex-row justify-between items-center px-7 py-4 bg-white dark:bg-base-100 z-10">
+                            <h1 className="text-lg font-medium text-gray-700 dark:text-white">
                                     Menu
                             </h1>
                             <input
@@ -1064,7 +1064,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                 placeholder="Search..."
                                 id="dishesSearchBar"
                                 onChange={(e) => setQuerySearch(e.target.value)}
-                                className="mx-2 w-full md:w-2/5 rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel"
+                                className="mx-2 w-full md:w-2/5 rounded-lg shadow-sm border-gray-300 focus:border-orange-peel focus:ring-orange-peel dark:focus:border-blue-600 dark:focus:ring-blue-600"
                              />
                             <p
                                 onClick={() => setToggleModalDish(false) }
