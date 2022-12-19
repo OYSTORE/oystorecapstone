@@ -13,7 +13,7 @@ const Navbar = () => {
                 space-x-10 
                 ">
                     <div className="logo mr-11 flex justify-center items-center pr-5 cursor-pointer m-0 p-0">
-                        <Link href='/'><a className="pt-1"><Image src='/assets/logo-oystore.png' width='200' height='51' layout="fixed" priority /></a></Link>
+                        <Link href='/'><a className="pt-1"><Image src='/assets/logo-oystore.png' width='200' height='51' alt="" layout="fixed" priority /></a></Link>
                         
                     </div>
                     <div className="searchBar">

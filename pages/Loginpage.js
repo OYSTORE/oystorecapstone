@@ -38,6 +38,7 @@ export default function Loginpage() {
                     width="200"
                     height="51"
                     className="my-4"
+                    alt=""
                 />
 
                 <h1 className="text-2xl sm:text-4xl font-bold text-slate-900 select-none uppercase">

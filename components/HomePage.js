@@ -416,7 +416,7 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                                 <br />
                                 4. You understand that we reserve the right to remove any restaurant from our website at any time for any reason.
                                 <br />
-                                5. You agree to indemnify and hold us and our affiliates, officers, directors, agents, and employees harmless from any claim or demand, including reasonable attorneys' fees, made by any third party due to or arising out of your restaurant's inclusion on our website.
+                                5. You agree to indemnify and hold us and our affiliates, officers, directors, agents, and employees harmless from any claim or demand, including reasonable attorneys&apos; fees, made by any third party due to or arising out of your restaurant&apos; inclusion on our website.
                                 <br />
                                 6. These terms of agreement shall be governed by and construed in accordance with the laws of the Republic of the Philippines, without giving effect to any principles of conflicts of law. You agree that any action at law or in equity arising out of or relating to these terms of agreement shall be filed only in the state or federal courts located in [state] and you hereby consent and submit to the personal jurisdiction of such courts for the purposes of litigating any such action.
                                 <br />  
