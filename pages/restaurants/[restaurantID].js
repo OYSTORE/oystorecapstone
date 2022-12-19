@@ -109,7 +109,27 @@ const RestaurantPage = ({ restaurant2, resID}) => {
     });
    
     },[])
- 
+    let ratingArray = []
+    Object.values(restaurant.reviewLists).map(review => ratingArray.push(review.rating))
+    function average(a, n)
+    {
+    
+        // Find sum of array element
+        var sum = 0;
+        for (var i = 0; i < n; i++) sum += a[i];
+        return parseFloat(sum / n);
+
+    }
+    const reviews = ratingArray.length;
+    const rating = Math.round(average(ratingArray, reviews) * 10) / 10;
+    const ratingNotRound = (average(ratingArray, reviews));
+    const [currentValueRatings, setCurrentValueRatings] = useState(rating);
+    const counts = {};
+    
+    for (const num of ratingArray) {
+      counts[num] = counts[num] ? counts[num] + 1 : 1;
+    }
+    console.log(ratingNotRound)
     // const [restaurant, setRestaurantData] = useState(restaurantData[0]);
     // let restaurantData = [];
     // useEffect(() => {
@@ -201,7 +221,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
     const currentDate = moment(date).format('YYYY-MM-DD');
 
     const [data, setData] = useState({partySize:"", dateReservation:"", timeReservation:"", nameReservation:"", contactReservation:0,});
-    const {reservations, isLoading, isError, setReservations, reviewLists} = useFetchReservations();
+    // const {reservations, isLoading, isError, setReservations, reviewLists} = useFetchReservations();
     const handleAddReservation = async(e) =>{
         e.preventDefault();
         const userRef = doc(db, "users", currentUser.uid);
@@ -294,48 +314,86 @@ const RestaurantPage = ({ restaurant2, resID}) => {
     const {userData} = useFetchUserData();
 
     //new rating
-    const updateRatingsDatabase = async(r) => {
-        let ratingArrayNew = [ratingArray]
-        ratingArrayNew.push(r)
-        // Object.values(restaurant.reviewLists).map(review => ratingArray.push(review.rating))
-        function average(a, n)
-        {
+    // const updateRatingsDatabase = async(r) => {
+    //     let ratingArrayNew = [ratingArray]
+    //     ratingArrayNew.push(r)
+    //     // Object.values(restaurant.reviewLists).map(review => ratingArray.push(review.rating))
+    //     function average(a, n)
+    //     {
         
-            // Find sum of array element
-            var sum = 0;
-            for (var i = 0; i < n; i++) sum += a[i];
-            return parseFloat(sum / n);
+    //         // Find sum of array element
+    //         var sum = 0;
+    //         for (var i = 0; i < n; i++) sum += a[i];
+    //         return parseFloat(sum / n);
 
+    //     }
+    //     const reviews2 = ratingArrayNew.length;
+    //     const rating2 = Math.round(average(ratingArrayNew, reviews2) * 10) / 10;
+    //     // const newRating = (rating + currentValue) / 2
+    //     const restaurantRef = doc(db, "Restaurants", resID);   
+    //     await setDoc(
+    //         restaurantRef,
+    //         {
+    //             ratings:rating2,
+    //             reviews:reviews2
+    //         },
+    //         { merge: true }
+    //     );
+    //     console.log(rating2)
+        
+    // }
+    function removeItemOnce(arr, value) {
+        var index = arr.indexOf(value);
+        if (index > -1) {
+          arr.splice(index, 1);
         }
-        const reviews2 = ratingArrayNew.length;
-        const rating2 = Math.round(average(ratingArrayNew, reviews2) * 10) / 10;
-        // const newRating = (rating + currentValue) / 2
-        const restaurantRef = doc(db, "Restaurants", resID);   
-        await setDoc(
-            restaurantRef,
-            {
-                ratings:rating2,
-                reviews:reviews2
-            },
-            { merge: true }
-        );
-        console.log(rating2)
-        
+        return arr;
     }
-
+    
     const handleAddReview = async(e) =>{
         e.preventDefault();
         const restaurantRef = doc(db, "Restaurants", resID);  
         //ratings to database
-        const floatRating = (parseFloat(ratingNotRound + currentValue) / 2 )
-        const newRating = Math.round(floatRating * 10) / 10;
-        let ratingArray2 = []
+        let ratingArray2 = [];
         Object.values(restaurant.reviewLists).map(review => ratingArray2.push(review.rating))
-        let reviews2 = ratingArray2.length;
+        let reviews2;
+        let newRating;
         if (Object.keys(restaurant.reviewLists).includes(currentUser.uid)){
+            let newArrayIncluded = await removeItemOnce(ratingArray2, userData.reviewLists[resID].rating);
+            newArrayIncluded.push(currentValue);
             reviews2 = ratingArray2.length;
+            var sum = 0;
+            for (var i = 0; i < reviews2; i++) {sum += newArrayIncluded[i]};
+            console.log(userData.reviewLists[resID].rating)
+            const rating2 = Math.round(parseFloat(sum/reviews2) * 10) / 10;
+            // const floatRating = parseFloat((ratingNotRound + newRate) / 2 )
+            // newRating = Math.round(floatRating * 10) / 10;
+            
+            console.log(newArrayIncluded)
+            console.log("rating2"+reviews2)
+            await setDoc(
+                restaurantRef,
+                {
+                    ratings:rating2,
+                    reviews:reviews2,
+                },  
+                { merge: true }
+            );
+            console.log("included")
         }else{
             reviews2 = ratingArray2.length + 1;
+            const floatRating = parseFloat((ratingNotRound + currentValue) / 2 )
+            newRating = Math.round(floatRating * 10) / 10;
+            console.log("not")
+            await setDoc(
+                restaurantRef,
+                {
+                    ratings:newRating,
+                    reviews:reviews2,
+                },  
+                { merge: true }
+            );
+            
         }
         // console.log(parseFloat(newRating))
         await setDoc(
@@ -347,9 +405,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                      rating:currentValue, datePublished:currentDateReview, imgSrc:currentUser.photoURL, restaurantID:resID,
                     }
                 },
-                ratings:floatRating,
-                reviews:reviews2,
-            },
+            },  
             { merge: true }
         );
         
@@ -367,6 +423,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
             },
             { merge: true }
         );
+        
         setReviewData("");
         // updateRatingsDatabase(currentValue)
         setCurrentValue(0);
@@ -378,26 +435,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
     //rating average
    
         // Driver code
-    let ratingArray = []
-    Object.values(restaurant.reviewLists).map(review => ratingArray.push(review.rating))
-    function average(a, n)
-    {
     
-        // Find sum of array element
-        var sum = 0;
-        for (var i = 0; i < n; i++) sum += a[i];
-        return parseFloat(sum / n);
-
-    }
-    const reviews = ratingArray.length;
-    const rating = Math.round(average(ratingArray, reviews) * 10) / 10;
-    const ratingNotRound = average(ratingArray, reviews);
-    const [currentValueRatings, setCurrentValueRatings] = useState(rating);
-    const counts = {};
-    
-    for (const num of ratingArray) {
-      counts[num] = counts[num] ? counts[num] + 1 : 1;
-    }
 
     //submit rating to dish
     const handleSubmit = async(dish, dishIDArray, dishRating) =>{
@@ -491,7 +529,7 @@ const RestaurantPage = ({ restaurant2, resID}) => {
                                         <FaStar
                                             key={index + 1}
                                             size={15}
-                                            color={(rating) > index + 1 ? "#FF9F1C" : "#707070"}
+                                            color={(rating) >= index + 1 ? "#FF9F1C" : "#707070"}
                                             style={{
                                                 marginRight: 10,
                                             }}

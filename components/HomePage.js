@@ -167,6 +167,11 @@ const HomePage = ({ dishesList, restaurantsList }) => {
         }
         fetchData();
     }, []);
+
+
+    //terms and condition
+    const [toggleModal, setToggleModal] = useState(false);
+    
     return (
         <>
             {/* {console.log(restaurantsList)} */}
@@ -361,7 +366,7 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                                         </div>
                                         <div className="flex flex-row items-center justify-center pb-2 gap-2">
                                             <input type="checkbox" className="appearance-none cursor-pointer" required/>
-                                            <p className="leading-tight cursor-pointer">I agreee with the Terms and Condition & Privacy Policies of the website</p>
+                                            <p className="leading-tight cursor-pointer">I agreee with the <b onClick={() => setToggleModal(!toggleModal)}>Terms of Agreement</b> of the website</p>
                                         </div>
                                         <button type="submit" value="submit" className="w-full select-none cursor-pointer
                                         rounded-lg bg-orange-peel px-5 py-2.5 text-center text-sm font-medium 
@@ -377,6 +382,51 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                     </div>
                 </div>
             </div>
+            <div
+                className={`modal-add ${
+                    toggleModal
+                        ? "visible opacity-100 translate-y-20"
+                        : "invisible opacity-0 -translate-y-28"
+                }  overflow-y-auto h-[80vh] ease-in-out duration-300 z-10 w-4/5 lg:w-2/5 bg-white dark:bg-base-100 rounded-lg fixed top-0 left-0 right-0 mx-auto`}
+            >
+                <div className="p-2">
+                    <div className="sticky top-0 bg-white dark:bg-base-100">
+                        <p
+                            onClick={() => setToggleModal(false) }
+                            className=" text-right cursor-pointer font-semibold"
+                        >
+                            Close
+                        </p>
+                        <h1 className="text-lg text-center font-medium text-gray-700 dark:text-white">
+                                Terms of Agreement
+                        </h1>
+                    </div>
+                    {/* <h1 className="px-3 py-2 text-lg font-semibold">Add New Dish</h1> */}
+                    <div className="">
+                        <div className="flex flex-col px-3">
+                            
+                            <p className="text-justify">
+                                By submitting your restaurant information to be included on our website, you agree to the following terms and conditions:
+                                <br />
+                                1. You confirm that you are the owner or authorized representative of the restaurant being submitted.
+                                <br />
+                                2. You grant us permission to display the information you provide, including the restaurant name, address, phone number, and menu, on our website for the purpose of promoting your restaurant.
+                                <br />
+                                3. You acknowledge that we are not responsible for the accuracy or completeness of the information you provide. It is your responsibility to keep your restaurant information up to date.
+                                <br />
+                                4. You understand that we reserve the right to remove any restaurant from our website at any time for any reason.
+                                <br />
+                                5. You agree to indemnify and hold us and our affiliates, officers, directors, agents, and employees harmless from any claim or demand, including reasonable attorneys' fees, made by any third party due to or arising out of your restaurant's inclusion on our website.
+                                <br />
+                                6. These terms of agreement shall be governed by and construed in accordance with the laws of the Republic of the Philippines, without giving effect to any principles of conflicts of law. You agree that any action at law or in equity arising out of or relating to these terms of agreement shall be filed only in the state or federal courts located in [state] and you hereby consent and submit to the personal jurisdiction of such courts for the purposes of litigating any such action.
+                                <br />  
+                                7. If any provision of these terms of agreement shall be deemed unlawful, void, or for any reason unenforceable, then that provision shall be deemed severable from these terms of agreement and shall not affect the validity and enforceability of any remaining provisions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
         </>
     );
 };
