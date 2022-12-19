@@ -1,4 +1,4 @@
-import { deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { arrayUnion, deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import { RiAdminFill } from "react-icons/ri";
 import MenuTableList from "../components/MenuTableList";
@@ -379,49 +379,61 @@ const Ownerpage = () => {
             newImage["id"] = Math.random();
             setGalleryImages((prevState => [...prevState, newImage]));
         }
+        console.log(galleryImages)
       }
     //   console.log(galleryImages)
     //   console.log(galleryUrls)
 
       const uploadGallery = () => {
         try {
-            // if(galleryImages == null)
-        //     return;
+            if(galleryImages == null)
+            return;
         // let urls = [1];
-        galleryImages.map((image) => {
-            const imageref = ref(storage, `/restaurants/${userData.restaurantOwnerID}/Gallery/${image.name + v4()}`);
-            // promises.push(imageref);
-           
-                 uploadBytes(imageref, image).then((snapshot) => {
-                    getDownloadURL(snapshot.ref).then((url) => {
-                        setGalleryUrls((prevState) => [...prevState, url]);
+            galleryImages.map((image) => {
+                const imageref = ref(storage, `/restaurants/${userData.restaurantOwnerID}/Gallery/${image.name + v4()}`);
+                // promises.push(imageref);
+                uploadBytes(imageref, image).then(async() => {
+                    const downloadURL = await getDownloadURL(imageref)
+                    await setDoc(doc(db, "Restaurants", userData.restaurantOwnerID),{
+                        galleryImages:arrayUnion(downloadURL)
+                    },{merge:true})
+                })
+            })
+            //     //  uploadBytes(imageref, image).then(async(snapshot) => {
+            //     //     getDownloadURL(snapshot.ref).then((url) => {
+            //     //         setGalleryUrls((prevState) => [...prevState, url]);
                         
-                    })
-            });
-            console.log(galleryUrls)
-        })
-        // setGalleryUrls(urls)
-        // Promise.all(promises)
-        // .then(() => alert("All images uploaded"))
-        // .catch((err) => console.log(err));
+            //     //     })
+            // });
+            setGalleryImages([])
+           
         }catch(err){
-            console.log(err);
-        }finally{
-            uploadGalleryImgUrl(galleryUrls)
-        }
-       
+            console.log(err)
+        };
+        // // setGalleryUrls(urls)
+        // // Promise.all(promises)
+        // // .then(() => alert("All images uploaded"))
+        // // .catch((err) => console.log(err));
+        // }catch(err){
+        //     console.log(err);
+        // }finally{
+        //     uploadGalleryImgUrl(galleryUrls)
+        // }
       }
-      const uploadGalleryImgUrl = async(urls) => {
-        const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
+    //   const uploadGalleryImgUrl = async(urls) => {
+    //     const restaurantRef = doc(db, "Restaurants", userData.restaurantOwnerID);
         
-        await setDoc(
-            restaurantRef,
-            {
-                galleryImages: [...urls], test:"s"
-            },
-            { merge: true }
-        );
-      }
+    //     await setDoc(
+    //         restaurantRef,
+    //         {
+    //             galleryImages: [...urls], test:"s"
+    //         },
+    //         { merge: true }
+    //     );
+    //   } 
+    // await Promise.all(
+    //     alert("dasda")
+    // )
     return (
         <>
             {currentUser && ownerStatus ? 

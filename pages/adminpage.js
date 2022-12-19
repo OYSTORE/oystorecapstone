@@ -377,7 +377,7 @@ const Adminpage = () => {
                                     <div className="h-[28rem] overflow-auto rounded-lg shadow-md my-8 ">
                                         <table className="w-full h-full overflow-scroll " border="1">
                                             <thead className="bg-gray-50 border-b-3 border-gray-200">
-                                                <tr className="dark:bg-slate-800 text-white">
+                                                <tr className="dark:bg-slate-800 dark:text-white">
                                                     <th className="p-3 text-sm font-semibold tracking-wide text-left ">
                                                         No.
                                                     </th>
@@ -407,7 +407,7 @@ const Adminpage = () => {
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <tbody className="dark:bg-slate-800 text-white">
+                                            <tbody className="dark:bg-slate-800 dark:text-white">
                                                 {restaurantList.map(
                                                     (restaurant, index) => (
                                                         <AdminRestaurantList
@@ -446,7 +446,7 @@ const Adminpage = () => {
                                     <div className="overflow-auto rounded-lg shadow-md my-8">
                                         <table className="w-full" border="1">
                                             <thead className="bg-gray-50 border-b-3 border-gray-200 ">
-                                                <tr className="dark:bg-slate-800 text-white">
+                                                <tr className="dark:bg-slate-800 dark:text-white">
                                                     <th className="p-3 text-sm font-semibold tracking-wide text-left ">
                                                         No.
                                                     </th>
@@ -467,7 +467,7 @@ const Adminpage = () => {
                                                     </th> */}
                                                 </tr>
                                             </thead>
-                                            <tbody className="dark:bg-slate-800 text-white">
+                                            <tbody className="dark:bg-slate-800 dark:text-white">
                                                 {userList.map(
                                                     (user, index) => (
                                                         <AdminUserList
@@ -502,7 +502,7 @@ const Adminpage = () => {
                                     <div className="h-[70vh] overflow-auto rounded-lg shadow-md my-8">
                                         <table className="w-full overflow-scroll" border="1">
                                             <thead className="bg-gray-50 border-b-3 border-gray-200">
-                                                <tr className="dark:bg-slate-800 text-white">
+                                                <tr className="dark:bg-slate-800 dark:text-white">
                                                     <th className="p-3 text-sm font-semibold tracking-wide text-left ">
                                                         No.
                                                     </th>
@@ -531,12 +531,12 @@ const Adminpage = () => {
                                                     {/* <th className="p-3 text-sm font-semibold tracking-wide text-left ">
                                                         Dashboard
                                                     </th> */}
-                                                    <th className="p-3 text-sm font-semibold tracking-wide text-left ">
+                                                    {/* <th className="p-3 text-sm font-semibold tracking-wide text-left ">
                                                         
-                                                    </th>
+                                                    </th> */}
                                                 </tr>
                                             </thead>
-                                            <tbody className="dark:bg-slate-800 text-white">
+                                            <tbody className="dark:bg-slate-800 dark:text-white">
                                                 {Object.values(requests).map(
                                                     (request, index) => (
                                                         <AdminRequestList

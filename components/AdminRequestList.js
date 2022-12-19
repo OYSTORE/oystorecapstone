@@ -12,7 +12,7 @@ const AdminRequestList = ({request, requestKey, handleDelete}) => {
             <td className="p-3 text-sm font-semibold tracking-normal">{request.contactNumber}</td>
             <td className="p-3 text-sm font-semibold tracking-normal">{request.requesterUserID}</td>
             
-            <td className="p-3 text-sm font-semibold tracking-normal relative flex flex-row justify-center items-center">
+            {/* <td className="p-3 text-sm font-semibold tracking-normal relative flex flex-row justify-center items-center">
                 <div className="dropdown dropdown-left">
                         <label
                             tabIndex={0}
@@ -24,18 +24,18 @@ const AdminRequestList = ({request, requestKey, handleDelete}) => {
                             tabIndex={0}
                             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box "
                         >
-                            {/* <li>
+                            <li>
                                 <a>
                                     Update
                                 </a>
-                            </li> */}
+                            </li>
                             <li>
                                 <a onClick={() => handleDelete(request.requestKey)}>Delete</a>
                             </li>
                            
                         </ul>
                 </div>
-            </td>
+            </td> */}
         </tr>
     );
 };
