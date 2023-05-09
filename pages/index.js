@@ -60,20 +60,20 @@ export async function getServerSideProps(context) {
 
 export default function Home({ dishesList, restaurantsList }) {
     const { currentUser } = useAuth();
-    useEffect(() => {
-        if (!currentUser) {
-          Router.push("/auth/login");
-        } else {
-          // console.log("login");
-        }
-      }, [currentUser]);
-      useEffect(() => {
+    // useEffect(() => {
+    //     if (!currentUser) {
+    //       Router.push("/auth/login");
+    //     } else {
+    //       // console.log("login");
+    //     }
+    //   }, [currentUser]);
+    //   useEffect(() => {
         
-      }, [currentUser])
+    //   }, [currentUser])
     return (
         <>
             {/* {!currentUser && <Login />} */}
-            {currentUser && (<>
+            <>
                 <Navbar2 />
                 <HomePage
                     dishesList={dishesList}
@@ -81,7 +81,7 @@ export default function Home({ dishesList, restaurantsList }) {
                 />
                 <Footer />
                 </>
-            )}
+            
             {/* {console.log(restaurantsList.map(res =>({id: res.id})))} */}
             
         </>

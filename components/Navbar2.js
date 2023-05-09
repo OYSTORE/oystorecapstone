@@ -66,7 +66,8 @@ const Navbar2 = () => {
     const handleRedirect = (e) => {
         e.preventDefault();
         logout();
-        Router.push("/auth/login");
+        window.location = "/";
+        // Router.push("/auth/login");
     };
     const { currentUser } = useAuth();
     const { ownerStatus, adminStatus } = useFetchUserType();
@@ -89,335 +90,579 @@ const Navbar2 = () => {
 
    
     return (
+       <>{currentUser && ( 
         <>
-            <div
-                className={`bg-white dark:bg-base-100 h-full w-[60] fixed top-0 left-0 z-40 flex flex-col
-          ${
-              isOpen ? "translate-x-0" : "-translate-x-full"
-          } ease-in-out duration-300`}
-            >
-                <div className="flex flex-row justify-start items-center gap-3 px-6 py-[0.64rem] border-b">
-                    <AiOutlineMenu
-                        className="cursor-pointer dark:text-white"
-                        size="1.8em"
-                        onClick={() => setOpen(!isOpen)}
-                    />
-                    <Link href="/">
-                        <>
-                            {/* <Image
-                                className="cursor-pointer dark:hidden"
-                                src="/assets/logo-oystore-light.png"
-                                width="180"
-                                height="46"
-                                layout="fixed"
-                                alt="logo"
-                                priority
-                                referrerPolicy="no-referrer" 
-                            /> */}
-                            <picture>
-                                <source
-                                 className="cursor-pointer"
-                                srcSet="/assets/logo-oystore-dark.png"
-                                media="(prefers-color-scheme: dark)"
-                                />
-                                <img
-                                src='/assets/logo-oystore-light.png'
-                                width='180'
-                                height='46'
-                                alt='Logo'
-                                />
-                            </picture>
-                        </>
-                    </Link>
-                    
-                </div>
-                <div className="mt-2">
-                    <ul>
-                        <Link href="/">
-                            <li
-                                onClick={() => setOpen(false)}
-                                className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
-                            >
-                                <AiFillHome
-                                    size="1.8em"
-                                    className="text-gray-700 dark:text-white group-hover:text-white"
-                                />
-                                <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
-                                    Home
-                                </h3>
-                            </li>
-                        </Link>
-                        <Link href="/disheslist">
-                            <li
-                                onClick={() => setOpen(false)}
-                                className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
-                            >
-                                <GiChickenOven
-                                    size="1.8em"
-                                    className="text-gray-700 dark:text-white group-hover:text-white"
-                                />
-                                <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
-                                    Dishes
-                                </h3>
-                            </li>
-                        </Link>
-                        <Link href="/restaurantlist">
-                            <li
-                                onClick={() => setOpen(false)}
-                                className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
-                            >
-                                <MdOutlineRestaurant
-                                    size="1.8em"
-                                    className="text-gray-700 dark:text-white group-hover:text-white"
-                                />
-                                <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
-                                    Restaurants
-                                </h3>
-                            </li>
-                        </Link>
-                        <Link href="/bookmarks">
-                            <li
-                                onClick={() => setOpen(false)}
-                                className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
-                            >
-                                <MdBookmarks
-                                    size="1.8em"
-                                    className="text-gray-700 dark:text-white group-hover:text-white"
-                                />
-                                <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
-                                    Bookmarks
-                                </h3>
-                            </li>
-                        </Link>
-                        <Link href="/reservations">
-                            <li
-                                onClick={() => setOpen(false)}
-                                className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
-                            >
-                                <FaCalendarCheck
-                                    size="1.8em"
-                                    className="text-gray-700 dark:text-white  group-hover:text-white"
-                                />
-                                <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
-                                    Reservations
-                                </h3>
-                            </li>
-                        </Link>
-                        {ownerStatus && (
-                            <Link href="/ownerpage">
-                                <li
-                                    onClick={() => setOpen(false)}
-                                    className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
-                                >
-                                    <RiAdminFill
-                                        size="1.8em"
-                                        className="text-gray-700 dark:text-white group-hover:text-white"
-                                    />
-                                    <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
-                                        Owner&apos;s Dashboard
-                                    </h3>
-                                </li>
-                            </Link>
-                        )}
-                        {adminStatus && (
-                            <Link href="/adminpage">
-                                <li
-                                    onClick={() => setOpen(false)}
-                                    className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
-                                >
-                                    <RiAdminFill
-                                        size="1.8em"
-                                        className="text-gray-700 dark:text-white group-hover:text-white"
-                                    />
-                                    <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
-                                        Admin Dashboard
-                                    </h3>
-                                </li>
-                            </Link>
-                        )}
-                        {/* <Link href="/">
-                            <li
-                                onClick={() => setOpen(false)}
-                                className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
-                            >
-                                <AiFillSetting
-                                    size="1.8em"
-                                    className="text-gray-700 group-hover:text-white"
-                                />
-                                <h3 className=" text-gray-700 text-base font-medium   group-hover:text-white">
-                                    Settings
-                                </h3>
-                            </li>
-                        </Link> */}
-                    </ul>
-                </div>
-            </div>
-
-            <div
-                className={`${
-                    isOpen ? "opacity-70 visible" : "invisible opacity-20"
-                }  ease-in-out top-0 left-0 bg-black h-full fixed w-full z-30 duration-300 transition-opacity`}
-                onClick={() => setOpen(!isOpen)}
-            ></div>
-
-            <div className="navbar bg-base-100 shadow-sm sticky top-0 z-20">
-                <div className="navbar-start">
-                    <AiOutlineMenu
-                        className="cursor-pointer ml-4 dark:text-white"
-                        tabIndex={0}
-                        size="1.8em"
-                        onClick={() => setOpen(!isOpen)}
-                    />
-                    {/* <div className="dropdown">
-                <label onClick = {() => setOpen(!isOpen)} tabIndex={0} className="btn btn-ghost btn-circle">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
-                  </label>
-                
-                <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                  <li><Link href="/"><a>Homepage</a></Link></li>
-                  <li><a>About</a></li>
-                  <li><a>Discover</a></li>
-                  <li><a>Owner's Page</a></li>
-                  <li><a>Reservations</a></li>
-                </ul>
-                
-              </div>
-              */}
-                </div>
+        <div
+            className={`bg-white dark:bg-base-100 h-full w-[60] fixed top-0 left-0 z-40 flex flex-col
+      ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+      } ease-in-out duration-300`}
+        >
+            <div className="flex flex-row justify-start items-center gap-3 px-6 py-[0.64rem] border-b">
+                <AiOutlineMenu
+                    className="cursor-pointer dark:text-white"
+                    size="1.8em"
+                    onClick={() => setOpen(!isOpen)}
+                />
                 <Link href="/">
-                    <div className="navbar-center cursor-pointer">
+                    <>
                         {/* <Image
+                            className="cursor-pointer dark:hidden"
                             src="/assets/logo-oystore-light.png"
                             width="180"
                             height="46"
                             layout="fixed"
                             alt="logo"
                             priority
+                            referrerPolicy="no-referrer" 
                         /> */}
                         <picture>
-                                <source
-                                 className="cursor-pointer"
-                                srcSet="/assets/logo-oystore-dark.png"
-                                media="(prefers-color-scheme: dark)"
-                                />
-                                <img
-                                src='/assets/logo-oystore-light.png'
-                                width='180'
-                                height='46'
-                                alt='Logo'
-                                />
-                        </picture>
-                    </div>
-                </Link>
-                <div className="navbar-end">
-                    {/* <button className="btn btn-ghost btn-circle">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            <source
+                             className="cursor-pointer"
+                            srcSet="/assets/logo-oystore-dark.png"
+                            media="(prefers-color-scheme: dark)"
                             />
-                        </svg>
-                    </button>
-                    <button className="btn btn-ghost btn-circle">
-                <div className="indicator">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-                  <span className="badge badge-xs badge-primary indicator-item"></span>
+                            <img
+                            src='/assets/logo-oystore-light.png'
+                            width='180'
+                            height='46'
+                            alt='Logo'
+                            />
+                        </picture>
+                    </>
+                </Link>
+                
+            </div>
+            <div className="mt-2">
+                <ul>
+                    <Link href="/">
+                        <li
+                            onClick={() => setOpen(false)}
+                            className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
+                        >
+                            <AiFillHome
+                                size="1.8em"
+                                className="text-gray-700 dark:text-white group-hover:text-white"
+                            />
+                            <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
+                                Home
+                            </h3>
+                        </li>
+                    </Link>
+                    <Link href="/disheslist">
+                        <li
+                            onClick={() => setOpen(false)}
+                            className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
+                        >
+                            <GiChickenOven
+                                size="1.8em"
+                                className="text-gray-700 dark:text-white group-hover:text-white"
+                            />
+                            <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
+                                Dishes
+                            </h3>
+                        </li>
+                    </Link>
+                    <Link href="/restaurantlist">
+                        <li
+                            onClick={() => setOpen(false)}
+                            className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
+                        >
+                            <MdOutlineRestaurant
+                                size="1.8em"
+                                className="text-gray-700 dark:text-white group-hover:text-white"
+                            />
+                            <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
+                                Restaurants
+                            </h3>
+                        </li>
+                    </Link>
+                    <Link href="/bookmarks">
+                        <li
+                            onClick={() => setOpen(false)}
+                            className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
+                        >
+                            <MdBookmarks
+                                size="1.8em"
+                                className="text-gray-700 dark:text-white group-hover:text-white"
+                            />
+                            <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
+                                Bookmarks
+                            </h3>
+                        </li>
+                    </Link>
+                    <Link href="/reservations">
+                        <li
+                            onClick={() => setOpen(false)}
+                            className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
+                        >
+                            <FaCalendarCheck
+                                size="1.8em"
+                                className="text-gray-700 dark:text-white  group-hover:text-white"
+                            />
+                            <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
+                                Reservations
+                            </h3>
+                        </li>
+                    </Link>
+                    {ownerStatus && (
+                        <Link href="/ownerpage">
+                            <li
+                                onClick={() => setOpen(false)}
+                                className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
+                            >
+                                <RiAdminFill
+                                    size="1.8em"
+                                    className="text-gray-700 dark:text-white group-hover:text-white"
+                                />
+                                <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
+                                    Owner&apos;s Dashboard
+                                </h3>
+                            </li>
+                        </Link>
+                    )}
+                    {adminStatus && (
+                        <Link href="/adminpage">
+                            <li
+                                onClick={() => setOpen(false)}
+                                className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
+                            >
+                                <RiAdminFill
+                                    size="1.8em"
+                                    className="text-gray-700 dark:text-white group-hover:text-white"
+                                />
+                                <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
+                                    Admin Dashboard
+                                </h3>
+                            </li>
+                        </Link>
+                    )}
+                    {/* <Link href="/">
+                        <li
+                            onClick={() => setOpen(false)}
+                            className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
+                        >
+                            <AiFillSetting
+                                size="1.8em"
+                                className="text-gray-700 group-hover:text-white"
+                            />
+                            <h3 className=" text-gray-700 text-base font-medium   group-hover:text-white">
+                                Settings
+                            </h3>
+                        </li>
+                    </Link> */}
+                </ul>
+            </div>
+        </div>
+
+        <div
+            className={`${
+                isOpen ? "opacity-70 visible" : "invisible opacity-20"
+            }  ease-in-out top-0 left-0 bg-black h-full fixed w-full z-30 duration-300 transition-opacity`}
+            onClick={() => setOpen(!isOpen)}
+        ></div>
+
+        <div className="navbar bg-base-100 shadow-sm sticky top-0 z-20">
+            <div className="navbar-start">
+                <AiOutlineMenu
+                    className="cursor-pointer ml-4 dark:text-white"
+                    tabIndex={0}
+                    size="1.8em"
+                    onClick={() => setOpen(!isOpen)}
+                />
+                {/* <div className="dropdown">
+            <label onClick = {() => setOpen(!isOpen)} tabIndex={0} className="btn btn-ghost btn-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+              </label>
+            
+            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+              <li><Link href="/"><a>Homepage</a></Link></li>
+              <li><a>About</a></li>
+              <li><a>Discover</a></li>
+              <li><a>Owner's Page</a></li>
+              <li><a>Reservations</a></li>
+            </ul>
+            
+          </div>
+          */}
+            </div>
+            <Link href="/">
+                <div className="navbar-center cursor-pointer">
+                    {/* <Image
+                        src="/assets/logo-oystore-light.png"
+                        width="180"
+                        height="46"
+                        layout="fixed"
+                        alt="logo"
+                        priority
+                    /> */}
+                    <picture>
+                            <source
+                             className="cursor-pointer"
+                            srcSet="/assets/logo-oystore-dark.png"
+                            media="(prefers-color-scheme: dark)"
+                            />
+                            <img
+                            src='/assets/logo-oystore-light.png'
+                            width='180'
+                            height='46'
+                            alt='Logo'
+                            />
+                    </picture>
                 </div>
-                    </button> */}
-                    <div className="flex-none">
-                        {/* <div className="dropdown dropdown-end">
+            </Link>
+            <div className="navbar-end">
+                {/* <button className="btn btn-ghost btn-circle">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                    </svg>
+                </button>
+                <button className="btn btn-ghost btn-circle">
+            <div className="indicator">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+              <span className="badge badge-xs badge-primary indicator-item"></span>
+            </div>
+                </button> */}
+                <div className="flex-none">
+                    {/* <div className="dropdown dropdown-end">
+                    <label
+                        tabIndex={0}
+                        className="btn btn-ghost btn-circle"
+                    >
+                        <div className="indicator">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-5 w-5"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                                />
+                            </svg>
+                            <span className="badge badge-sm indicator-item">
+                                {Object.keys(carts).length}
+                            </span>
+                        </div>
+                    </label>
+                    <div
+                        tabIndex={0}
+                        className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+                    >
+                        <div className="card-body">
+                            <span className="font-bold text-lg">
+                                {Object.keys(carts).length} Items
+                            </span>
+                            <span className="text-info">Subtotal: Php {subTotalCart}</span>
+                            <div className="card-actions">
+                                <Link href="/cartPage">
+                                    <button className="btn btn-primary btn-block">
+                                        View cart
+                                    </button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
+                    <div className="dropdown dropdown-end">
                         <label
                             tabIndex={0}
-                            className="btn btn-ghost btn-circle"
+                            className="btn btn-ghost btn-circle avatar"
                         >
-                            <div className="indicator">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                                    />
-                                </svg>
-                                <span className="badge badge-sm indicator-item">
-                                    {Object.keys(carts).length}
-                                </span>
+                            <div className="w-10 rounded-full">
+                                <img
+                                    
+                                    src={
+                                        currentUser.photoURL
+                                            ? currentUser.photoURL
+                                            : "/assets/dishpic/NoSrc.jpg"
+                                    }
+                                    alt="Profile"
+                                    // 
+                                />
+                                {/* <img src="/assets/dishpic/NoSrc.jpg" alt="Profile"/> */}
                             </div>
                         </label>
-                        <div
+                        <ul
                             tabIndex={0}
-                            className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+                            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-40"
                         >
-                            <div className="card-body">
-                                <span className="font-bold text-lg">
-                                    {Object.keys(carts).length} Items
-                                </span>
-                                <span className="text-info">Subtotal: Php {subTotalCart}</span>
-                                <div className="card-actions">
-                                    <Link href="/cartPage">
-                                        <button className="btn btn-primary btn-block">
-                                            View cart
-                                        </button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
-                        <div className="dropdown dropdown-end">
-                            <label
-                                tabIndex={0}
-                                className="btn btn-ghost btn-circle avatar"
-                            >
-                                <div className="w-10 rounded-full">
-                                    <img
-                                        
-                                        src={
-                                            currentUser.photoURL
-                                                ? currentUser.photoURL
-                                                : "/assets/dishpic/NoSrc.jpg"
-                                        }
-                                        alt="Profile"
-                                        // 
-                                    />
-                                    {/* <img src="/assets/dishpic/NoSrc.jpg" alt="Profile"/> */}
-                                </div>
-                            </label>
-                            <ul
-                                tabIndex={0}
-                                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-40"
-                            >
-                                {/* <li>
-                                    <a className="justify-between">
-                                        Profile
-                                        <span className="badge">New</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>Settings</a>
-                                </li> */}
-                                <li onClick={handleRedirect}>
-                                    <a className="dark:text-white dark:hover:bg-blue-600">Sign out</a>
-                                </li>
-                            </ul>
-                        </div>
+                            {/* <li>
+                                <a className="justify-between">
+                                    Profile
+                                    <span className="badge">New</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a>Settings</a>
+                            </li> */}
+                            <li onClick={handleRedirect}>
+                                <a className="dark:text-white dark:hover:bg-blue-600">Sign out</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </>
+        </div>
+    </>)}
+    {!currentUser && ( <>
+        <div
+            className={`bg-white dark:bg-base-100 h-full w-[60] fixed top-0 left-0 z-40 flex flex-col
+      ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+      } ease-in-out duration-300`}
+        >
+            <div className="flex flex-row justify-start items-center gap-3 px-6 py-[0.64rem] border-b">
+                <AiOutlineMenu
+                    className="cursor-pointer dark:text-white"
+                    size="1.8em"
+                    onClick={() => setOpen(!isOpen)}
+                />
+                <Link href="/">
+                    <>
+                        {/* <Image
+                            className="cursor-pointer dark:hidden"
+                            src="/assets/logo-oystore-light.png"
+                            width="180"
+                            height="46"
+                            layout="fixed"
+                            alt="logo"
+                            priority
+                            referrerPolicy="no-referrer" 
+                        /> */}
+                        <picture>
+                            <source
+                             className="cursor-pointer"
+                            srcSet="/assets/logo-oystore-dark.png"
+                            media="(prefers-color-scheme: dark)"
+                            />
+                            <img
+                            src='/assets/logo-oystore-light.png'
+                            width='180'
+                            height='46'
+                            alt='Logo'
+                            />
+                        </picture>
+                    </>
+                </Link>
+                
+            </div>
+            <div className="mt-2">
+                <ul>
+                    <Link href="/">
+                        <li
+                            onClick={() => setOpen(false)}
+                            className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
+                        >
+                            <AiFillHome
+                                size="1.8em"
+                                className="text-gray-700 dark:text-white group-hover:text-white"
+                            />
+                            <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
+                                Home
+                            </h3>
+                        </li>
+                    </Link>
+                    <Link href="/disheslist">
+                        <li
+                            onClick={() => setOpen(false)}
+                            className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
+                        >
+                            <GiChickenOven
+                                size="1.8em"
+                                className="text-gray-700 dark:text-white group-hover:text-white"
+                            />
+                            <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
+                                Dishes
+                            </h3>
+                        </li>
+                    </Link>
+                    <Link href="/restaurantlist">
+                        <li
+                            onClick={() => setOpen(false)}
+                            className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
+                        >
+                            <MdOutlineRestaurant
+                                size="1.8em"
+                                className="text-gray-700 dark:text-white group-hover:text-white"
+                            />
+                            <h3 className=" text-gray-700 dark:text-white text-base font-medium   group-hover:text-white">
+                                Restaurants
+                            </h3>
+                        </li>
+                    </Link>
+                    
+                    {/* <Link href="/">
+                        <li
+                            onClick={() => setOpen(false)}
+                            className="group border-box px-6 py-3 flex flex-row items-center gap-5 hover:bg-orange-peel cursor-pointer"
+                        >
+                            <AiFillSetting
+                                size="1.8em"
+                                className="text-gray-700 group-hover:text-white"
+                            />
+                            <h3 className=" text-gray-700 text-base font-medium   group-hover:text-white">
+                                Settings
+                            </h3>
+                        </li>
+                    </Link> */}
+                </ul>
+            </div>
+        </div>
+
+        <div
+            className={`${
+                isOpen ? "opacity-70 visible" : "invisible opacity-20"
+            }  ease-in-out top-0 left-0 bg-black h-full fixed w-full z-30 duration-300 transition-opacity`}
+            onClick={() => setOpen(!isOpen)}
+        ></div>
+
+        <div className="navbar bg-base-100 shadow-sm sticky top-0 z-20">
+            <div className="navbar-start">
+                <AiOutlineMenu
+                    className="cursor-pointer ml-4 dark:text-white"
+                    tabIndex={0}
+                    size="1.8em"
+                    onClick={() => setOpen(!isOpen)}
+                />
+                {/* <div className="dropdown">
+            <label onClick = {() => setOpen(!isOpen)} tabIndex={0} className="btn btn-ghost btn-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+              </label>
+            
+            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+              <li><Link href="/"><a>Homepage</a></Link></li>
+              <li><a>About</a></li>
+              <li><a>Discover</a></li>
+              <li><a>Owner's Page</a></li>
+              <li><a>Reservations</a></li>
+            </ul>
+            
+          </div>
+          */}
+            </div>
+            <Link href="/">
+                <div className="navbar-center cursor-pointer">
+                    {/* <Image
+                        src="/assets/logo-oystore-light.png"
+                        width="180"
+                        height="46"
+                        layout="fixed"
+                        alt="logo"
+                        priority
+                    /> */}
+                    <picture>
+                            <source
+                             className="cursor-pointer"
+                            srcSet="/assets/logo-oystore-dark.png"
+                            media="(prefers-color-scheme: dark)"
+                            />
+                            <img
+                            src='/assets/logo-oystore-light.png'
+                            width='180'
+                            height='46'
+                            alt='Logo'
+                            />
+                    </picture>
+                </div>
+            </Link>
+            <div className="navbar-end">
+                {/* <button className="btn btn-ghost btn-circle">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                    </svg>
+                </button>
+                <button className="btn btn-ghost btn-circle">
+            <div className="indicator">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+              <span className="badge badge-xs badge-primary indicator-item"></span>
+            </div>
+                </button> */}
+                <div className="flex-none">
+                    {/* <div className="dropdown dropdown-end">
+                    <label
+                        tabIndex={0}
+                        className="btn btn-ghost btn-circle"
+                    >
+                        <div className="indicator">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-5 w-5"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                                />
+                            </svg>
+                            <span className="badge badge-sm indicator-item">
+                                {Object.keys(carts).length}
+                            </span>
+                        </div>
+                    </label>
+                    <div
+                        tabIndex={0}
+                        className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+                    >
+                        <div className="card-body">
+                            <span className="font-bold text-lg">
+                                {Object.keys(carts).length} Items
+                            </span>
+                            <span className="text-info">Subtotal: Php {subTotalCart}</span>
+                            <div className="card-actions">
+                                <Link href="/cartPage">
+                                    <button className="btn btn-primary btn-block">
+                                        View cart
+                                    </button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
+                    <div className="dropdown dropdown-end">
+                    <Link href={"/auth/login"}>
+                        <button className="select-none cursor-pointer pointer rounded-lg bg-orange-peel px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#fa812f]
+                        focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 
+                                dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Sign In
+                        </button>
+                    </Link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </>)}
+    </>
     );
 };
 
