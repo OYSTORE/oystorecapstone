@@ -224,8 +224,7 @@ const Restaurantlist = ({ restaurantList }) => {
         
         <>
             
-            {currentUser ? 
-           (<> <Navbar2 />
+            <Navbar2 />
             <div className="flex flex-row-reverse">
                 <div className="w-full min-h-screen">
                     <div className="dark:bg-base-100 flex flex-wrap justify-center items-center sm:justify-between after:px-2 sticky top-16 z-10 bg-white">
@@ -321,8 +320,7 @@ const Restaurantlist = ({ restaurantList }) => {
                     </div>
                 </div>
                
-            </div><Footer /></>)
-            : ""}
+            </div><Footer />
             
         </>
     );
