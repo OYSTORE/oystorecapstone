@@ -33,8 +33,8 @@ const RestaurantCard = ({ restaurant , currentuser}) => {
             > */}
 
             {/*<div className="w-[200px] h-[200px] bg-fixed" style={dishbg} >daoishdoashodhao</div>*/}
-            <Link href={"restaurants/" + restaurant.restaurantID}>
-            <div className="relative w-full h-40 rounded-t-xl cursor-pointer">
+            
+            <div className="relative w-full h-40 rounded-t-xl">
                 <Image
                     // src={"https://firebasestorage.googleapis.com/v0/b/capstone-ad877.appspot.com/o/restaurants%2FAlcedo.JPG?alt=media&token=83ceb168-fb32-4f26-a002-8e6d2e564e53"}
                     src={restaurant.src || "/assets/dishpic/NoSrc.jpg"}
@@ -46,13 +46,13 @@ const RestaurantCard = ({ restaurant , currentuser}) => {
                     className="rounded-t-xl"
                 />
             </div>
-            </Link>
+           
             <div className="px-3 py-3 drop-shadow h-40">
-                <a href="#">
+               
                     <h5 className="leading-tight text-sm font-semibold tracking-tight">
                         {restaurant.name}
                     </h5>
-                </a>
+                
                 <div className="mt-0 mb-1 flex items-center">
                     <div className="flex flex-row justify-end items-center py-3">
                            
