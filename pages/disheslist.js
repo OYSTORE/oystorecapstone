@@ -71,11 +71,7 @@ export async function getServerSideProps(context) {
     }
 }
 const Disheslist = ({ dishesList }) => {
-    useEffect(() => {
-        !currentUser ? Router.push("/") : ""
-
-        //const sortByTopRatings = [...dishList];
-    }, [currentUser])
+    
     // const dishTransform = [];
     const [dishList, setDishList] = useState(dishesList)
 

@@ -214,6 +214,7 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                                                   "-" +
                                                   dish[1].served_by
                                               }
+                                              currentuser={currentUser}
                                               carts={carts}
                                           />
                                       ))
