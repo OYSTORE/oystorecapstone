@@ -421,6 +421,7 @@ const Disheslist = ({ dishesList }) => {
                                             dishListings.served_by
                                         }
                                         carts={carts}
+                                        currentuser={currentUser}
                                     />
                                 )
                             )}

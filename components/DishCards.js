@@ -69,14 +69,14 @@ function DishCards({
                 />
             </div>
             <div className="flex flex-row flex-wrap px-4 py-2 drop-shadow">
-                <a href="#">
+                <a className="cursor-pointer">
                     <h5 className="leading-tight text-sm font-semibold tracking-tight">
                         {dish.name}
                     </h5>
                     {/* <h6 className="text-xs">{isBookmarked.toString()}</h6> */}
-                    <Link href={"restaurants/" + dish.restaurantID}>
-                        <h6 className="text-xs">{dish.served_by}</h6>
-                    </Link>
+                    {!currentuser ? (<Link href="/auth/login"><h6 className="text-xs">{dish.served_by}</h6></Link>):
+                (<Link href={"restaurants/" + dish.restaurantID}><h6 className="text-xs">{dish.served_by}</h6></Link>)}
+                    
                 </a>
                 <div className="mt-0 flex items-center ">
                     <div className="flex flex-row items-center justify-center">

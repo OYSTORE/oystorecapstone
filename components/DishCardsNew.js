@@ -4,7 +4,7 @@ import Link from "next/link";
 import RestaurantCard from "./RestaurantCard";
 import { FaStar } from "react-icons/fa";
 
-function DishCardsNew({ dish, handleAdd, handleRemove, dishID, carts }) {
+function DishCardsNew({ dish, handleAdd, handleRemove, dishID, carts, currentuser }) {
     const [isBookmarked, setIsBookmarked] = useState();
     useEffect(()=> setIsBookmarked(Object.keys(carts).includes(dish.name + "-" + dish.served_by))
     ,[carts])
@@ -57,7 +57,8 @@ function DishCardsNew({ dish, handleAdd, handleRemove, dishID, carts }) {
                     {dish.name}
                 </h5>   
                 {/* <h6 className="text-xs">{isBookmarked.toString()}</h6> */}
-                <Link href={"restaurants/" + dish.restaurantID}><h6 className="text-xs">{dish.served_by}</h6></Link>
+                {!currentuser ? (<Link href="/auth/login"><h6 className="text-xs">{dish.served_by}</h6></Link>):
+                (<Link href={"restaurants/" + dish.restaurantID}><h6 className="text-xs">{dish.served_by}</h6></Link>)}
                 <span className="flex flex-row justify-between">
                     {/* <p className="text-sm">{dish.main_category}</p> */}
                     {/* <p className="text-sm">{dish.isAvailable ? "Available" : "Not Available"}</p> */}
@@ -93,7 +94,18 @@ function DishCardsNew({ dish, handleAdd, handleRemove, dishID, carts }) {
                 
             </div>
             <div className="w-full my-auto sm:my-2 p-1 flex flex-row items-center justify-center">
+            {!currentuser ? 
+            (<Link href="/auth/login">
                 <a
+                   
+                    className={`select-none cursor-pointer rounded-lg px-2 sm:px-5 py-2.5 text-center 
+                            text-sm font-medium text-white 
+                            focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 
+                            dark:hover:bg-blue-700 dark:focus:ring-blue-800 bg-orange-peel hover:bg-[#fa812f]
+                                     ease-in-out duration-300`}
+                >
+                    Add to bookmarks
+                </a></Link>)  :  (<a
                     onClick={
                         !isBookmarked
                             ? () => {
@@ -115,8 +127,8 @@ function DishCardsNew({ dish, handleAdd, handleRemove, dishID, carts }) {
                             } ease-in-out duration-300`}
                 >
                     {!isBookmarked ? "Add to bookmarks" : "Bookmarked"}
-                </a>
-            
+                </a>)
+            }
             </div>
         </div>
         

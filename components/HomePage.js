@@ -246,6 +246,7 @@ const HomePage = ({ dishesList, restaurantsList }) => {
                         <RestaurantCard
                             key={restaurant.id}
                             restaurant={restaurant}
+                            currentuser={currentUser}
                         />
                     ))}
                 </div>

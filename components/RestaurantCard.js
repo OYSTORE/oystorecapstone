@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-const RestaurantCard = ({ restaurant }) => {
+const RestaurantCard = ({ restaurant , currentuser}) => {
     let ratingArray = []
     Object.values(restaurant.reviewLists).map(review => ratingArray.push(review.rating))
     function average(a, n)
@@ -83,13 +83,21 @@ const RestaurantCard = ({ restaurant }) => {
                     </div>
                 </div>
                 <div className="flex items-center justify-between ">
+                {!currentuser ? 
+            ( <Link href={"auth/login"}>
+                    <button className="select-none cursor-pointer pointer rounded-lg bg-orange-peel px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#fa812f]
+                     focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 
+                            dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Visit
+                    </button>
+                    </Link> ) : (
                     <Link href={"restaurants/" + restaurant.restaurantID}>
                     <button className="select-none cursor-pointer pointer rounded-lg bg-orange-peel px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#fa812f]
                      focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 
                             dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Visit
                     </button>
-                    </Link>
+                    </Link>)}
                 </div>
             </div>
             {/* <div>
