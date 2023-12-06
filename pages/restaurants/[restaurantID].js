@@ -666,6 +666,7 @@ const RestaurantPage = ({ restaurant2, resID }) => {
                                                             dish.served_by
                                                         }
                                                         carts={carts}
+                                                        currentuser={currentUser}
                                                     />
                                                 )
                                             )}
