@@ -530,24 +530,24 @@ const Disheslist = ({ dishesList }) => {
                             >
                                 Noodles
                             </button>
-                            <button
+                            {/* <button
                                 className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out "
-                                onClick={() => filterItem("Oysters")}
+                                onClick={() => filterItem("Oyster")}
                             >
                                 Oysters
-                            </button>
+                            </button> */}
                             <button
                                 className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out "
                                 onClick={() => filterItem("Pork")}
                             >
                                 Pork
                             </button>
-                            <button
+                            {/* <button
                                 className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out "
                                 onClick={() => filterItem("Rice")}
                             >
                                 Rice
-                            </button>
+                            </button> */}
                             <button
                                 className="p-2 w-full border rounded-lg my-1 hover:border-orange-peel hover:bg-orange-peel dark:hover:border-blue-600 dark:hover:bg-blue-600 hover:text-white transition-all ease-in-out "
                                 onClick={() => filterItem("Seafood")}
